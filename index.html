@@ -483,40 +483,51 @@
 
 
     // Hero Slideshow
+    console.log('Initializing hero slideshow...');
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slide-dot');
     let currentSlide = 0;
     let slideshowInterval;
 
-    function showSlide(n) {
-      slides.forEach((slide, i) => {
-        slide.style.opacity = i === n ? '1' : '0';
-      });
-      dots.forEach((dot, i) => {
-        dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
-      });
-      currentSlide = n;
-    }
+    console.log('Found slides:', slides.length);
+    console.log('Found dots:', dots.length);
 
-    function nextSlide() {
-      const next = (currentSlide + 1) % slides.length;
-      showSlide(next);
-    }
+    // Only initialize if slides exist
+    if (slides.length > 0) {
+      function showSlide(n) {
+        console.log('Showing slide:', n);
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === n ? '1' : '0';
+        });
+        dots.forEach((dot, i) => {
+          dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+        });
+        currentSlide = n;
+      }
 
-    // Dot click handlers
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        showSlide(index);
-        // Reset interval when manually clicking
-        clearInterval(slideshowInterval);
-        slideshowInterval = setInterval(nextSlide, 5000);
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        console.log('Next slide:', next);
+        showSlide(next);
+      }
+
+      // Dot click handlers
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          console.log('Dot clicked:', index);
+          showSlide(index);
+          clearInterval(slideshowInterval);
+          slideshowInterval = setInterval(nextSlide, 5000);
+        });
       });
-    });
 
-    // Start auto-advance slideshow after a short delay
-    setTimeout(() => {
+      // Start slideshow
+      console.log('Starting slideshow interval...');
       slideshowInterval = setInterval(nextSlide, 5000);
-    }, 100);
+      console.log('Slideshow initialized successfully');
+    } else {
+      console.error('No slides found! Slideshow cannot start.');
+    }
   </script>
 </body>
 </html>
