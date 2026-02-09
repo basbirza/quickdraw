@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outerwear | Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto">
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-black border-b border-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-gray-900">Outerwear</span>
+    </div>
+  </div>
+
+  <!-- Category Header -->
+  <section class="relative overflow-hidden" style="height: 280px;">
+    <img src="outerwear.png" alt="Outerwear" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+      <p class="text-xs tracking-widest text-white/60 mb-2">COLLECTION</p>
+      <h2 class="text-3xl md:text-4xl tracking-wider" style="letter-spacing: 0.15em;">OUTERWEAR</h2>
+      <p class="text-sm text-white/70 mt-3 max-w-lg">Waxed canvas, heavy wool, and rugged layers designed for the elements. From the ranch to the city.</p>
+      <p class="text-xs text-white/50 mt-4">5 Products</p>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+    <div class="flex justify-between items-center mb-8">
+      <p class="text-xs tracking-widest text-gray-400">SHOWING 5 PRODUCTS</p>
+      <select class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black">
+        <option>SORT BY: FEATURED</option>
+        <option>PRICE: LOW TO HIGH</option>
+        <option>PRICE: HIGH TO LOW</option>
+        <option>NEWEST FIRST</option>
+      </select>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="shirts-flannels.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shirts & Flannels</a>
+        <a href="outerwear.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Outerwear</a>
+        <a href="tees-henleys.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Tees & Henleys</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">The Journal</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping & Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs & Hemming</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>&copy; 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { name: "The Houston Jacket", desc: "Waxed Canvas Field Jacket", price: "€269", tag: "BESTSELLER", color: "#3a3228", image: "houston-jacket1.png" },
+      { name: "The Rancher Coat", desc: "Heavyweight Wool Overcoat", price: "€349", tag: null, color: "#2c2c2c" },
+      { name: "The Trapper Vest", desc: "Waxed Cotton Gilet", price: "€149", tag: "NEW", color: "#4a3a2a" },
+      { name: "The Stagecoach Parka", desc: "Insulated Canvas Parka", price: "€329", tag: null, color: "#2a3020" },
+      { name: "The Outrider Bomber", desc: "Nylon & Wool Blend Bomber", price: "€249", tag: null, color: "#1a1a20" },
+    ];
+
+    function createOuterwearSVG(color) {
+      return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+        <rect width="300" height="400" fill="#f5f5f0" />
+        <rect x="75" y="65" width="150" height="230" fill="${color}" rx="4" />
+        <rect x="75" y="65" width="150" height="20" fill="rgba(255,255,255,0.06)" rx="2" />
+        <line x1="150" y1="85" x2="150" y2="295" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+        <rect x="85" y="140" width="40" height="50" fill="rgba(0,0,0,0.1)" rx="2" />
+        <rect x="175" y="140" width="40" height="50" fill="rgba(0,0,0,0.1)" rx="2" />
+        <rect x="55" y="70" width="25" height="170" fill="${color}" rx="3" opacity="0.85" />
+        <rect x="220" y="70" width="25" height="170" fill="${color}" rx="3" opacity="0.85" />
+        <rect x="85" y="240" width="55" height="4" fill="rgba(255,255,255,0.06)" rx="1" />
+        <rect x="160" y="240" width="55" height="4" fill="rgba(255,255,255,0.06)" rx="1" />
+      </svg>`;
+    }
+
+    function createProductCard(product) {
+      const imageContent = product.image
+        ? `<img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
+        : createOuterwearSVG(product.color);
+
+      return `
+        <a href="#" class="group cursor-pointer block">
+          <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
+            ${imageContent}
+            ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              QUICK VIEW
+            </button>
+          </div>
+          <p class="text-sm font-medium text-gray-900">${product.name}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
+          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+        </a>
+      `;
+    }
+
+    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+  </script>
+</body>
+</html>

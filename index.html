@@ -233,12 +233,12 @@
     ];
 
     const categories = [
-      { name: "Selvedge Jeans", count: 12, bg: "#2c3e6b", image: "selvedge_denim_quickdraw.png" },
-      { name: "Denim Jackets", count: 6, bg: "#3d2c2c" },
-      { name: "Shirts & Flannels", count: 9, bg: "#4a4a3a" },
-      { name: "Outerwear", count: 5, bg: "#2c3a2c", image: "outerwear.png" },
-      { name: "Tees & Henleys", count: 8, bg: "#3a3a4a" },
-      { name: "Accessories", count: 7, bg: "#4a3a2c" },
+      { name: "Selvedge Jeans", count: 12, bg: "#2c3e6b", image: "selvedge_denim_quickdraw.png", link: "selvedge-jeans.html" },
+      { name: "Denim Jackets", count: 6, bg: "#3d2c2c", link: "denim-jackets.html" },
+      { name: "Shirts & Flannels", count: 9, bg: "#4a4a3a", link: "shirts-flannels.html" },
+      { name: "Outerwear", count: 5, bg: "#2c3a2c", image: "outerwear.png", link: "outerwear.html" },
+      { name: "Tees & Henleys", count: 8, bg: "#3a3a4a", link: "tees-henleys.html" },
+      { name: "Accessories", count: 7, bg: "#4a3a2c", link: "accessories.html" },
     ];
 
     // Helper Functions
@@ -296,17 +296,19 @@
     }
 
     function createCategoryTile(category) {
+      const href = category.link || '#';
+
       // If category has an image, use it instead of SVG
       if (category.image) {
         return `
-          <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
+          <a href="${href}" class="group cursor-pointer relative overflow-hidden block" style="aspect-ratio: 4/3;">
             <img src="${category.image}" alt="${category.name}" class="absolute inset-0 w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
             <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
               <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
               <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
             </div>
-          </div>
+          </a>
         `;
       }
 
@@ -321,7 +323,7 @@
       }
 
       return `
-        <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
+        <a href="${href}" class="group cursor-pointer relative overflow-hidden block" style="aspect-ratio: 4/3;">
           <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <rect width="400" height="300" fill="${category.bg}" />
             ${horizontalLines}
@@ -332,7 +334,7 @@
             <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
             <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
           </div>
-        </div>
+        </a>
       `;
     }
 
