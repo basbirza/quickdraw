@@ -64,9 +64,9 @@
     <section class="relative overflow-hidden bg-blue-100" style="height: 60vh; min-height: 400px;" id="hero-section">
       <!-- Slideshow container -->
       <div id="slideshow-container" class="absolute inset-0">
-        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 1;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 1;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
       <!-- Slideshow dots -->
@@ -483,51 +483,53 @@
 
 
     // Hero Slideshow
-    console.log('Initializing hero slideshow...');
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.slide-dot');
-    let currentSlide = 0;
-    let slideshowInterval;
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Initializing hero slideshow...');
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.slide-dot');
+      let currentSlide = 0;
+      let slideshowInterval;
 
-    console.log('Found slides:', slides.length);
-    console.log('Found dots:', dots.length);
+      console.log('Found slides:', slides.length);
+      console.log('Found dots:', dots.length);
 
-    // Only initialize if slides exist
-    if (slides.length > 0) {
-      function showSlide(n) {
-        console.log('Showing slide:', n);
-        slides.forEach((slide, i) => {
-          slide.style.opacity = i === n ? '1' : '0';
+      // Only initialize if slides exist
+      if (slides.length > 0) {
+        function showSlide(n) {
+          console.log('Showing slide:', n);
+          slides.forEach((slide, i) => {
+            slide.style.opacity = i === n ? '1' : '0';
+          });
+          dots.forEach((dot, i) => {
+            dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+          });
+          currentSlide = n;
+        }
+
+        function nextSlide() {
+          const next = (currentSlide + 1) % slides.length;
+          console.log('Next slide:', next);
+          showSlide(next);
+        }
+
+        // Dot click handlers
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            console.log('Dot clicked:', index);
+            showSlide(index);
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(nextSlide, 5000);
+          });
         });
-        dots.forEach((dot, i) => {
-          dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
-        });
-        currentSlide = n;
+
+        // Start slideshow
+        console.log('Starting slideshow interval...');
+        slideshowInterval = setInterval(nextSlide, 5000);
+        console.log('Slideshow initialized successfully');
+      } else {
+        console.error('No slides found! Slideshow cannot start.');
       }
-
-      function nextSlide() {
-        const next = (currentSlide + 1) % slides.length;
-        console.log('Next slide:', next);
-        showSlide(next);
-      }
-
-      // Dot click handlers
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          console.log('Dot clicked:', index);
-          showSlide(index);
-          clearInterval(slideshowInterval);
-          slideshowInterval = setInterval(nextSlide, 5000);
-        });
-      });
-
-      // Start slideshow
-      console.log('Starting slideshow interval...');
-      slideshowInterval = setInterval(nextSlide, 5000);
-      console.log('Slideshow initialized successfully');
-    } else {
-      console.error('No slides found! Slideshow cannot start.');
-    }
+    });
   </script>
 </body>
 </html>
