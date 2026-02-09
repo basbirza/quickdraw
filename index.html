@@ -242,111 +242,6 @@
       { name: "Accessories", count: 7, bg: "#4a3a2c" },
     ];
 
-    const siteStructure = [
-      {
-        page: "🏠 Home",
-        sections: [
-          "Announcement bar (free shipping / new drop)",
-          "Hero banner — editorial lifestyle image + CTA",
-          "Featured products grid (4 items)",
-          "Shop by category (6 tiles)",
-          "Brand story teaser + \"Read More\"",
-          "\"Why Selvedge?\" visual strip",
-          "Newsletter signup",
-          "Instagram / community feed"
-        ]
-      },
-      {
-        page: "🛒 Shop (Denim)",
-        sections: [
-          "Filter sidebar: fit, weight, wash, size, price",
-          "Sort: newest, price, popularity",
-          "Product grid with quick-view hover",
-          "Sub-categories: Jeans, Jackets, Shirts"
-        ]
-      },
-      {
-        page: "🛒 Shop (Americana)",
-        sections: [
-          "Chambray & flannel shirts",
-          "Chinos & work pants",
-          "Tees, henleys, western shirts",
-          "Chore coats, coveralls, vests"
-        ]
-      },
-      {
-        page: "📦 Product Page",
-        sections: [
-          "Image gallery (5+ angles, selvedge detail, fabric close-up)",
-          "Product title, price, short description",
-          "Fabric specs: weight, mill, composition",
-          "Size selector + fit guide link",
-          "Add to cart + wishlist",
-          "Accordion: details, sizing, shipping, care",
-          "\"Complete the Look\" cross-sells",
-          "Customer reviews"
-        ]
-      },
-      {
-        page: "📖 Our Story",
-        sections: [
-          "Brand origin — frontier spirit meets Japanese precision",
-          "Philosophy — slow fashion, buy-it-for-life",
-          "The craft — visual journey from cotton to finished garment",
-          "Sustainability commitment"
-        ]
-      },
-      {
-        page: "📐 Denim Guide",
-        sections: [
-          "What is selvedge denim?",
-          "Fabric weight guide (light / mid / heavy)",
-          "Interactive fit finder",
-          "Raw denim care 101",
-          "Community fade gallery"
-        ]
-      },
-      {
-        page: "✏️ The Journal",
-        sections: [
-          "Behind the Fabric — mill & technique deep dives",
-          "Style guides & lookbooks",
-          "Interviews with artisans",
-          "News & product drops"
-        ]
-      },
-      {
-        page: "💳 Cart & Checkout",
-        sections: [
-          "Cart summary with quantity edit",
-          "Discount code field",
-          "Payment: iDEAL (Wero), PayPal, Credit Card, Apple Pay, Klarna",
-          "Shipping tiers: NL / EU / International",
-          "Order confirmation + tracking email"
-        ]
-      },
-      {
-        page: "👤 My Account",
-        sections: [
-          "Order history & tracking",
-          "Wishlist",
-          "Fade Diary (upload denim progress photos)",
-          "Loyalty rewards & referral program",
-          "Saved addresses & payment"
-        ]
-      },
-      {
-        page: "🤝 Support",
-        sections: [
-          "FAQ (sizing, shipping, returns, care)",
-          "Detailed size guide with measurements",
-          "Shipping & returns policy",
-          "Contact (email, form, WhatsApp)",
-          "Chain-stitch hemming & repair service"
-        ]
-      }
-    ];
-
     // Helper Functions
     function createDenimTexture(x, y, w, h, shade) {
       let svg = `<g>`;
@@ -447,22 +342,6 @@
     // Initialize Categories
     const categoriesContainer = document.getElementById('category-grid');
     categoriesContainer.innerHTML = categories.map(createCategoryTile).join('');
-
-    // Initialize Site Structure
-    const structureContainer = document.getElementById('site-structure');
-    structureContainer.innerHTML = siteStructure.map(s => `
-      <div class="border border-gray-200 p-5">
-        <h3 class="text-sm font-medium mb-3" style="letter-spacing: 0.05em;">${s.page}</h3>
-        <div class="space-y-1.5">
-          ${s.sections.map(sec => `
-            <div class="flex items-start gap-2">
-              <span class="text-gray-300 text-xs mt-0.5">—</span>
-              <span class="text-xs text-gray-600 leading-relaxed">${sec}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `).join('');
 
     // Navigation Hover Effect
     const navItems = document.querySelectorAll('.nav-item');
