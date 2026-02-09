@@ -61,26 +61,21 @@
   <!-- Home View -->
   <div id="home-view">
     <!-- Hero Section -->
-    <section class="relative overflow-hidden" style="height: 60vh; min-height: 400px;" id="hero-section">
-      <div id="hero-placeholder" class="absolute inset-0" style="background: linear-gradient(135deg, #4a6a8a 0%, #7a9ab5 50%, #2c3e50 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-          <p class="text-white/40 text-xs tracking-widest" id="hero-message">LOADING...</p>
-        </div>
-      </div>
+    <section class="relative overflow-hidden bg-gray-900" style="height: 60vh; min-height: 400px;" id="hero-section">
       <!-- Slideshow container -->
-      <div id="slideshow-container" class="absolute inset-0" style="display: none;">
-        <img class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
-        <img class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
-        <img class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+      <div id="slideshow-container" class="absolute inset-0">
+        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" style="opacity: 1;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" style="opacity: 0;" alt="Quickdraw Pressing Co.">
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
       <!-- Slideshow dots -->
       <div class="absolute bottom-24 left-0 right-0 flex justify-center gap-2 z-10">
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="0"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/90 hover:bg-white transition-all" data-slide="0"></button>
         <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
         <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="2"></button>
       </div>
-      <div class="absolute bottom-12 left-0 right-0 flex flex-col items-center text-center px-4">
+      <div class="absolute bottom-12 left-0 right-0 flex flex-col items-center text-center px-4 z-10">
         <button class="bg-white text-black text-xs tracking-widest px-8 py-3 hover:bg-gray-100 transition-colors">
           SHOP THE COLLECTION
         </button>
@@ -488,33 +483,13 @@
 
 
     // Hero Slideshow
-    const slideshowContainer = document.getElementById('slideshow-container');
-    const heroPlaceholder = document.getElementById('hero-placeholder');
-    const heroMessage = document.getElementById('hero-message');
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slide-dot');
-
-    const imageNames = ['quickdraw_branded_lower_1.png', 'quickdraw_branded_lower_2.png', 'quickdraw_branded_lower_3.png'];
     let currentSlide = 0;
     let slideshowInterval;
 
-    // Set image sources immediately
-    imageNames.forEach((imageName, index) => {
-      if (slides[index]) {
-        slides[index].src = imageName;
-      }
-    });
-
-    // Show slideshow immediately and hide placeholder
-    slideshowContainer.style.display = 'block';
-    heroPlaceholder.style.display = 'none';
-    slides[0].style.opacity = '1';
-    dots[0].style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-
     // Start auto-advance slideshow
-    if (imageNames.length > 1) {
-      slideshowInterval = setInterval(nextSlide, 5000);
-    }
+    slideshowInterval = setInterval(nextSlide, 5000);
 
     function showSlide(n) {
       slides.forEach((slide, i) => {
