@@ -61,7 +61,7 @@
   <!-- Home View -->
   <div id="home-view">
     <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gray-900" style="height: 60vh; min-height: 400px;" id="hero-section">
+    <section class="relative overflow-hidden bg-blue-100" style="height: 60vh; min-height: 400px;" id="hero-section">
       <!-- Slideshow container -->
       <div id="slideshow-container" class="absolute inset-0">
         <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000" style="opacity: 1;" alt="Quickdraw Pressing Co.">
@@ -488,9 +488,6 @@
     let currentSlide = 0;
     let slideshowInterval;
 
-    // Start auto-advance slideshow
-    slideshowInterval = setInterval(nextSlide, 5000);
-
     function showSlide(n) {
       slides.forEach((slide, i) => {
         slide.style.opacity = i === n ? '1' : '0';
@@ -515,6 +512,11 @@
         slideshowInterval = setInterval(nextSlide, 5000);
       });
     });
+
+    // Start auto-advance slideshow after a short delay
+    setTimeout(() => {
+      slideshowInterval = setInterval(nextSlide, 5000);
+    }, 100);
   </script>
 </body>
 </html>
