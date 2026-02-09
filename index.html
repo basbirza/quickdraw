@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickdraw Pressing Co. - Premium Selvedge Denim</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <!-- Logo -->
+    <div class="text-center">
+      <h1 class="logo-title">QUICKDRAW</h1>
+      <div class="flex items-center justify-center gap-3 mt-1">
+        <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+        <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto" id="main-nav">
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="New In">NEW IN</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim">DENIM</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Americana">AMERICANA</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Accessories">ACCESSORIES</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim Guide">DENIM GUIDE</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Journal">JOURNAL</button>
+      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Sale" data-sale="true">SALE</button>
+    </nav>
+  </header>
+
+  <!-- Home View -->
+  <div id="home-view">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-blue-100" style="height: 60vh; min-height: 400px;" id="hero-section">
+      <!-- Slideshow container -->
+      <div id="slideshow-container" class="absolute inset-0 pointer-events-none">
+        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 1;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+      <!-- Slideshow dots -->
+      <div class="absolute bottom-24 left-0 right-0 flex justify-center gap-2 z-10">
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/90 hover:bg-white transition-all" data-slide="0"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="2"></button>
+      </div>
+      <div class="absolute bottom-12 left-0 right-0 flex flex-col items-center text-center px-4 z-10">
+        <button class="bg-white text-black text-xs tracking-widest px-8 py-3 hover:bg-gray-100 transition-colors">
+          SHOP THE COLLECTION
+        </button>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="max-w-6xl mx-auto px-4 md:px-8 py-16">
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <p class="text-xs tracking-widest text-gray-400 mb-1">LATEST</p>
+          <h2 class="text-xl" style="letter-spacing: 0.1em;">New Arrivals</h2>
+        </div>
+        <button class="text-xs tracking-widest text-gray-500 hover:text-black border-b border-gray-300 hover:border-black pb-0.5 transition-all">
+          VIEW ALL
+        </button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="featured-products"></div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+      <p class="text-xs tracking-widest text-gray-400 mb-1">EXPLORE</p>
+      <h2 class="text-xl mb-8" style="letter-spacing: 0.1em;">Shop by Category</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="category-grid"></div>
+    </section>
+
+    <!-- Brand Story Strip -->
+    <section class="bg-gray-50 py-16 px-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-xs tracking-widest text-gray-400 mb-4">OUR STORY</p>
+        <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-2">
+          Born from a reverence for Japanese craftsmanship and American frontier spirit,
+          Quickdraw Pressing Co. creates selvedge denim and Americana wear built for a lifetime of stories.
+        </p>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          Every piece is woven on vintage shuttle looms in Japan's finest mills — then cut and pressed
+          with the same care that built the American West.
+        </p>
+        <button class="text-xs tracking-widest text-gray-900 border-b border-gray-900 pb-0.5 hover:text-gray-600 hover:border-gray-600 transition-all">
+          READ MORE
+        </button>
+      </div>
+    </section>
+
+    <!-- Why Selvedge -->
+    <section class="max-w-4xl mx-auto px-4 py-16">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div>
+          <span class="text-2xl text-gray-300">◈</span>
+          <h3 class="text-xs tracking-widest mt-3 mb-2">SHUTTLE LOOM WOVEN</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">Slow-woven on vintage looms for a tighter, more durable weave with the iconic selvedge edge</p>
+        </div>
+        <div>
+          <span class="text-2xl text-gray-300">◇</span>
+          <h3 class="text-xs tracking-widest mt-3 mb-2">RAW & UNSANFORIZED</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">Unwashed denim that molds to your body and develops unique fades over time</p>
+        </div>
+        <div>
+          <span class="text-2xl text-gray-300">△</span>
+          <h3 class="text-xs tracking-widest mt-3 mb-2">BUILT FOR LIFE</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">Premium long-staple cotton and reinforced construction — these last for decades, not seasons</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-black text-white py-14 px-4 text-center">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">JOIN THE DRAW</p>
+      <h2 class="text-lg mb-1" style="letter-spacing: 0.1em;">Stay in the Loop</h2>
+      <p class="text-xs text-gray-400 mb-6">New drops, stories & 10% off your first order</p>
+      <div class="flex max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="Your email address"
+          class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
+        />
+        <button class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
+          SUBSCRIBE
+        </button>
+      </div>
+    </section>
+
+    <!-- Payment & Trust -->
+    <section class="py-8 px-4">
+      <div class="flex justify-center items-center gap-6 text-xs text-gray-400 tracking-wider flex-wrap">
+        <span>iDEAL</span>
+        <span class="text-gray-200">|</span>
+        <span>PAYPAL</span>
+        <span class="text-gray-200">|</span>
+        <span>VISA</span>
+        <span class="text-gray-200">|</span>
+        <span>MASTERCARD</span>
+        <span class="text-gray-200">|</span>
+        <span>APPLE PAY</span>
+        <span class="text-gray-200">|</span>
+        <span>KLARNA</span>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">New In</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Selvedge Jeans</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Jackets</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Americana Wear</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Accessories</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sale</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">The Journal</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping & Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs & Hemming</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>© 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Data
+    const featuredProducts = [
+      { name: "The Frontier Slim", desc: "14oz Japanese Selvedge", price: "€189", tag: "NEW", color: "#1a1a2e", image: "frontier-slim.png" },
+      { name: "Oni Straight Jeans", desc: "17oz Bumpy Denim", price: "€209", tag: "BESTSELLER", color: "#1c2333", image: "rancher-straight.png" },
+      { name: "Culprits Speedcrew", desc: "Black Loopwheel Hoodie", price: "€65", tag: null, color: "#22223b", image: "culprits-speedcrew1.png" },
+      { name: "Houston Type I Denim Jacket", desc: "Blanket Lined Indigo", price: "€229", tag: "NEW", color: "#1b2a4a", image: "houston-jacket1.png" },
+    
+
+    const categories = [
+      { name: "Selvedge Jeans", count: 12, bg: "#2c3e6b" },
+      { name: "Denim Jackets", count: 6, bg: "#3d2c2c" },
+      { name: "Shirts & Flannels", count: 9, bg: "#4a4a3a" },
+      { name: "Outerwear", count: 5, bg: "#2c3a2c", image: "outerwear.png" },
+      { name: "Tees & Henleys", count: 8, bg: "#3a3a4a" },
+      { name: "Accessories", count: 7, bg: "#4a3a2c" },
+    ];
+
+    // Helper Functions
+    function createDenimTexture(x, y, w, h, shade) {
+      let svg = `<g>`;
+      svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${shade}" rx="2" />`;
+      for (let i = 0; i < Math.floor(h / 3); i++) {
+        svg += `<line x1="${x}" y1="${y + i * 3}" x2="${x + w}" y2="${y + i * 3}" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" />`;
+      }
+      svg += `</g>`;
+      return svg;
+    }
+
+    function createProductCard(product) {
+      // Image content - either real image or SVG
+      const imageContent = product.image
+        ? `<img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
+        : `<svg width="100%" height="100%" viewBox="0 0 300 400">
+              <rect width="300" height="400" fill="#f5f5f0" />
+              ${createDenimTexture(95, 80, 110, 240, product.color)}
+              <rect x="95" y="80" width="110" height="8" fill="${product.color}" rx="1" opacity="0.7" />
+              <line x1="130" y1="88" x2="130" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
+              <line x1="170" y1="88" x2="170" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
+              <rect x="108" y="120" width="25" height="20" fill="rgba(255,255,255,0.05)" rx="2" stroke="rgba(255,200,100,0.12)" stroke-width="0.5" />
+              <line x1="205" y1="240" x2="205" y2="260" stroke="#c45a3a" stroke-width="1.5" />
+              <rect x="95" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
+              <rect x="155" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
+            </svg>`;
+
+      // Create product link based on product name
+      let productLink = "#";
+      if (product.name === "The Frontier Slim") {
+        productLink = "frontier-slim.html";
+      } else if (product.name === "Oni Straight Jeans") {
+        productLink = "rancher-straight.html";
+      } else if (product.name === "Culprits Speedcrew") {
+        productLink = "culprits-speedcrew.html";
+      }
+
+      return `
+        <a href="${productLink}" class="group cursor-pointer block">
+          <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
+            ${imageContent}
+            ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              QUICK VIEW
+            </button>
+          </div>
+          <p class="text-sm font-medium text-gray-900">${product.name}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
+          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+        </a>
+      `;
+    }
+
+    function createCategoryTile(category) {
+      // If category has an image, use it instead of SVG
+      if (category.image) {
+        return `
+          <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
+            <img src="${category.image}" alt="${category.name}" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+              <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
+              <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // Otherwise use SVG pattern
+      let horizontalLines = '';
+      for (let i = 0; i < 100; i++) {
+        horizontalLines += `<line x1="0" y1="${i * 3}" x2="400" y2="${i * 3}" stroke="rgba(255,255,255,0.02)" stroke-width="0.5" />`;
+      }
+      let verticalLines = '';
+      for (let i = 0; i < 60; i++) {
+        verticalLines += `<line x1="${i * 7}" y1="0" x2="${i * 7}" y2="300" stroke="rgba(255,255,255,0.015)" stroke-width="0.3" />`;
+      }
+
+      return `
+        <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
+          <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="${category.bg}" />
+            ${horizontalLines}
+            ${verticalLines}
+          </svg>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
+            <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize Products
+    const productsContainer = document.getElementById('featured-products');
+    productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
+
+    // Initialize Categories
+    const categoriesContainer = document.getElementById('category-grid');
+    categoriesContainer.innerHTML = categories.map(createCategoryTile).join('');
+
+    // Navigation Hover Effect
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach((item) => {
+      const isSale = item.dataset.sale === 'true';
+      item.addEventListener('mouseenter', () => {
+        item.style.color = '#111';
+        item.style.borderBottom = '1px solid #111';
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.color = isSale ? '#c45a3a' : '#666';
+        item.style.borderBottom = '1px solid transparent';
+      });
+      // Set initial color
+      item.style.color = isSale ? '#c45a3a' : '#666';
+      item.style.borderBottom = '1px solid transparent';
+    });
+
+
+    // Hero Slideshow
+    console.log('Initializing hero slideshow...');
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    let currentSlide = 0;
+    let slideshowInterval;
+
+    console.log('Found slides:', slides.length);
+    console.log('Found dots:', dots.length);
+
+    // Only initialize if slides exist
+    if (slides.length > 0) {
+      function showSlide(n) {
+        console.log('Showing slide:', n);
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === n ? '1' : '0';
+        });
+        dots.forEach((dot, i) => {
+          dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+        });
+        currentSlide = n;
+      }
+
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        console.log('Next slide:', next);
+        showSlide(next);
+      }
+
+      // Dot click handlers
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          console.log('Dot clicked:', index);
+          showSlide(index);
+          clearInterval(slideshowInterval);
+          slideshowInterval = setInterval(nextSlide, 2000);
+        });
+      });
+
+      // Start slideshow
+      console.log('Starting slideshow interval...');
+      slideshowInterval = setInterval(nextSlide, 2000);
+      console.log('Slideshow initialized successfully');
+    } else {
+      console.error('No slides found! Slideshow cannot start.');
+    }
+  </script>
+</body>
+</html>
