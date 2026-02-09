@@ -58,16 +58,6 @@
     </nav>
   </header>
 
-  <!-- View Toggle -->
-  <div class="flex justify-center gap-2 py-4 bg-gray-50 border-b border-gray-100">
-    <button id="view-home" class="view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-black text-white">
-      HOMEPAGE
-    </button>
-    <button id="view-structure" class="view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-white text-gray-500 border border-gray-200 hover:border-gray-400">
-      FULL SITEMAP
-    </button>
-  </div>
-
   <!-- Home View -->
   <div id="home-view">
     <!-- Hero Section -->
@@ -192,53 +182,6 @@
     </section>
   </div>
 
-  <!-- Sitemap View -->
-  <div id="structure-view" style="display: none;">
-    <div class="max-w-3xl mx-auto px-4 py-10">
-      <p class="text-xs tracking-widest text-gray-400 mb-1">WEBSITE BLUEPRINT</p>
-      <h2 class="text-xl mb-8" style="letter-spacing: 0.1em;">Complete Site Structure</h2>
-      <div class="space-y-6" id="site-structure"></div>
-
-      <!-- Tech Stack -->
-      <div class="border border-gray-200 p-5 mt-8">
-        <h3 class="text-sm font-medium mb-4" style="letter-spacing: 0.05em;">💡 Recommended Tech Stack</h3>
-        <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-xs">
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Platform</span>
-            <span class="text-gray-700">Shopify</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Payments</span>
-            <span class="text-gray-700">Mollie (iDEAL/Wero) + Shopify Payments</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Email</span>
-            <span class="text-gray-700">Klaviyo</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Reviews</span>
-            <span class="text-gray-700">Judge.me</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Shipping</span>
-            <span class="text-gray-700">SendCloud (NL/EU)</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Analytics</span>
-            <span class="text-gray-700">GA4 + Hotjar</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Theme</span>
-            <span class="text-gray-700">Custom or Dawn-based</span>
-          </div>
-          <div class="flex gap-2 py-1 border-b border-gray-100">
-            <span class="text-gray-400 min-w-20">Domain</span>
-            <span class="text-gray-700">quickdrawpressing.co</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
@@ -543,25 +486,6 @@
       item.style.borderBottom = '1px solid transparent';
     });
 
-    // View Toggle
-    const viewHome = document.getElementById('view-home');
-    const viewStructure = document.getElementById('view-structure');
-    const homeView = document.getElementById('home-view');
-    const structureView = document.getElementById('structure-view');
-
-    viewHome.addEventListener('click', () => {
-      homeView.style.display = 'block';
-      structureView.style.display = 'none';
-      viewHome.className = 'view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-black text-white';
-      viewStructure.className = 'view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-white text-gray-500 border border-gray-200 hover:border-gray-400';
-    });
-
-    viewStructure.addEventListener('click', () => {
-      homeView.style.display = 'none';
-      structureView.style.display = 'block';
-      viewStructure.className = 'view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-black text-white';
-      viewHome.className = 'view-toggle px-4 py-1.5 text-xs tracking-widest transition-all bg-white text-gray-500 border border-gray-200 hover:border-gray-400';
-    });
 
     // Hero Slideshow
     // Place images named quickdraw_branded_lower_1.png through quickdraw_branded_lower_4.png in the same directory
