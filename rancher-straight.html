@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Rancher Straight - 17oz Bumpy Denim | Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-content.active {
+      max-height: 500px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <!-- Logo -->
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto" id="main-nav">
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-black transition-colors">Denim</a>
+      <span>/</span>
+      <span class="text-gray-900">The Rancher Straight</span>
+    </div>
+  </div>
+
+  <!-- Product Section -->
+  <section class="max-w-7xl mx-auto px-4 md:px-8 pb-16">
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+
+      <!-- Image Gallery -->
+      <div class="space-y-3">
+        <!-- Main Image -->
+        <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio: 3/4;">
+          <img src="rancher-straight.png" alt="The Rancher Straight - 17oz Bumpy Denim" class="absolute inset-0 w-full h-full object-contain" id="main-product-image">
+        </div>
+
+        <!-- Thumbnail Grid -->
+        <div class="grid grid-cols-5 gap-2">
+          <div class="thumbnail aspect-square bg-gray-100 border-2 border-black cursor-pointer overflow-hidden" data-image="rancher-straight.png">
+            <img src="rancher-straight.png" alt="The Rancher Straight - Front view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="rancher-straight2.png">
+            <img src="rancher-straight2.png" alt="The Rancher Straight - Side view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="rancher-straight3.png">
+            <img src="rancher-straight3.png" alt="The Rancher Straight - Detail view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="rancher-straight4.png">
+            <img src="rancher-straight4.png" alt="The Rancher Straight - Back view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="rancher-straight5.png">
+            <img src="rancher-straight5.png" alt="The Rancher Straight - Fabric close-up" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="space-y-6">
+        <!-- Title & Price -->
+        <div class="border-b border-gray-200 pb-6">
+          <p class="text-xs tracking-widest text-gray-400 mb-2">ONI BUMPY DENIM</p>
+          <h1 class="text-2xl md:text-3xl mb-3" style="letter-spacing: 0.05em;">The Rancher Straight</h1>
+          <p class="text-xs tracking-widest text-gray-500 mb-3">KUSAKI GREEN</p>
+          <p class="text-lg text-gray-900 mb-4">€209</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            ONI Denim's newly developed "Bumpy Denim" crafted with ultra-low tension weaving and highly slubby yarns.
+            This unique 17oz fabric creates a distinctive uneven texture and beautifully wavy surface. Garment-dyed to
+            achieve a deep greenish (KUSAKI) tone, giving these jeans a truly one-of-a-kind presence that embodies ONI's craftsmanship.
+          </p>
+        </div>
+
+        <!-- Fabric Specs -->
+        <div class="border border-gray-200 p-4 bg-gray-50">
+          <p class="text-xs tracking-widest text-gray-900 mb-3">FABRIC SPECIFICATIONS</p>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <span class="text-gray-500">Weight</span>
+              <p class="text-gray-900 font-medium">17oz</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Made in</span>
+              <p class="text-gray-900 font-medium">Japan</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Composition</span>
+              <p class="text-gray-900 font-medium">100% Cotton</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Construction</span>
+              <p class="text-gray-900 font-medium">Ultra-low tension weave</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Finish</span>
+              <p class="text-gray-900 font-medium">Garment-dyed</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Treatment</span>
+              <p class="text-gray-900 font-medium">One wash</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Size Selector -->
+        <div>
+          <div class="flex justify-between items-center mb-3">
+            <p class="text-xs tracking-widest text-gray-900">SELECT SIZE</p>
+            <button class="text-xs text-gray-500 hover:text-black border-b border-gray-400 hover:border-black pb-0.5 transition-all">
+              SIZE GUIDE
+            </button>
+          </div>
+          <div class="grid grid-cols-5 gap-2">
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">28</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">29</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">30</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">31</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">32</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">33</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">34</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">36</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">38</button>
+            <button class="size-option border border-gray-300 py-3 text-sm hover:border-black transition-colors">40</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <div class="space-y-3">
+          <button class="w-full bg-black text-white text-xs tracking-widest py-4 hover:bg-gray-800 transition-colors">
+            ADD TO CART
+          </button>
+          <button class="w-full border border-gray-300 text-gray-900 text-xs tracking-widest py-4 hover:border-black transition-colors">
+            ♡ ADD TO WISHLIST
+          </button>
+        </div>
+
+        <!-- Accordions -->
+        <div class="space-y-2 border-t border-gray-200 pt-6">
+          <!-- Details -->
+          <div class="accordion-item border border-gray-200">
+            <button class="accordion-header w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-xs tracking-widest text-gray-900">PRODUCT DETAILS</span>
+              <span class="accordion-icon text-gray-400">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="px-4 pb-4 text-xs text-gray-600 leading-relaxed space-y-2">
+                <p>• "Just Right Straight" fit - balanced between regular and relaxed</p>
+                <p>• Button fly closure</p>
+                <p>• 17oz Bumpy selvedge denim with extreme slub yarn</p>
+                <p>• Ultra-low tension weave creates uneven, wavy texture</p>
+                <p>• Garment-dyed for deep greenish (KUSAKI) tone</p>
+                <p>• One wash treatment</p>
+                <p>• Leather patch branding</p>
+                <p>• Five-pocket styling</p>
+                <p>• Made in Japan</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sizing -->
+          <div class="accordion-item border border-gray-200">
+            <button class="accordion-header w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-xs tracking-widest text-gray-900">SIZING & FIT</span>
+              <span class="accordion-icon text-gray-400">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="px-4 pb-4 text-xs text-gray-600 leading-relaxed space-y-2">
+                <p><strong>Fit:</strong> "Just Right Straight" - regular fit through hip and thigh, straight leg from knee to hem</p>
+                <p><strong>Rise:</strong> Mid-rise for balanced comfort</p>
+                <p><strong>Leg opening:</strong> 8" - 8.5" depending on size</p>
+                <p><strong>One wash:</strong> Pre-washed for minimal additional shrinkage</p>
+                <p><strong>Sizing tip:</strong> Order your true waist size. The bumpy texture softens and conforms with wear.</p>
+                <p><em>Model is 6'1" / 185cm, waist 32", wearing size 32</em></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping -->
+          <div class="accordion-item border border-gray-200">
+            <button class="accordion-header w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-xs tracking-widest text-gray-900">SHIPPING & RETURNS</span>
+              <span class="accordion-icon text-gray-400">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="px-4 pb-4 text-xs text-gray-600 leading-relaxed space-y-2">
+                <p>• Free shipping on orders above €150 (Netherlands & Belgium)</p>
+                <p>• Standard EU shipping: €9.95 (3-5 business days)</p>
+                <p>• International shipping available</p>
+                <p>• 30-day returns on unworn, unwashed items</p>
+                <p>• Free returns within Netherlands</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Care -->
+          <div class="accordion-item border border-gray-200">
+            <button class="accordion-header w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-xs tracking-widest text-gray-900">CARE INSTRUCTIONS</span>
+              <span class="accordion-icon text-gray-400">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="px-4 pb-4 text-xs text-gray-600 leading-relaxed space-y-2">
+                <p><strong>For garment-dyed bumpy denim:</strong></p>
+                <p>• Wear for 6+ months before washing to develop unique aging character</p>
+                <p>• No initial soak needed (one wash treated)</p>
+                <p>• Turn inside out, wash cold on gentle cycle, hang dry</p>
+                <p>• Infrequent washing preserves the distinctive wavy texture</p>
+                <p>• Never tumble dry — may affect the uneven surface texture</p>
+                <p>• Iron inside out on low heat if needed, embrace the natural texture</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Complete the Look -->
+    <section class="mt-16 pt-16 border-t border-gray-200">
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <p class="text-xs tracking-widest text-gray-400 mb-1">PAIR WITH</p>
+          <h2 class="text-xl" style="letter-spacing: 0.1em;">Complete the Look</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <!-- Product suggestions would go here -->
+        <div class="group cursor-pointer">
+          <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
+            <svg width="100%" height="100%" viewBox="0 0 300 400">
+              <rect width="300" height="400" fill="#f5f5f0" />
+              <rect x="90" y="100" width="120" height="160" fill="#8b7355" rx="3" />
+              <rect x="100" y="110" width="15" height="30" fill="rgba(0,0,0,0.15)" />
+              <rect x="185" y="110" width="15" height="30" fill="rgba(0,0,0,0.15)" />
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-gray-900">Western Shirt</p>
+          <p class="text-xs text-gray-500 mt-0.5">Heavyweight Chambray</p>
+          <p class="text-sm text-gray-900 mt-1">€149</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="mt-16 pt-16 border-t border-gray-200">
+      <div class="mb-8">
+        <p class="text-xs tracking-widest text-gray-400 mb-1">CUSTOMER REVIEWS</p>
+        <h2 class="text-xl" style="letter-spacing: 0.1em;">What Our Customers Say</h2>
+      </div>
+      <div class="bg-gray-50 p-6 text-center">
+        <p class="text-sm text-gray-500">No reviews yet. Be the first to review this product.</p>
+        <button class="mt-4 text-xs tracking-widest text-gray-900 border-b border-gray-900 pb-0.5 hover:text-gray-600 hover:border-gray-600 transition-all">
+          WRITE A REVIEW
+        </button>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">New In</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Selvedge Jeans</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Jackets</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Americana Wear</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Accessories</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sale</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">The Journal</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping & Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs & Hemming</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>© 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Image gallery functionality
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const mainImage = document.getElementById('main-product-image');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        // Update main image
+        const newImageSrc = thumb.getAttribute('data-image');
+        mainImage.src = newImageSrc;
+
+        // Update thumbnail borders
+        thumbnails.forEach(t => {
+          t.classList.remove('border-2', 'border-black');
+          t.classList.add('border', 'border-gray-200');
+        });
+        thumb.classList.remove('border', 'border-gray-200');
+        thumb.classList.add('border-2', 'border-black');
+      });
+    });
+
+    // Size selection
+    const sizeButtons = document.querySelectorAll('.size-option');
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!btn.classList.contains('cursor-not-allowed')) {
+          sizeButtons.forEach(b => {
+            b.classList.remove('bg-black', 'text-white', 'border-black');
+            b.classList.add('border-gray-300');
+          });
+          btn.classList.add('bg-black', 'text-white', 'border-black');
+          btn.classList.remove('border-gray-300');
+        }
+      });
+    });
+
+    // Accordion functionality
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('.accordion-icon');
+        const isActive = content.classList.contains('active');
+
+        // Close all accordions
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');
+
+        // Toggle current accordion
+        if (!isActive) {
+          content.classList.add('active');
+          icon.textContent = '−';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
