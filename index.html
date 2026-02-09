@@ -488,7 +488,6 @@
 
 
     // Hero Slideshow
-    // Place images named quickdraw_branded_lower_1.png through quickdraw_branded_lower_4.png in the same directory
     const slideshowContainer = document.getElementById('slideshow-container');
     const heroPlaceholder = document.getElementById('hero-placeholder');
     const heroMessage = document.getElementById('hero-message');
@@ -498,40 +497,24 @@
     const imageNames = ['quickdraw_branded_lower_1.png', 'quickdraw_branded_lower_2.png', 'quickdraw_branded_lower_3.png'];
     let currentSlide = 0;
     let slideshowInterval;
-    let imagesLoaded = 0;
 
-    // Load all images
+    // Set image sources immediately
     imageNames.forEach((imageName, index) => {
-      const img = new Image();
-      img.onload = function() {
+      if (slides[index]) {
         slides[index].src = imageName;
-        imagesLoaded++;
-
-        // Show slideshow when first image loads
-        if (imagesLoaded === 1) {
-          slideshowContainer.style.display = 'block';
-          heroPlaceholder.style.display = 'none';
-          slides[0].style.opacity = '1';
-          dots[0].style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-
-          // Start auto-advance if multiple images loaded
-          if (imageNames.length > 1) {
-            slideshowInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-          }
-        }
-      };
-      img.onerror = function() {
-        console.log(`Failed to load ${imageName}`);
-      };
-      img.src = imageName;
+      }
     });
 
-    // Show error if no images load
-    setTimeout(() => {
-      if (imagesLoaded === 0) {
-        heroMessage.textContent = 'Place quickdraw_branded_lower_1.png through quickdraw_branded_lower_4.png in the same folder';
-      }
-    }, 2000);
+    // Show slideshow immediately and hide placeholder
+    slideshowContainer.style.display = 'block';
+    heroPlaceholder.style.display = 'none';
+    slides[0].style.opacity = '1';
+    dots[0].style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+
+    // Start auto-advance slideshow
+    if (imageNames.length > 1) {
+      slideshowInterval = setInterval(nextSlide, 5000);
+    }
 
     function showSlide(n) {
       slides.forEach((slide, i) => {
