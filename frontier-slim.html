@@ -92,18 +92,21 @@
         </div>
 
         <!-- Thumbnail Grid -->
-        <div class="grid grid-cols-4 gap-2">
-          <div class="aspect-square bg-gray-100 border-2 border-black cursor-pointer overflow-hidden">
+        <div class="grid grid-cols-5 gap-2">
+          <div class="thumbnail aspect-square bg-gray-100 border-2 border-black cursor-pointer overflow-hidden" data-image="frontier-slim.png">
             <img src="frontier-slim.png" alt="The Frontier Slim - Front view" class="w-full h-full object-cover">
           </div>
-          <div class="aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors">
-            <img src="frontier-slim.png" alt="The Frontier Slim - Selvedge detail" class="w-full h-full object-cover">
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="frontier-slim2.png">
+            <img src="frontier-slim2.png" alt="The Frontier Slim - Side view" class="w-full h-full object-cover">
           </div>
-          <div class="aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors">
-            <img src="frontier-slim.png" alt="The Frontier Slim - Pocket detail" class="w-full h-full object-cover">
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="frontier-slim3.png">
+            <img src="frontier-slim3.png" alt="The Frontier Slim - Detail view" class="w-full h-full object-cover">
           </div>
-          <div class="aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors">
-            <img src="frontier-slim.png" alt="The Frontier Slim - Fabric close-up" class="w-full h-full object-cover">
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="frontier-slim4.png">
+            <img src="frontier-slim4.png" alt="The Frontier Slim - Back view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="frontier-slim5.png">
+            <img src="frontier-slim5.png" alt="The Frontier Slim - Fabric close-up" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
@@ -352,6 +355,26 @@
   </footer>
 
   <script>
+    // Image gallery functionality
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const mainImage = document.getElementById('main-product-image');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        // Update main image
+        const newImageSrc = thumb.getAttribute('data-image');
+        mainImage.src = newImageSrc;
+
+        // Update thumbnail borders
+        thumbnails.forEach(t => {
+          t.classList.remove('border-2', 'border-black');
+          t.classList.add('border', 'border-gray-200');
+        });
+        thumb.classList.remove('border', 'border-gray-200');
+        thumb.classList.add('border-2', 'border-black');
+      });
+    });
+
     // Size selection
     const sizeButtons = document.querySelectorAll('.size-option');
     sizeButtons.forEach(btn => {
