@@ -89,6 +89,16 @@
         <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio: 3/4;">
           <img src="culprits-speedcrew1.png" alt="Culprits Speedcrew - Black Loopwheel Hoodie" class="absolute inset-0 w-full h-full object-contain" id="main-product-image">
         </div>
+
+        <!-- Thumbnail Grid -->
+        <div class="grid grid-cols-2 gap-2">
+          <div class="thumbnail aspect-square bg-gray-100 border-2 border-black cursor-pointer overflow-hidden" data-image="culprits-speedcrew1.png">
+            <img src="culprits-speedcrew1.png" alt="Culprits Speedcrew - Front view" class="w-full h-full object-cover">
+          </div>
+          <div class="thumbnail aspect-square bg-gray-100 border border-gray-200 hover:border-gray-400 cursor-pointer overflow-hidden transition-colors" data-image="culprits-speedcrew2.png">
+            <img src="culprits-speedcrew2.png" alt="Culprits Speedcrew - Flat lay" class="w-full h-full object-cover">
+          </div>
+        </div>
       </div>
 
       <!-- Product Info -->
@@ -297,6 +307,25 @@
         });
         btn.classList.add('bg-black', 'text-white', 'border-black');
         btn.classList.remove('border-gray-200');
+      });
+    });
+
+    // Thumbnail gallery
+    const mainImage = document.getElementById('main-product-image');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const newImageSrc = thumb.getAttribute('data-image');
+        mainImage.src = newImageSrc;
+
+        // Update thumbnail borders
+        thumbnails.forEach(t => {
+          t.classList.remove('border-2', 'border-black');
+          t.classList.add('border', 'border-gray-200');
+        });
+        thumb.classList.remove('border', 'border-gray-200');
+        thumb.classList.add('border-2', 'border-black');
       });
     });
   </script>
