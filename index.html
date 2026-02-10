@@ -520,8 +520,17 @@
 
     async function loadHeroImages() {
       try {
-        const response = await fetch(`${API_URL}/hero-images`);
-        const data = await response.json();
+        // Fetch hero images and settings
+        const [imagesResponse, settingsResponse] = await Promise.all([
+          fetch(`${API_URL}/hero-images`),
+          fetch(`${API_URL}/settings`)
+        ]);
+
+        const data = await imagesResponse.json();
+        const settingsData = await settingsResponse.json();
+
+        // Get slideshow speed from settings (default: 3 seconds)
+        const slideshowSpeed = (settingsData.settings?.hero_slideshow_speed || 3) * 1000; // Convert to milliseconds
 
         if (data.success && data.images.length > 0) {
           const container = document.getElementById('slideshow-container');
@@ -570,12 +579,12 @@
               dot.addEventListener('click', () => {
                 showSlide(index);
                 clearInterval(slideshowInterval);
-                slideshowInterval = setInterval(nextSlide, 2000);
+                slideshowInterval = setInterval(nextSlide, slideshowSpeed);
               });
             });
 
             if (slides.length > 1) {
-              slideshowInterval = setInterval(nextSlide, 2000);
+              slideshowInterval = setInterval(nextSlide, slideshowSpeed);
             }
           }
         }

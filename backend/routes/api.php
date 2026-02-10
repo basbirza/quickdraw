@@ -8,7 +8,11 @@ use App\Http\Controllers\Api\HeroImageController;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
+
+// Site Settings
+Route::get('/settings', [SettingsController::class, 'index']);
 
 // Homepage Content
 Route::get('/hero-images', [HeroImageController::class, 'index']);
