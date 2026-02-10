@@ -174,7 +174,8 @@ class ProductResource extends Resource
                     ->colors([
                         'success' => 'NEW',
                         'warning' => 'BESTSELLER',
-                    ]),
+                    ])
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('stock_quantity')
                     ->label('Stock')
