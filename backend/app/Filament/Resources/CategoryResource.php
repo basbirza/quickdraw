@@ -57,6 +57,18 @@ class CategoryResource extends Resource
                     ->maxSize(5120)
                     ->helperText('Background image for category tile on homepage (optional)'),
 
+                Forms\Components\Placeholder::make('tile_preview')
+                    ->label('Tile Preview (How it will look on homepage)')
+                    ->content(fn ($record) => $record && $record->banner_image
+                        ? new \Illuminate\Support\HtmlString('
+                            <div style="position: relative; aspect-ratio: 4/3; background-color: #2c3e6b; background-image: url(' . asset('storage/' . $record->banner_image) . '); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; padding: 20px;">
+                                <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
+                                <span style="position: relative; z-index: 10; font-size: 16px; font-weight: 600; letter-spacing: 0.1em;">' . strtoupper($record->name) . '</span>
+                                <span style="position: relative; z-index: 10; font-size: 12px; margin-top: 8px; opacity: 0.8;">' . $record->products()->count() . ' Products</span>
+                            </div>
+                        ')
+                        : 'Upload an image to see preview'),
+
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
                     ->default(0)
