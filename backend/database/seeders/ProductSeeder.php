@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
         $this->createOuterwearProduct('The Outrider Bomber', 'outrider-bomber', 'Nylon & Wool Blend Bomber', 249, null, '#1a1a20', $outerwear);
 
         // TEES & HENLEYS (8 products)
-        $this->createCasualProduct('Culprits Speedcrew Hoodie', 'culprits-speedcrew', 'Black Loopwheel Hoodie', 65, null, '#22223b', $teesHenleys, 'culprits-speedcrew1.png');
+        $this->createCasualProduct('Culprits Speedcrew', 'culprits-speedcrew', 'Black Loopwheel Hoodie', 65, null, '#22223b', $teesHenleys, 'culprits-speedcrew1.png');
         $this->createCasualProduct('The Loopwheel Henley', 'loopwheel-henley', 'Heavyweight Tubular Knit', 55, 'BESTSELLER', '#f0ebe0', $teesHenleys);
         $this->createCasualProduct('The Tubular Pocket Tee', 'tubular-pocket-tee', '7oz Slub Cotton', 39, null, '#f5f5f0', $teesHenleys);
         $this->createCasualProduct('The Frontier Henley', 'frontier-henley', 'Waffle Knit Thermal', 49, 'NEW', '#e8ddd0', $teesHenleys);
