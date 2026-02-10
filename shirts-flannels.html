@@ -77,18 +77,94 @@
     </div>
   </section>
 
-  <!-- Products Grid -->
+  <!-- Products Grid with Filters -->
   <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
-      <p class="text-xs tracking-widest text-gray-400">SHOWING 9 PRODUCTS</p>
-      <select class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black w-full sm:w-auto">
-        <option>SORT BY: FEATURED</option>
-        <option>PRICE: LOW TO HIGH</option>
-        <option>PRICE: HIGH TO LOW</option>
-        <option>NEWEST FIRST</option>
-      </select>
+    <div class="flex gap-8">
+      <!-- Filter Sidebar -->
+      <aside class="w-64 flex-shrink-0 hidden md:block">
+        <h3 class="text-xs tracking-widest mb-4">FILTERS</h3>
+
+        <!-- Price Range -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">PRICE</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="0-100" class="filter-price cursor-pointer">
+            <span>€0 - €100</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="100-200" class="filter-price cursor-pointer">
+            <span>€100 - €200</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="200-999" class="filter-price cursor-pointer">
+            <span>€200+</span>
+          </label>
+        </div>
+
+        <!-- Size -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">SIZE</p>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="S" class="filter-size hidden">
+              <span>S</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="M" class="filter-size hidden">
+              <span>M</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="L" class="filter-size hidden">
+              <span>L</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XL" class="filter-size hidden">
+              <span>XL</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XXL" class="filter-size hidden">
+              <span>XXL</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XXXL" class="filter-size hidden">
+              <span>XXXL</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tag -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">TAG</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="NEW" class="filter-tag cursor-pointer">
+            <span>New Arrivals</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="BESTSELLER" class="filter-tag cursor-pointer">
+            <span>Bestsellers</span>
+          </label>
+        </div>
+
+        <!-- Clear Filters -->
+        <button id="clear-filters" class="text-xs text-gray-500 hover:text-black border-b border-gray-400 hover:border-black pb-0.5 transition-all">
+          CLEAR ALL FILTERS
+        </button>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
+          <p id="product-count" class="text-xs tracking-widest text-gray-400">SHOWING 9 PRODUCTS</p>
+          <select id="sort-select" class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black w-full sm:w-auto">
+            <option value="featured">SORT BY: FEATURED</option>
+            <option value="price-asc">PRICE: LOW TO HIGH</option>
+            <option value="price-desc">PRICE: HIGH TO LOW</option>
+            <option value="newest">NEWEST FIRST</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="products-grid"></div>
+      </div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid"></div>
   </section>
 
   <!-- Footer -->
@@ -138,57 +214,174 @@
   </footer>
 
   <script src="cart.js"></script>
+  <script src="search.js"></script>
   <script>
-    const products = [
-      { name: "The Homesteader Flannel", desc: "Heavyweight Buffalo Check", price: "€89", tag: "BESTSELLER", colors: ["#8b2500", "#1a1a1a"] },
-      { name: "The Cattleman Western", desc: "6.5oz Indigo Chambray", price: "€95", tag: null, colors: ["#3a5070", "#3a5070"] },
-      { name: "The Campfire Flannel", desc: "Pendleton Wool Blend", price: "€109", tag: "NEW", colors: ["#2d4a2d", "#c45a3a"] },
-      { name: "The Trail Boss Workshirt", desc: "8oz Hickory Stripe", price: "€85", tag: null, colors: ["#d4c9b0", "#3a3a50"] },
-      { name: "The Saloon Chambray", desc: "4.5oz Japanese Chambray", price: "€79", tag: null, colors: ["#6080a0", "#6080a0"] },
-      { name: "The Frontier Flannel", desc: "Brushed Cotton Tartan", price: "€89", tag: null, colors: ["#1a3a5a", "#8b2500"] },
-      { name: "The Bunkhouse Overshirt", desc: "10oz Waxed Canvas", price: "€119", tag: null, colors: ["#5a4a3a", "#5a4a3a"] },
-      { name: "The Prospector Denim Shirt", desc: "6oz Selvedge Chambray", price: "€99", tag: "NEW", colors: ["#2a3a5a", "#2a3a5a"] },
-      { name: "The Ranch Hand Flannel", desc: "Heavyweight Ombre Plaid", price: "€95", tag: null, colors: ["#4a3a2a", "#2a2a3a"] },
-    ];
+    // Load products dynamically from API
+    const API_URL = 'http://localhost:8000/api';
+    const categorySlug = window.location.pathname.split('/').pop().replace('.html', '');
+    let products = [];
 
     function esc(s) { return String(s).replace(/'/g, "\\'"); }
 
-    function createShirtSVG(colors) {
-      return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-        <rect width="300" height="400" fill="#f5f5f0" />
-        <rect x="90" y="80" width="120" height="220" fill="${colors[0]}" rx="3" />
-        <polygon points="110,80 150,60 190,80" fill="${colors[0]}" />
-        <line x1="150" y1="80" x2="150" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
-        <rect x="98" y="130" width="30" height="35" fill="rgba(255,255,255,0.05)" rx="2" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" />
-        <circle cx="153" cy="110" r="2" fill="rgba(255,255,255,0.15)" />
-        <circle cx="153" cy="135" r="2" fill="rgba(255,255,255,0.15)" />
-        <circle cx="153" cy="160" r="2" fill="rgba(255,255,255,0.15)" />
-        <circle cx="153" cy="185" r="2" fill="rgba(255,255,255,0.15)" />
-        <rect x="65" y="82" width="30" height="140" fill="${colors[0]}" rx="2" opacity="0.8" />
-        <rect x="205" y="82" width="30" height="140" fill="${colors[0]}" rx="2" opacity="0.8" />
-      </svg>`;
-    }
-
     function createProductCard(product) {
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? (mainImage.url || mainImage.image_path) : '';
+      const href = `/products/product.html?slug=${product.slug}`;
+
       return `
-        <a href="#" class="group cursor-pointer block">
+        <a href="${href}" class="group cursor-pointer block">
           <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
-            ${createShirtSVG(product.colors)}
+            ${imageUrl ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />` : '<div class="absolute inset-0 bg-gray-200"></div>'}
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.price)}', image:''});">
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
               ADD TO BAG
             </button>
           </div>
           <p class="text-sm font-medium text-gray-900">${product.name}</p>
-          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
           <p class="text-sm text-gray-900 mt-1">${product.price}</p>
         </a>
       `;
     }
 
-    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+    // Active filters
+    let activeFilters = {
+      priceRanges: [],
+      sizes: [],
+      tags: []
+    };
+
+    // Load products from API with filters
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">Loading products...</p>';
+
+      try {
+        // Build URL with filters
+        let url = `${API_URL}/products?category=${categorySlug}&per_page=50`;
+
+        // Add price filter
+        if (activeFilters.priceRanges.length > 0) {
+          const prices = activeFilters.priceRanges.map(r => r.split('-').map(Number));
+          const minPrice = Math.min(...prices.map(p => p[0]));
+          const maxPrice = Math.max(...prices.map(p => p[1]));
+          url += `&min_price=${minPrice}&max_price=${maxPrice}`;
+        }
+
+        // Add size filter
+        if (activeFilters.sizes.length > 0) {
+          url += `&size=${activeFilters.sizes[0]}`;
+        }
+
+        // Add tag filter
+        if (activeFilters.tags.length > 0) {
+          url += `&tag=${activeFilters.tags[0]}`;
+        }
+
+        // Add sorting
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect && sortSelect.value !== 'featured') {
+          if (sortSelect.value === 'price-asc') {
+            url += '&sort=price&order=asc';
+          } else if (sortSelect.value === 'price-desc') {
+            url += '&sort=price&order=desc';
+          } else if (sortSelect.value === 'newest') {
+            url += '&sort=created_at&order=desc';
+          }
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+        products = data.data || [];
+
+        if (products.length > 0) {
+          grid.innerHTML = products.map(createProductCard).join('');
+          document.getElementById('product-count').textContent = `SHOWING ${products.length} PRODUCTS`;
+        } else {
+          grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">No products match your filters</p>';
+          document.getElementById('product-count').textContent = 'NO PRODUCTS FOUND';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-500 text-sm py-8">Failed to load products. Please refresh.</p>';
+      }
+    }
+
+    // Attach filter listeners
+    function attachFilterListeners() {
+      // Price filters
+      document.querySelectorAll('.filter-price').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.priceRanges.push(this.value);
+          } else {
+            activeFilters.priceRanges = activeFilters.priceRanges.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Size filters - toggle button style
+      document.querySelectorAll('.filter-size').forEach(checkbox => {
+        checkbox.parentElement.addEventListener('click', function() {
+          checkbox.checked = !checkbox.checked;
+          this.classList.toggle('bg-black');
+          this.classList.toggle('text-white');
+          this.classList.toggle('border-black');
+
+          if (checkbox.checked) {
+            activeFilters.sizes.push(checkbox.value);
+          } else {
+            activeFilters.sizes = activeFilters.sizes.filter(v => v !== checkbox.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Tag filters
+      document.querySelectorAll('.filter-tag').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.tags.push(this.value);
+          } else {
+            activeFilters.tags = activeFilters.tags.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Clear filters
+      document.getElementById('clear-filters').addEventListener('click', function() {
+        activeFilters = { priceRanges: [], sizes: [], tags: [] };
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.filter-size').forEach(cb => {
+          cb.parentElement.classList.remove('bg-black', 'text-white', 'border-black');
+        });
+        loadProducts();
+      });
+
+      // Sort dropdown
+      const sortSelect = document.getElementById('sort-select');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', loadProducts);
+      }
+    }
+
+    // Load products and attach filters when page loads
+    loadProducts();
+    attachFilterListeners();
   </script>
 </body>
 </html>

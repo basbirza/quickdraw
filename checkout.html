@@ -184,6 +184,7 @@
   </main>
 
   <script src="cart.js"></script>
+  <script src="search.js"></script>
   <script>
     // Configuration
     const API_URL = 'http://localhost:8000/api';
@@ -368,8 +369,20 @@
       }
     }
 
-    // Helper to get product ID by matching name
+    // Helper to get product ID - enhanced with multiple fallback strategies
     function getProductIdFromCart(item) {
+      // Strategy 1: Use productId directly if available (new cart items)
+      if (item.productId) {
+        return item.productId;
+      }
+
+      // Strategy 2: Match by slug if available (more reliable than name)
+      if (item.slug) {
+        const product = productsCache.find(p => p.slug === item.slug);
+        if (product) return product.id;
+      }
+
+      // Strategy 3: Fall back to name matching (backward compatibility)
       const product = productsCache.find(p =>
         p.name.toLowerCase() === item.name.toLowerCase()
       );

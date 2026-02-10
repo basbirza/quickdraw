@@ -13,6 +13,13 @@ class EditOrder extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            Actions\Action::make('printLabel')
+                ->label('Print Shipping Label')
+                ->icon('heroicon-o-printer')
+                ->color('info')
+                ->url(fn ($record) => route('orders.print-label', $record))
+                ->openUrlInNewTab()
+                ->visible(fn ($record) => in_array($record->status, ['processing', 'shipped', 'delivered'])),
             Actions\DeleteAction::make(),
         ];
     }

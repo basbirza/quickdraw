@@ -75,17 +75,6 @@
         <div class="h-px bg-gray-300 w-12 md:w-20"></div>
       </div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2" id="main-nav" style="-webkit-overflow-scrolling: touch;">
-      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
-      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
-      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
-      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
-      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
-      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
-      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
-    </nav>
   </header>
 
   <!-- Home View -->
@@ -109,6 +98,17 @@
         SHOP THE COLLECTION
       </a>
     </div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2 pb-4" id="main-nav" style="-webkit-overflow-scrolling: touch;">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
 
     <!-- Featured Products -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 pt-24 pb-16">
@@ -312,6 +312,7 @@
   </div>
 
   <script src="cart.js"></script>
+  <script src="search.js"></script>
   <script>
     // Cookie Consent Logic
     const cookiePopup = document.getElementById('cookie-popup');
@@ -365,30 +366,29 @@
     }
 
     function createProductCard(product) {
-      // Image content - either real image or SVG
-      const imageContent = product.image
-        ? `<img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
+      // Get main image from API
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? (mainImage.url || mainImage.image_path) : '';
+
+      // Image content - either real image or SVG fallback
+      const imageContent = imageUrl
+        ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
         : `<svg width="100%" height="100%" viewBox="0 0 300 400">
               <rect width="300" height="400" fill="#f5f5f0" />
-              ${createDenimTexture(95, 80, 110, 240, product.color)}
-              <rect x="95" y="80" width="110" height="8" fill="${product.color}" rx="1" opacity="0.7" />
+              ${createDenimTexture(95, 80, 110, 240, product.color_hex || '#1b2a4a')}
+              <rect x="95" y="80" width="110" height="8" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.7" />
               <line x1="130" y1="88" x2="130" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
               <line x1="170" y1="88" x2="170" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
               <rect x="108" y="120" width="25" height="20" fill="rgba(255,255,255,0.05)" rx="2" stroke="rgba(255,200,100,0.12)" stroke-width="0.5" />
               <line x1="205" y1="240" x2="205" y2="260" stroke="#c45a3a" stroke-width="1.5" />
-              <rect x="95" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
-              <rect x="155" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
+              <rect x="95" y="315" width="50" height="5" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.5" />
+              <rect x="155" y="315" width="50" height="5" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.5" />
             </svg>`;
 
-      // Create product link based on product name
-      let productLink = "#";
-      if (product.name === "The Frontier Slim") {
-        productLink = "frontier-slim.html";
-      } else if (product.name === "Oni Straight Jeans") {
-        productLink = "rancher-straight.html";
-      } else if (product.name === "Culprits Speedcrew") {
-        productLink = "culprits-speedcrew.html";
-      }
+      // Link to dynamic product template (using query params for Python server compatibility)
+      const productLink = `/products/product.html?slug=${product.slug}`;
 
       return `
         <a href="${productLink}" class="group cursor-pointer block">
@@ -397,13 +397,21 @@
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.price)}', image:'${esc(product.image || '')}'});">
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
               ADD TO BAG
             </button>
           </div>
           <p class="text-sm font-medium text-gray-900">${product.name}</p>
-          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
-          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
+          <p class="text-sm text-gray-900 mt-1">€${product.price}</p>
         </a>
       `;
     }

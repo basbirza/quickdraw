@@ -101,18 +101,94 @@
     </div>
   </section>
 
-  <!-- Products Grid -->
+  <!-- Products Grid with Filters -->
   <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
-      <p class="text-xs tracking-widest text-gray-400">SHOWING 7 PRODUCTS</p>
-      <select class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black w-full sm:w-auto">
-        <option>SORT BY: FEATURED</option>
-        <option>PRICE: LOW TO HIGH</option>
-        <option>PRICE: HIGH TO LOW</option>
-        <option>NEWEST FIRST</option>
-      </select>
+    <div class="flex gap-8">
+      <!-- Filter Sidebar -->
+      <aside class="w-64 flex-shrink-0 hidden md:block">
+        <h3 class="text-xs tracking-widest mb-4">FILTERS</h3>
+
+        <!-- Price Range -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">PRICE</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="0-100" class="filter-price cursor-pointer">
+            <span>€0 - €100</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="100-200" class="filter-price cursor-pointer">
+            <span>€100 - €200</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="200-999" class="filter-price cursor-pointer">
+            <span>€200+</span>
+          </label>
+        </div>
+
+        <!-- Size -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">SIZE</p>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="28" class="filter-size hidden">
+              <span>28</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="30" class="filter-size hidden">
+              <span>30</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="32" class="filter-size hidden">
+              <span>32</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="34" class="filter-size hidden">
+              <span>34</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="36" class="filter-size hidden">
+              <span>36</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="38" class="filter-size hidden">
+              <span>38</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tag -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">TAG</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="NEW" class="filter-tag cursor-pointer">
+            <span>New Arrivals</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="BESTSELLER" class="filter-tag cursor-pointer">
+            <span>Bestsellers</span>
+          </label>
+        </div>
+
+        <!-- Clear Filters -->
+        <button id="clear-filters" class="text-xs text-gray-500 hover:text-black border-b border-gray-400 hover:border-black pb-0.5 transition-all">
+          CLEAR ALL FILTERS
+        </button>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
+          <p id="product-count" class="text-xs tracking-widest text-gray-400">SHOWING 7 PRODUCTS</p>
+          <select id="sort-select" class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black w-full sm:w-auto">
+            <option value="featured">SORT BY: FEATURED</option>
+            <option value="price-asc">PRICE: LOW TO HIGH</option>
+            <option value="price-desc">PRICE: HIGH TO LOW</option>
+            <option value="newest">NEWEST FIRST</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="products-grid"></div>
+      </div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid"></div>
   </section>
 
   <!-- Footer -->
@@ -186,130 +262,176 @@
   </div>
 
   <script src="cart.js"></script>
+  <script src="search.js"></script>
   <script>
-    // Cookie Consent Logic
-    const cookiePopup = document.getElementById('cookie-popup');
-    const cookieAcceptBtn = document.getElementById('cookie-accept');
-    const cookieDeclineBtn = document.getElementById('cookie-decline');
-
-    function checkCookieConsent() {
-      const consent = localStorage.getItem('cookieConsent');
-      if (!consent) {
-        setTimeout(() => {
-          cookiePopup.classList.add('show');
-        }, 1000);
-      }
-    }
-
-    cookieAcceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'accepted');
-      cookiePopup.classList.remove('show');
-    });
-
-    cookieDeclineBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'declined');
-      cookiePopup.classList.remove('show');
-    });
-
-    checkCookieConsent();
-
-  </script>
-  <script>
-    const products = [
-      { name: "The Frontier Belt", desc: "Vegetable-Tanned Leather", price: "€65", tag: "BESTSELLER", color: "#5a3a20" },
-      { name: "The Prospector Wallet", desc: "Bridle Leather Bifold", price: "€79", tag: null, color: "#4a3020" },
-      { name: "The Trailhead Bandana", desc: "Selvedge Cotton Bandana", price: "€19", tag: "NEW", color: "#1a2a4a" },
-      { name: "The Wrangler Key Fob", desc: "Copper & Leather Key Hook", price: "€25", tag: null, color: "#c45a3a" },
-      { name: "The Ranch Hand Cap", desc: "Washed Cotton Twill", price: "€35", tag: null, color: "#2a2a30" },
-      { name: "The Stockman Suspenders", desc: "Elastic & Leather Braces", price: "€45", tag: null, color: "#3a2a1a" },
-      { name: "The Campfire Tote", desc: "Waxed Canvas Carryall", price: "€89", tag: "NEW", color: "#4a4030" },
-    ];
-
+    // Load products dynamically from API
+    const API_URL = 'http://localhost:8000/api';
+    const categorySlug = window.location.pathname.split('/').pop().replace('.html', '');
+    let products = [];
+    
     function esc(s) { return String(s).replace(/'/g, "\\'"); }
-
-    function createAccessorySVG(product) {
-      const name = product.name.toLowerCase();
-      const color = product.color;
-
-      if (name.includes('belt')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <ellipse cx="150" cy="200" rx="70" ry="70" fill="none" stroke="${color}" stroke-width="12" />
-          <rect x="145" y="130" width="10" height="30" fill="#b87333" rx="2" />
-          <circle cx="150" cy="170" r="4" fill="rgba(0,0,0,0.2)" />
-          <circle cx="150" cy="185" r="4" fill="rgba(0,0,0,0.2)" />
-          <circle cx="150" cy="200" r="4" fill="rgba(0,0,0,0.2)" />
-        </svg>`;
-      } else if (name.includes('wallet')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <rect x="90" y="145" width="120" height="110" fill="${color}" rx="4" />
-          <rect x="90" y="145" width="120" height="15" fill="rgba(255,255,255,0.08)" rx="2" />
-          <line x1="90" y1="190" x2="210" y2="190" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
-          <rect x="170" y="165" width="25" height="15" fill="rgba(255,255,255,0.06)" rx="2" />
-        </svg>`;
-      } else if (name.includes('bandana')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <polygon points="80,140 220,140 150,260" fill="${color}" />
-          <polygon points="90,150 210,150 150,250" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
-          <line x1="120" y1="170" x2="180" y2="170" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" />
-          <line x1="130" y1="190" x2="170" y2="190" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" />
-        </svg>`;
-      } else if (name.includes('key')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <rect x="130" y="140" width="40" height="100" fill="#5a3a20" rx="3" />
-          <circle cx="150" cy="260" r="15" fill="${color}" />
-          <circle cx="150" cy="260" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-          <circle cx="150" cy="155" r="5" fill="rgba(0,0,0,0.15)" />
-        </svg>`;
-      } else if (name.includes('cap')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <ellipse cx="150" cy="210" rx="70" ry="25" fill="${color}" />
-          <path d="M 80 210 Q 80 140, 150 130 Q 220 140, 220 210" fill="${color}" />
-          <rect x="80" y="205" width="100" height="12" fill="${color}" rx="2" opacity="0.9" />
-        </svg>`;
-      } else if (name.includes('suspender')) {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <line x1="120" y1="120" x2="110" y2="290" stroke="${color}" stroke-width="8" />
-          <line x1="180" y1="120" x2="190" y2="290" stroke="${color}" stroke-width="8" />
-          <rect x="130" y="130" width="40" height="20" fill="#5a3a20" rx="2" />
-          <circle cx="115" cy="290" r="6" fill="#b87333" />
-          <circle cx="185" cy="290" r="6" fill="#b87333" />
-        </svg>`;
-      } else {
-        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
-          <rect width="300" height="400" fill="#f5f5f0" />
-          <rect x="80" y="130" width="140" height="150" fill="${color}" rx="4" />
-          <rect x="110" y="115" width="80" height="20" fill="${color}" rx="2" opacity="0.8" />
-          <line x1="150" y1="130" x2="150" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
-        </svg>`;
-      }
-    }
-
+    
     function createProductCard(product) {
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? mainImage.url : '';
+      const href = `/products/product.html?slug=${product.slug}`;
+    
       return `
-        <a href="#" class="group cursor-pointer block">
+        <a href="${href}" class="group cursor-pointer block">
           <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
-            ${createAccessorySVG(product)}
+            ${imageUrl ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />` : '<div class="absolute inset-0 bg-gray-200"></div>'}
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.price)}', image:''});">
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
               ADD TO BAG
             </button>
           </div>
           <p class="text-sm font-medium text-gray-900">${product.name}</p>
-          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
           <p class="text-sm text-gray-900 mt-1">${product.price}</p>
         </a>
       `;
     }
+    
+    // Active filters
+    let activeFilters = {
+      priceRanges: [],
+      sizes: [],
+      tags: []
+    };
 
-    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+    // Load products from API with filters
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">Loading products...</p>';
+
+      try {
+        // Build URL with filters
+        let url = `${API_URL}/products?category=${categorySlug}&per_page=50`;
+
+        // Add price filter
+        if (activeFilters.priceRanges.length > 0) {
+          const prices = activeFilters.priceRanges.map(r => r.split('-').map(Number));
+          const minPrice = Math.min(...prices.map(p => p[0]));
+          const maxPrice = Math.max(...prices.map(p => p[1]));
+          url += `&min_price=${minPrice}&max_price=${maxPrice}`;
+        }
+
+        // Add size filter
+        if (activeFilters.sizes.length > 0) {
+          url += `&size=${activeFilters.sizes[0]}`;
+        }
+
+        // Add tag filter
+        if (activeFilters.tags.length > 0) {
+          url += `&tag=${activeFilters.tags[0]}`;
+        }
+
+        // Add sorting
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect && sortSelect.value !== 'featured') {
+          if (sortSelect.value === 'price-asc') {
+            url += '&sort=price&order=asc';
+          } else if (sortSelect.value === 'price-desc') {
+            url += '&sort=price&order=desc';
+          } else if (sortSelect.value === 'newest') {
+            url += '&sort=created_at&order=desc';
+          }
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+        products = data.data || [];
+
+        if (products.length > 0) {
+          grid.innerHTML = products.map(createProductCard).join('');
+          document.getElementById('product-count').textContent = `SHOWING ${products.length} PRODUCTS`;
+        } else {
+          grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">No products match your filters</p>';
+          document.getElementById('product-count').textContent = 'NO PRODUCTS FOUND';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-500 text-sm py-8">Failed to load products. Please refresh.</p>';
+      }
+    }
+
+    // Attach filter listeners
+    function attachFilterListeners() {
+      // Price filters
+      document.querySelectorAll('.filter-price').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.priceRanges.push(this.value);
+          } else {
+            activeFilters.priceRanges = activeFilters.priceRanges.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Size filters - toggle button style
+      document.querySelectorAll('.filter-size').forEach(checkbox => {
+        checkbox.parentElement.addEventListener('click', function() {
+          checkbox.checked = !checkbox.checked;
+          this.classList.toggle('bg-black');
+          this.classList.toggle('text-white');
+          this.classList.toggle('border-black');
+
+          if (checkbox.checked) {
+            activeFilters.sizes.push(checkbox.value);
+          } else {
+            activeFilters.sizes = activeFilters.sizes.filter(v => v !== checkbox.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Tag filters
+      document.querySelectorAll('.filter-tag').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.tags.push(this.value);
+          } else {
+            activeFilters.tags = activeFilters.tags.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Clear filters
+      document.getElementById('clear-filters').addEventListener('click', function() {
+        activeFilters = { priceRanges: [], sizes: [], tags: [] };
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.filter-size').forEach(cb => {
+          cb.parentElement.classList.remove('bg-black', 'text-white', 'border-black');
+        });
+        loadProducts();
+      });
+
+      // Sort dropdown
+      const sortSelect = document.getElementById('sort-select');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', loadProducts);
+      }
+    }
+
+    // Load products and attach filters when page loads
+    loadProducts();
+    attachFilterListeners();
+  </script>
+  <script>
   </script>
 </body>
 </html>

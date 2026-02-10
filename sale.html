@@ -187,82 +187,71 @@
   </div>
 
   <script src="cart.js"></script>
+  <script src="search.js"></script>
   <script>
-    // Cookie Consent Logic
-    const cookiePopup = document.getElementById('cookie-popup');
-    const cookieAcceptBtn = document.getElementById('cookie-accept');
-    const cookieDeclineBtn = document.getElementById('cookie-decline');
-
-    function checkCookieConsent() {
-      const consent = localStorage.getItem('cookieConsent');
-      if (!consent) {
-        setTimeout(() => {
-          cookiePopup.classList.add('show');
-        }, 1000);
-      }
-    }
-
-    cookieAcceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'accepted');
-      cookiePopup.classList.remove('show');
-    });
-
-    cookieDeclineBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'declined');
-      cookiePopup.classList.remove('show');
-    });
-
-    checkCookieConsent();
-
-  </script>
-  <script>
-    const products = [
-      { name: "The Drifter Wide", desc: "13.5oz Vintage Selvedge", price: "€179", salePrice: "€129", color: "#22223b" },
-      { name: "The Mustang Boot Cut", desc: "14oz Red Cast Selvedge", price: "€189", salePrice: "€139", color: "#2c1a1a" },
-      { name: "The Saloon Chambray", desc: "4.5oz Japanese Chambray", price: "€79", salePrice: "€55", color: "#6080a0" },
-      { name: "The Ranch Hand Cap", desc: "Washed Cotton Twill", price: "€35", salePrice: "€22", color: "#2a2a30" },
-      { name: "The Roughneck Chore Coat", desc: "12oz Washed Selvedge", price: "€219", salePrice: "€159", color: "#2c3040" },
-      { name: "The Trail Boss Workshirt", desc: "8oz Hickory Stripe", price: "€85", salePrice: "€59", color: "#d4c9b0" },
-    ];
-
+    // Load products dynamically from API
+    const API_URL = 'http://localhost:8000/api';
+    const categorySlug = window.location.pathname.split('/').pop().replace('.html', '');
+    let products = [];
+    
     function esc(s) { return String(s).replace(/'/g, "\\'"); }
-
-    function createDenimTexture(x, y, w, h, shade) {
-      let svg = `<g>`;
-      svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${shade}" rx="2" />`;
-      for (let i = 0; i < Math.floor(h / 3); i++) {
-        svg += `<line x1="${x}" y1="${y + i * 3}" x2="${x + w}" y2="${y + i * 3}" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" />`;
-      }
-      svg += `</g>`;
-      return svg;
-    }
-
+    
     function createProductCard(product) {
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? mainImage.url : '';
+      const href = `/products/product.html?slug=${product.slug}`;
+    
       return `
-        <a href="#" class="group cursor-pointer block">
+        <a href="${href}" class="group cursor-pointer block">
           <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
-            <svg width="100%" height="100%" viewBox="0 0 300 400">
-              <rect width="300" height="400" fill="#f5f5f0" />
-              ${createDenimTexture(95, 80, 110, 240, product.color)}
-            </svg>
-            <span class="absolute top-3 left-3 bg-white text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px; color: #c45a3a;">SALE</span>
+            ${imageUrl ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />` : '<div class="absolute inset-0 bg-gray-200"></div>'}
+            ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.salePrice)}', image:''});">
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
               ADD TO BAG
             </button>
           </div>
           <p class="text-sm font-medium text-gray-900">${product.name}</p>
-          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
-          <p class="text-sm mt-1">
-            <span class="text-gray-400 line-through mr-2">${product.price}</span>
-            <span style="color: #c45a3a;">${product.salePrice}</span>
-          </p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
+          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
         </a>
       `;
     }
-
-    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+    
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">Loading products...</p>';
+    
+      try {
+        const response = await fetch(`${API_URL}/products?category=${categorySlug}&per_page=50`);
+        const data = await response.json();
+        products = data.data || [];
+    
+        if (products.length > 0) {
+          grid.innerHTML = products.map(createProductCard).join('');
+        } else {
+          grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">No products in this category yet</p>';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-500 text-sm py-8">Failed to load products. Please refresh.</p>';
+      }
+    }
+    
+    loadProducts();
+  </script>
+  <script>
   </script>
 </body>
 </html>

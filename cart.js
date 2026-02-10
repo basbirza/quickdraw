@@ -35,19 +35,33 @@
     var size = (product.size || 'One Size').substring(0, 50);
     var image = (product.image || '').substring(0, 300);
 
+    // Enhanced: support productId and slug for better tracking
+    var productId = product.productId || null;
+    var slug = (product.slug || '').substring(0, 100);
+
     if (isNaN(priceNum) || priceNum <= 0 || priceNum > 99999) return;
 
     var cart = getCart();
     if (cart.length > 50) return;
 
+    // Match by productId first (if available), then name+size
     var existing = cart.find(function(item) {
+      if (productId && item.productId) {
+        return item.productId === productId && item.size === size;
+      }
       return item.name === name && item.size === size;
     });
+
     if (existing) {
       if (existing.qty >= 20) return;
       existing.qty += 1;
+      // Update slug/productId if missing (backward compatibility)
+      if (productId && !existing.productId) existing.productId = productId;
+      if (slug && !existing.slug) existing.slug = slug;
     } else {
       cart.push({
+        productId: productId,
+        slug: slug,
         name: name,
         desc: desc,
         price: price,

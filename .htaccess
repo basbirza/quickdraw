@@ -1,0 +1,44 @@
+# Quickdraw Pressing Co. - Apache URL Rewriting
+# Enables clean URLs for dynamic product pages
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Rewrite /products/product-slug to /products/product.html?slug=product-slug
+    # This makes /products/frontier-slim work nicely
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^products/([a-zA-Z0-9-]+)$ /products/product.html?slug=$1 [L,QSA]
+
+    # Alternative: If you prefer path-based routing, the JavaScript in product.html
+    # already reads from window.location.pathname, so you can also use:
+    # RewriteRule ^products/([a-zA-Z0-9-]+)/?$ /products/product.html [L,QSA]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>

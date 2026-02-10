@@ -18,15 +18,27 @@ class WishlistController extends Controller
             ->with('product.images')
             ->get()
             ->map(function ($item) {
+                $product = $item->product;
+
                 return [
                     'id' => $item->id,
                     'product' => [
-                        'id' => $item->product->id,
-                        'name' => $item->product->name,
-                        'slug' => $item->product->slug,
-                        'price' => '€' . number_format($item->product->price, 0),
-                        'image' => $item->product->main_image_url,
-                        'in_stock' => $item->product->stock_quantity > 0,
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'slug' => $product->slug,
+                        'desc' => $product->short_description,
+                        'price' => '€' . number_format($product->price, 0),
+                        'priceNum' => (float) $product->price,
+                        'tag' => $product->tag,
+                        'image' => $product->main_image_url,
+                        'images' => $product->images ? $product->images->map(function ($image) use ($product) {
+                            return [
+                                'url' => asset('storage/' . $image->image_path),
+                                'type' => $image->image_type,
+                                'alt' => $image->alt_text ?? $product->name,
+                            ];
+                        }) : [],
+                        'in_stock' => $product->stock_quantity > 0,
                     ],
                     'added_at' => $item->created_at->format('M j, Y'),
                 ];

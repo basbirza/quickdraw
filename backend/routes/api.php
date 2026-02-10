@@ -19,6 +19,8 @@ Route::get('/hero-images', [HeroImageController::class, 'index']);
 
 // Products
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/search', [ProductController::class, 'search'])
+    ->middleware('throttle:30,1');
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 
 // Categories

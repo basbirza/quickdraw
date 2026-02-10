@@ -124,6 +124,14 @@ class OrderResource extends Resource
                 Tables\Filters\SelectFilter::make('payment_status'),
             ])
             ->actions([
+                Tables\Actions\Action::make('printLabel')
+                    ->label('Print Label')
+                    ->icon('heroicon-o-printer')
+                    ->color('info')
+                    ->url(fn ($record) => route('orders.print-label', $record))
+                    ->openUrlInNewTab()
+                    ->visible(fn ($record) => in_array($record->status, ['processing', 'shipped'])),
+
                 Tables\Actions\Action::make('markShipped')
                     ->label('Ship')
                     ->icon('heroicon-o-truck')
@@ -142,6 +150,23 @@ class OrderResource extends Resource
 
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkAction::make('printLabels')
+                    ->label('Print Shipping Labels')
+                    ->icon('heroicon-o-printer')
+                    ->color('info')
+                    ->action(function ($records, $livewire) {
+                        $orderIds = $records->pluck('id')->join(',');
+                        $url = route('orders.print-labels-bulk', ['ids' => $orderIds]);
+
+                        // Open in new tab using JavaScript
+                        $livewire->js("window.open('$url', '_blank')");
+                    })
+                    ->deselectRecordsAfterCompletion(),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ])
             ->defaultSort('created_at', 'desc');
     }
