@@ -212,6 +212,63 @@ class ProductResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    // Tag Management
+                    Tables\Actions\BulkAction::make('setTagNew')
+                        ->label('Set Tag: NEW')
+                        ->icon('heroicon-o-sparkles')
+                        ->color('success')
+                        ->action(fn ($records) => $records->each->update(['tag' => 'NEW']))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation(),
+
+                    Tables\Actions\BulkAction::make('setTagBestseller')
+                        ->label('Set Tag: BESTSELLER')
+                        ->icon('heroicon-o-star')
+                        ->color('warning')
+                        ->action(fn ($records) => $records->each->update(['tag' => 'BESTSELLER']))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation(),
+
+                    Tables\Actions\BulkAction::make('removeTag')
+                        ->label('Remove Tag')
+                        ->icon('heroicon-o-x-mark')
+                        ->color('gray')
+                        ->action(fn ($records) => $records->each->update(['tag' => null]))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation(),
+
+                    // Featured Management
+                    Tables\Actions\BulkAction::make('markFeatured')
+                        ->label('Mark as Featured')
+                        ->icon('heroicon-o-bookmark')
+                        ->color('primary')
+                        ->action(fn ($records) => $records->each->update(['is_featured' => true]))
+                        ->deselectRecordsAfterCompletion(),
+
+                    Tables\Actions\BulkAction::make('unmarkFeatured')
+                        ->label('Remove from Featured')
+                        ->icon('heroicon-o-bookmark-slash')
+                        ->color('gray')
+                        ->action(fn ($records) => $records->each->update(['is_featured' => false]))
+                        ->deselectRecordsAfterCompletion(),
+
+                    // Status Management
+                    Tables\Actions\BulkAction::make('activate')
+                        ->label('Activate Products')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->action(fn ($records) => $records->each->update(['is_active' => true]))
+                        ->deselectRecordsAfterCompletion(),
+
+                    Tables\Actions\BulkAction::make('deactivate')
+                        ->label('Deactivate Products')
+                        ->icon('heroicon-o-x-circle')
+                        ->color('danger')
+                        ->action(fn ($records) => $records->each->update(['is_active' => false]))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation(),
+
+                    // Default Actions
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
