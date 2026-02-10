@@ -162,7 +162,7 @@
         </div>
 
         <!-- Add to Cart -->
-        <button class="w-full bg-black text-white text-xs tracking-widest py-4 hover:bg-gray-800 transition-colors">
+        <button id="add-to-cart-btn" class="w-full bg-black text-white text-xs tracking-widest py-4 hover:bg-gray-800 transition-colors">
           ADD TO CART
         </button>
 
@@ -286,7 +286,25 @@
     </div>
   </footer>
 
+  <script src="cart.js"></script>
   <script>
+    // Add to cart
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+      var selectedSize = document.querySelector('.size-option.bg-black');
+      var size = selectedSize ? selectedSize.textContent.trim() : 'Select a size';
+      if (!selectedSize) {
+        alert('Please select a size');
+        return;
+      }
+      QuickdrawCart.add({
+        name: 'Culprits Speedcrew',
+        desc: 'Black Loopwheel Hoodie',
+        price: '€65',
+        image: 'culprits-speedcrew1.png',
+        size: size
+      });
+    });
+
     // Accordion functionality
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {

@@ -180,7 +180,7 @@
 
         <!-- Add to Cart -->
         <div class="space-y-3">
-          <button class="w-full bg-black text-white text-xs tracking-widest py-4 hover:bg-gray-800 transition-colors">
+          <button id="add-to-cart-btn" class="w-full bg-black text-white text-xs tracking-widest py-4 hover:bg-gray-800 transition-colors">
             ADD TO CART
           </button>
           <button class="w-full border border-gray-300 text-gray-900 text-xs tracking-widest py-4 hover:border-black transition-colors">
@@ -357,7 +357,25 @@
     </div>
   </footer>
 
+  <script src="cart.js"></script>
   <script>
+    // Add to cart
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+      var selectedSize = document.querySelector('.size-option.bg-black');
+      var size = selectedSize ? selectedSize.textContent.trim() : 'Select a size';
+      if (!selectedSize) {
+        alert('Please select a size');
+        return;
+      }
+      QuickdrawCart.add({
+        name: 'The Rancher Straight',
+        desc: '17oz Bumpy Denim',
+        price: '€209',
+        image: 'rancher-straight.png',
+        size: size
+      });
+    });
+
     // Image gallery functionality
     const thumbnails = document.querySelectorAll('.thumbnail');
     const mainImage = document.getElementById('main-product-image');
