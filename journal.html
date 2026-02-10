@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Journal | Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE &euro;150 &mdash; SUBSCRIBE &amp; GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2" style="-webkit-overflow-scrolling: touch;">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-black border-b border-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-gray-900">The Journal</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gray-900" style="height: 200px;">
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+      <p class="text-xs tracking-widest text-white/60 mb-1 md:mb-2">STORIES &amp; CRAFT</p>
+      <h2 class="text-2xl md:text-4xl tracking-wider" style="letter-spacing: 0.15em;">THE JOURNAL</h2>
+      <p class="text-xs md:text-sm text-white/70 mt-2 md:mt-3 max-w-lg hidden md:block">Behind the seams &mdash; stories of craft, culture, and the people who make it all possible.</p>
+    </div>
+  </section>
+
+  <!-- Journal Entries -->
+  <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+
+    <!-- Featured Article -->
+    <article class="grid md:grid-cols-2 gap-8 mb-16 pb-16 border-b border-gray-200">
+      <div class="bg-gray-100 overflow-hidden" style="aspect-ratio: 16/10;">
+        <svg width="100%" height="100%" viewBox="0 0 640 400">
+          <rect width="640" height="400" fill="#f5f5f0" />
+          <rect x="180" y="100" width="280" height="200" fill="#1a1a2e" rx="4" opacity="0.3" />
+          <text x="320" y="210" text-anchor="middle" fill="#9ca3af" font-size="12" font-family="Georgia, serif">Featured Image</text>
+        </svg>
+      </div>
+      <div class="flex flex-col justify-center">
+        <p class="text-xs tracking-widest text-gray-400 mb-2">FEBRUARY 2026 &middot; CRAFT</p>
+        <h3 class="text-xl md:text-2xl mb-3" style="letter-spacing: 0.05em;">Inside Kaihara: A Visit to Japan&rsquo;s Finest Denim Mill</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+          We travelled to Hiroshima Prefecture to visit Kaihara, the mill behind our signature 14oz selvedge.
+          Founded in 1893, Kaihara has been weaving indigo-dyed fabrics for over a century. Here&rsquo;s what we learned
+          about their craft, their people, and why shuttle-loom denim endures.
+        </p>
+        <span class="text-xs tracking-widest text-gray-900 border-b border-gray-900 pb-0.5 self-start cursor-pointer hover:text-gray-600 hover:border-gray-600 transition-all">
+          READ MORE
+        </span>
+      </div>
+    </article>
+
+    <!-- Article Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <article class="cursor-pointer group">
+        <div class="bg-gray-100 overflow-hidden mb-4" style="aspect-ratio: 4/3;">
+          <svg width="100%" height="100%" viewBox="0 0 400 300">
+            <rect width="400" height="300" fill="#f5f5f0" />
+            <rect x="120" y="80" width="160" height="140" fill="#3d2c2c" rx="3" opacity="0.3" />
+            <text x="200" y="155" text-anchor="middle" fill="#9ca3af" font-size="11" font-family="Georgia, serif">Article Image</text>
+          </svg>
+        </div>
+        <p class="text-xs tracking-widest text-gray-400 mb-1">JANUARY 2026 &middot; GUIDE</p>
+        <h4 class="text-sm font-medium mb-2 group-hover:text-gray-600 transition-colors">How to Break In Your Raw Denim: A 6-Month Journey</h4>
+        <p class="text-xs text-gray-500 leading-relaxed">From board-stiff to buttery soft &mdash; a practical guide to your first pair of raw selvedge jeans.</p>
+      </article>
+
+      <article class="cursor-pointer group">
+        <div class="bg-gray-100 overflow-hidden mb-4" style="aspect-ratio: 4/3;">
+          <svg width="100%" height="100%" viewBox="0 0 400 300">
+            <rect width="400" height="300" fill="#f5f5f0" />
+            <rect x="120" y="80" width="160" height="140" fill="#4a4a3a" rx="3" opacity="0.3" />
+            <text x="200" y="155" text-anchor="middle" fill="#9ca3af" font-size="11" font-family="Georgia, serif">Article Image</text>
+          </svg>
+        </div>
+        <p class="text-xs tracking-widest text-gray-400 mb-1">DECEMBER 2025 &middot; PEOPLE</p>
+        <h4 class="text-sm font-medium mb-2 group-hover:text-gray-600 transition-colors">Meet the Maker: Our Amsterdam Repair Workshop</h4>
+        <p class="text-xs text-gray-500 leading-relaxed">Inside our canal-side workshop where master tailor Erik van den Berg gives worn denim a second life.</p>
+      </article>
+
+      <article class="cursor-pointer group">
+        <div class="bg-gray-100 overflow-hidden mb-4" style="aspect-ratio: 4/3;">
+          <svg width="100%" height="100%" viewBox="0 0 400 300">
+            <rect width="400" height="300" fill="#f5f5f0" />
+            <rect x="120" y="80" width="160" height="140" fill="#2c3a2c" rx="3" opacity="0.3" />
+            <text x="200" y="155" text-anchor="middle" fill="#9ca3af" font-size="11" font-family="Georgia, serif">Article Image</text>
+          </svg>
+        </div>
+        <p class="text-xs tracking-widest text-gray-400 mb-1">NOVEMBER 2025 &middot; CULTURE</p>
+        <h4 class="text-sm font-medium mb-2 group-hover:text-gray-600 transition-colors">The History of Americana: From Gold Rush to Selvedge Revival</h4>
+        <p class="text-xs text-gray-500 leading-relaxed">How workwear born in the American West became a global style movement &mdash; and why authenticity matters.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="new-in.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">New In</a>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="shirts-flannels.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shirts &amp; Flannels</a>
+        <a href="outerwear.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Outerwear</a>
+        <a href="tees-henleys.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Tees &amp; Henleys</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
+        <a href="denim-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Guide</a>
+        <a href="journal.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">The Journal</a>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping &amp; Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs &amp; Hemming</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>&copy; 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms &amp; Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+</body>
+</html>

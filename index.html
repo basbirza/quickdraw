@@ -48,13 +48,13 @@
 
     <!-- Navigation -->
     <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2" id="main-nav" style="-webkit-overflow-scrolling: touch;">
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="New In">NEW IN</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim">DENIM</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Americana">AMERICANA</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Accessories">ACCESSORIES</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim Guide">DENIM GUIDE</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Journal">JOURNAL</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Sale" data-sale="true">SALE</button>
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
     </nav>
   </header>
 
@@ -318,24 +318,6 @@
     // Initialize Products
     const productsContainer = document.getElementById('featured-products');
     productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
-
-    // Navigation Hover Effect
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach((item) => {
-      const isSale = item.dataset.sale === 'true';
-      item.addEventListener('mouseenter', () => {
-        item.style.color = '#111';
-        item.style.borderBottom = '1px solid #111';
-      });
-      item.addEventListener('mouseleave', () => {
-        item.style.color = isSale ? '#c45a3a' : '#666';
-        item.style.borderBottom = '1px solid transparent';
-      });
-      // Set initial color
-      item.style.color = isSale ? '#c45a3a' : '#666';
-      item.style.borderBottom = '1px solid transparent';
-    });
-
 
     // Hero Slideshow
     const slides = document.querySelectorAll('.hero-slide');
