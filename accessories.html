@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accessories | Quickdraw Pressing Co.</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Premium accessories - leather belts, wallets, bandanas, and essentials. Handcrafted details to complete your kit.">
+  <meta property="og:title" content="Accessories | Quickdraw Pressing Co.">
+  <meta property="og:description" content="Handcrafted accessories - belts, wallets, and essentials to complete your kit.">
+  <meta property="og:image" content="https://yourdomain.com/QUICKDRAW.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="QUICKDRAW.png">
+  <link rel="apple-touch-icon" href="QUICKDRAW.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +35,19 @@
       font-family: Georgia, serif;
       letter-spacing: 0.3em;
       font-size: 10px;
+    }
+    /* Cookie Popup Styles */
+    #cookie-popup {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      transform: translateY(100%);
+      transition: transform 0.4s ease-out;
+    }
+    #cookie-popup.show {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -137,7 +161,59 @@
     </div>
   </footer>
 
+  <!-- Cookie Consent Popup -->
+  <div id="cookie-popup" class="bg-white border-t-2 border-gray-900 shadow-2xl">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex-1 text-center md:text-left">
+          <p class="text-xs tracking-widest text-gray-900 mb-1">WE VALUE YOUR PRIVACY</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
+            By clicking "Accept All", you consent to our use of cookies.
+            <a href="#" class="underline hover:text-black">Learn more</a>
+          </p>
+        </div>
+        <div class="flex gap-3 whitespace-nowrap">
+          <button id="cookie-decline" class="text-xs tracking-widest px-6 py-2.5 border border-gray-300 hover:border-gray-900 transition-colors">
+            DECLINE
+          </button>
+          <button id="cookie-accept" class="text-xs tracking-widest px-6 py-2.5 bg-black text-white hover:bg-gray-800 transition-colors">
+            ACCEPT ALL
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="cart.js"></script>
+  <script>
+    // Cookie Consent Logic
+    const cookiePopup = document.getElementById('cookie-popup');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieDeclineBtn = document.getElementById('cookie-decline');
+
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('cookieConsent');
+      if (!consent) {
+        setTimeout(() => {
+          cookiePopup.classList.add('show');
+        }, 1000);
+      }
+    }
+
+    cookieAcceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookiePopup.classList.remove('show');
+    });
+
+    cookieDeclineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      cookiePopup.classList.remove('show');
+    });
+
+    checkCookieConsent();
+
+  </script>
   <script>
     const products = [
       { name: "The Frontier Belt", desc: "Vegetable-Tanned Leather", price: "€65", tag: "BESTSELLER", color: "#5a3a20" },
