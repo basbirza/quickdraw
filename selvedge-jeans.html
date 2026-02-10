@@ -140,20 +140,9 @@
 
   <script src="cart.js"></script>
   <script>
-    const products = [
-      { name: "The Frontier Slim", desc: "14oz Japanese Selvedge", price: "€189", tag: "NEW", color: "#1a1a2e", image: "frontier-slim.png", link: "frontier-slim.html" },
-      { name: "The Rancher Straight", desc: "17oz Bumpy Denim", price: "€209", tag: "BESTSELLER", color: "#1c2333", image: "rancher-straight.png", link: "rancher-straight.html" },
-      { name: "The Prospector Relaxed", desc: "15oz Okayama Selvedge", price: "€199", tag: null, color: "#1a1a2e" },
-      { name: "The Drifter Wide", desc: "13.5oz Vintage Selvedge", price: "€179", tag: null, color: "#22223b" },
-      { name: "The Outlaw Slim Tapered", desc: "16oz Unsanforized Indigo", price: "€219", tag: null, color: "#1c2333" },
-      { name: "The Mustang Boot Cut", desc: "14oz Red Cast Selvedge", price: "€189", tag: null, color: "#2c1a1a" },
-      { name: "The Canyon Straight", desc: "12oz Lightweight Selvedge", price: "€169", tag: "NEW", color: "#1a2a3a" },
-      { name: "The Trailblazer Slim", desc: "18oz Heavyweight Indigo", price: "€239", tag: null, color: "#0f0f1e" },
-      { name: "The Wrangler Relaxed Tapered", desc: "14oz Left-Hand Twill", price: "€195", tag: null, color: "#1e1e30" },
-      { name: "The Highwayman Slim", desc: "15oz Black x Black Selvedge", price: "€209", tag: null, color: "#111118" },
-      { name: "The Settler Regular", desc: "13oz Natural Indigo", price: "€225", tag: null, color: "#1a2040" },
-      { name: "The Maverick Athletic", desc: "14oz Stretch Selvedge", price: "€185", tag: null, color: "#1c1c30" },
-    ];
+    // Load products dynamically from API - updates when admin changes products!
+    const API_URL = 'http://localhost:8000/api';
+    let products = [];
 
     function esc(s) { return String(s).replace(/'/g, "\\'"); }
 
@@ -202,7 +191,29 @@
       `;
     }
 
-    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+    // Load products from API filtered by category
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">Loading products...</p>';
+
+      try {
+        const response = await fetch(`${API_URL}/products?category=selvedge-jeans&per_page=50`);
+        const data = await response.json();
+        products = data.data || [];
+
+        if (products.length > 0) {
+          grid.innerHTML = products.map(createProductCard).join('');
+        } else {
+          grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">No products in this category yet</p>';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-500 text-sm py-8">Failed to load products. Please refresh.</p>';
+      }
+    }
+
+    // Load products when page loads
+    loadProducts();
   </script>
 </body>
 </html>

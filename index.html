@@ -364,12 +364,9 @@
     // Initialize on page load
     checkCookieConsent();
 
-    // Data
-    const featuredProducts = [
-      { name: "The Frontier Slim", desc: "14oz Japanese Selvedge", price: "€189", tag: "NEW", color: "#1a1a2e", image: "frontier-slim.png" },
-      { name: "Oni Straight Jeans", desc: "17oz Bumpy Denim", price: "€209", tag: "BESTSELLER", color: "#1c2333", image: "rancher-straight.png" },
-      { name: "Culprits Speedcrew", desc: "Black Loopwheel Hoodie", price: "€65", tag: null, color: "#22223b", image: "culprits-speedcrew1.png" },
-    ];
+    // Load featured products from API (dynamic - updates when admin changes products)
+    const API_URL = 'http://localhost:8000/api';
+    let featuredProducts = [];
 
     // Helper Functions
     function esc(s) { return String(s).replace(/'/g, "\\'"); }
@@ -428,9 +425,28 @@
       `;
     }
 
-    // Initialize Products
+    // Load and display featured products from API
     const productsContainer = document.getElementById('featured-products');
-    productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
+
+    async function loadFeaturedProducts() {
+      try {
+        const response = await fetch(`${API_URL}/products?featured=1&per_page=3`);
+        const data = await response.json();
+        featuredProducts = data.data || [];
+
+        if (featuredProducts.length > 0) {
+          productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
+        } else {
+          productsContainer.innerHTML = '<p class="col-span-3 text-center text-gray-500 text-sm">No featured products available</p>';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        productsContainer.innerHTML = '<p class="col-span-3 text-center text-red-500 text-sm">Failed to load products. Please refresh.</p>';
+      }
+    }
+
+    // Load products on page load
+    loadFeaturedProducts();
 
     // Hero Slideshow
     const slides = document.querySelectorAll('.hero-slide');
