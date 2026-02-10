@@ -96,7 +96,7 @@
     var cartBtn = document.createElement('button');
     cartBtn.id = 'cart-toggle';
     cartBtn.setAttribute('aria-label', 'Open cart');
-    cartBtn.style.cssText = 'position:fixed;top:50px;right:16px;z-index:1000;background:none;border:none;cursor:pointer;padding:8px;';
+    cartBtn.style.cssText = 'position:fixed;top:80px;right:16px;z-index:1000;background:none;border:none;cursor:pointer;padding:8px;';
     cartBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
       '<span id="cart-count" style="position:absolute;top:2px;right:2px;background:#c45a3a;color:white;font-size:10px;font-family:Georgia,serif;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;line-height:1;">0</span>';
     cartBtn.addEventListener('click', function() { openCartDrawer(); });
