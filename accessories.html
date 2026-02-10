@@ -149,6 +149,8 @@
       { name: "The Campfire Tote", desc: "Waxed Canvas Carryall", price: "€89", tag: "NEW", color: "#4a4030" },
     ];
 
+    function esc(s) { return String(s).replace(/'/g, "\\'"); }
+
     function createAccessorySVG(product) {
       const name = product.name.toLowerCase();
       const color = product.color;
@@ -220,7 +222,7 @@
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${product.name}', desc:'${product.desc}', price:'${product.price}', image:''});">
+              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.price)}', image:''});">
               ADD TO BAG
             </button>
           </div>

@@ -155,6 +155,8 @@
       { name: "The Maverick Athletic", desc: "14oz Stretch Selvedge", price: "€185", tag: null, color: "#1c1c30" },
     ];
 
+    function esc(s) { return String(s).replace(/'/g, "\\'"); }
+
     function createDenimTexture(x, y, w, h, shade) {
       let svg = `<g>`;
       svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${shade}" rx="2" />`;
@@ -189,7 +191,7 @@
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
             <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              onclick="event.preventDefault(); QuickdrawCart.add({name:'${product.name}', desc:'${product.desc}', price:'${product.price}', image:'${product.image || ''}'});">
+              onclick="event.preventDefault(); QuickdrawCart.add({name:'${esc(product.name)}', desc:'${esc(product.desc)}', price:'${esc(product.price)}', image:'${esc(product.image || '')}'});">
               ADD TO BAG
             </button>
           </div>
