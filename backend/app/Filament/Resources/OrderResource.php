@@ -101,6 +101,22 @@ class OrderResource extends Resource
                 Tables\Filters\SelectFilter::make('payment_status'),
             ])
             ->actions([
+                Tables\Actions\Action::make('markShipped')
+                    ->label('Ship')
+                    ->icon('heroicon-o-truck')
+                    ->color('success')
+                    ->action(fn ($record) => $record->update(['status' => 'shipped']))
+                    ->requiresConfirmation()
+                    ->visible(fn ($record) => $record->status === 'processing'),
+
+                Tables\Actions\Action::make('markDelivered')
+                    ->label('Delivered')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->action(fn ($record) => $record->update(['status' => 'delivered']))
+                    ->requiresConfirmation()
+                    ->visible(fn ($record) => $record->status === 'shipped'),
+
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
