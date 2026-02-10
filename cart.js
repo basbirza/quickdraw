@@ -308,7 +308,6 @@
 
   function init() {
     injectAccountLinks(); // Disabled - using page header links instead
-    injectCartIcon();
     injectCartDrawer();
     injectLiveChat();
     updateCartUI();
