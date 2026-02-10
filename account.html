@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account - Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Georgia', 'Times New Roman', serif; }
+    .logo-title { font-family: 'Rye', cursive; font-size: clamp(32px, 5vw, 52px); letter-spacing: 0.12em; }
+    .logo-subtitle { font-family: Georgia, serif; letter-spacing: 0.3em; font-size: 10px; }
+    .tab-active { border-bottom: 2px solid #111; color: #111; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="index.html">
+        <div class="flex items-center gap-3">
+          <h1 class="text-2xl font-bold" style="font-family: 'Rye', cursive; letter-spacing: 0.12em;">QUICKDRAW</h1>
+        </div>
+      </a>
+      <div class="flex items-center gap-4 text-xs">
+        <span id="user-name" class="text-gray-600"></span>
+        <button id="logout-button" class="tracking-widest hover:text-black transition-colors">LOGOUT</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Account Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8" style="letter-spacing: 0.1em;">MY ACCOUNT</h1>
+
+    <!-- Tabs -->
+    <div class="border-b border-gray-200 mb-8">
+      <div class="flex gap-8 text-xs tracking-widest">
+        <button class="tab pb-3 tab-active" data-tab="orders">ORDERS</button>
+        <button class="tab pb-3 text-gray-500 hover:text-black" data-tab="settings">SETTINGS</button>
+      </div>
+    </div>
+
+    <!-- Orders Tab -->
+    <div id="orders-tab" class="tab-content">
+      <div id="orders-loading" class="text-center py-12">
+        <p class="text-sm text-gray-500">Loading your orders...</p>
+      </div>
+
+      <div id="orders-empty" class="hidden text-center py-12">
+        <p class="text-sm text-gray-500 mb-4">You haven't placed any orders yet</p>
+        <a href="index.html" class="inline-block bg-black text-white px-6 py-3 text-xs tracking-widest hover:bg-gray-800">
+          START SHOPPING
+        </a>
+      </div>
+
+      <div id="orders-list" class="hidden space-y-4">
+        <!-- Orders will be loaded here -->
+      </div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div id="settings-tab" class="tab-content hidden">
+      <div class="max-w-2xl">
+        <!-- Profile Settings -->
+        <section class="bg-white border border-gray-200 p-6 mb-6">
+          <h2 class="text-sm tracking-widest mb-4">PROFILE INFORMATION</h2>
+          <form id="profile-form">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs tracking-wider text-gray-600 mb-1">NAME</label>
+                <input type="text" name="name" id="profile-name" required
+                  class="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-black">
+              </div>
+              <div>
+                <label class="block text-xs tracking-wider text-gray-600 mb-1">EMAIL</label>
+                <input type="email" name="email" id="profile-email" required
+                  class="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-black">
+              </div>
+              <div id="profile-message" class="text-xs hidden"></div>
+              <button type="submit" class="bg-black text-white px-6 py-2 text-xs tracking-widest hover:bg-gray-800">
+                UPDATE PROFILE
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- GDPR Data Rights -->
+        <section class="bg-white border border-gray-200 p-6 mb-6">
+          <h2 class="text-sm tracking-widest mb-4">YOUR DATA RIGHTS (GDPR)</h2>
+          <div class="space-y-3">
+            <button id="export-data-button" class="w-full text-left border border-gray-300 px-4 py-3 text-xs tracking-wider hover:border-black transition-colors">
+              📥 EXPORT MY DATA
+            </button>
+            <p class="text-xs text-gray-500 pl-4">Download all your personal data in JSON format</p>
+          </div>
+        </section>
+
+        <!-- Delete Account -->
+        <section class="bg-white border border-red-200 p-6">
+          <h2 class="text-sm tracking-widest mb-4 text-red-600">DANGER ZONE</h2>
+          <p class="text-xs text-gray-600 mb-4">
+            Permanently delete your account and anonymize your order history. This action cannot be undone.
+          </p>
+          <button id="delete-account-button" class="border border-red-500 text-red-500 px-6 py-2 text-xs tracking-widest hover:bg-red-50">
+            DELETE ACCOUNT
+          </button>
+        </section>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="cart.js"></script>
+  <script>
+    const API_URL = 'http://localhost:8000/api';
+    const authToken = localStorage.getItem('auth_token');
+    const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+
+    // Check authentication
+    if (!authToken) {
+      window.location.href = 'login.html';
+    }
+
+    // Display user name
+    document.getElementById('user-name').textContent = userData.name || 'User';
+    document.getElementById('profile-name').value = userData.name || '';
+    document.getElementById('profile-email').value = userData.email || '';
+
+    // Logout
+    document.getElementById('logout-button').addEventListener('click', async () => {
+      try {
+        await fetch(`${API_URL}/auth/logout`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          }
+        });
+      } catch (e) {
+        console.error('Logout error:', e);
+      }
+
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_data');
+      window.location.href = 'index.html';
+    });
+
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+
+        // Update tab styles
+        tabs.forEach(t => {
+          t.classList.remove('tab-active', 'text-black');
+          t.classList.add('text-gray-500');
+        });
+        tab.classList.add('tab-active', 'text-black');
+        tab.classList.remove('text-gray-500');
+
+        // Show/hide content
+        tabContents.forEach(content => content.classList.add('hidden'));
+        document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+      });
+    });
+
+    // Load orders
+    async function loadOrders() {
+      try {
+        const response = await fetch(`${API_URL}/customer/orders`, {
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          }
+        });
+
+        const result = await response.json();
+
+        document.getElementById('orders-loading').classList.add('hidden');
+
+        if (result.orders && result.orders.length > 0) {
+          document.getElementById('orders-list').classList.remove('hidden');
+          displayOrders(result.orders);
+        } else {
+          document.getElementById('orders-empty').classList.remove('hidden');
+        }
+      } catch (error) {
+        document.getElementById('orders-loading').innerHTML = '<p class="text-red-500 text-xs">Failed to load orders</p>';
+      }
+    }
+
+    function displayOrders(orders) {
+      const container = document.getElementById('orders-list');
+      container.innerHTML = '';
+
+      orders.forEach(order => {
+        const orderHtml = `
+          <div class="bg-white border border-gray-200 p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <p class="text-xs tracking-wider text-gray-400">ORDER</p>
+                <p class="text-lg font-bold">${order.order_number}</p>
+                <p class="text-xs text-gray-500 mt-1">${order.date}</p>
+              </div>
+              <div class="text-right">
+                <span class="inline-block px-3 py-1 text-xs tracking-wider ${getStatusColor(order.status)}">${order.status.toUpperCase()}</span>
+                <p class="text-sm font-bold mt-2">${order.total}</p>
+                <p class="text-xs text-gray-500">${order.items_count} item${order.items_count > 1 ? 's' : ''}</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 border-t border-gray-100 pt-4">
+              ${order.items.map(item => `
+                <div class="flex gap-3">
+                  <div class="w-16 h-20 bg-gray-100 flex-shrink-0">
+                    ${item.image ? `<img src="${item.image}" class="w-full h-full object-contain" />` : ''}
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-medium">${item.name}</p>
+                    <p class="text-xs text-gray-500">${item.description}</p>
+                    <p class="text-xs text-gray-500 mt-1">Size: ${item.size} · Qty: ${item.quantity}</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-sm">${item.price}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="flex gap-3 mt-4 pt-4 border-t border-gray-100">
+              ${canRequestReturn(order.date) ? `
+                <button onclick="requestReturn('${order.order_number}')" class="flex-1 border border-gray-300 px-4 py-2 text-xs tracking-widest hover:border-black">
+                  REQUEST RETURN
+                </button>
+              ` : ''}
+              <button onclick="window.location.href='mailto:support@quickdrawpressing.co?subject=Order ${order.order_number}'" class="flex-1 border border-gray-300 px-4 py-2 text-xs tracking-widest hover:border-black">
+                CONTACT SUPPORT
+              </button>
+            </div>
+          </div>
+        `;
+        container.innerHTML += orderHtml;
+      });
+    }
+
+    function getStatusColor(status) {
+      const colors = {
+        'pending': 'bg-yellow-100 text-yellow-800',
+        'processing': 'bg-blue-100 text-blue-800',
+        'shipped': 'bg-purple-100 text-purple-800',
+        'delivered': 'bg-green-100 text-green-800',
+        'cancelled': 'bg-red-100 text-red-800',
+      };
+      return colors[status] || 'bg-gray-100 text-gray-800';
+    }
+
+    function canRequestReturn(orderDate) {
+      const date = new Date(orderDate);
+      const now = new Date();
+      const daysDiff = (now - date) / (1000 * 60 * 60 * 24);
+      return daysDiff <= 14; // EU 14-day return policy
+    }
+
+    async function requestReturn(orderNumber) {
+      const reason = prompt('Please tell us why you\'d like to return this order:');
+      if (!reason) return;
+
+      try {
+        const response = await fetch(`${API_URL}/customer/returns/request`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            order_number: orderNumber,
+            items: [{ product_name: 'All items', quantity: 1 }], // Simplified
+            reason: reason,
+          })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (result.success) {
+          loadOrders(); // Reload orders
+        }
+      } catch (error) {
+        alert('Return request failed. Please contact support.');
+      }
+    }
+
+    // Update profile
+    document.getElementById('profile-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const messageDiv = document.getElementById('profile-message');
+
+      try {
+        const response = await fetch(`${API_URL}/customer/profile`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.get('name'),
+            email: formData.get('email'),
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Update stored user data
+          const newUserData = { ...userData, ...result.user };
+          localStorage.setItem('user_data', JSON.stringify(newUserData));
+          document.getElementById('user-name').textContent = newUserData.name;
+
+          messageDiv.textContent = result.message;
+          messageDiv.className = 'text-xs text-green-600';
+          messageDiv.classList.remove('hidden');
+        } else {
+          throw new Error(result.message);
+        }
+      } catch (error) {
+        messageDiv.textContent = error.message || 'Update failed';
+        messageDiv.className = 'text-xs text-red-600';
+        messageDiv.classList.remove('hidden');
+      }
+    });
+
+    // Export data (GDPR)
+    document.getElementById('export-data-button').addEventListener('click', async () => {
+      try {
+        const response = await fetch(`${API_URL}/data-subject/export`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: userData.email })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Download as JSON file
+          const dataStr = JSON.stringify(result.data, null, 2);
+          const dataBlob = new Blob([dataStr], { type: 'application/json' });
+          const url = URL.createObjectURL(dataBlob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `quickdraw-data-${userData.email}-${new Date().toISOString().split('T')[0]}.json`;
+          link.click();
+        } else {
+          alert('Data export failed');
+        }
+      } catch (error) {
+        alert('Export failed. Please contact privacy@quickdrawpressing.co');
+      }
+    });
+
+    // Delete account (GDPR)
+    document.getElementById('delete-account-button').addEventListener('click', async () => {
+      if (!confirm('⚠️ WARNING: This will permanently delete your account and anonymize your order history.\n\nThis action CANNOT be undone.\n\nAre you absolutely sure?')) {
+        return;
+      }
+
+      // Second confirmation
+      if (!confirm('Final confirmation: Delete my account now?')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/customer/account`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            confirm: true,
+          })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (result.success) {
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('user_data');
+          window.location.href = 'index.html';
+        }
+      } catch (error) {
+        alert('Account deletion failed');
+      }
+    });
+
+    // Load orders on page load
+    loadOrders();
+  </script>
+
+</body>
+</html>

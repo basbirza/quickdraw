@@ -128,7 +128,7 @@
           '<span id="cart-total" style="font-size:16px;">€0</span>' +
         '</div>' +
         '<p style="font-size:11px;color:#9ca3af;margin:0 0 12px 0;">Shipping calculated at checkout</p>' +
-        '<button style="width:100%;background:black;color:white;border:none;padding:14px;font-size:11px;letter-spacing:0.15em;cursor:pointer;font-family:Georgia,serif;">CHECKOUT</button>' +
+        '<button id="cart-checkout" style="width:100%;background:black;color:white;border:none;padding:14px;font-size:11px;letter-spacing:0.15em;cursor:pointer;font-family:Georgia,serif;">CHECKOUT</button>' +
         '<button id="cart-continue" style="width:100%;background:none;border:1px solid #d1d5db;color:#111;padding:14px;font-size:11px;letter-spacing:0.15em;cursor:pointer;font-family:Georgia,serif;margin-top:8px;">CONTINUE SHOPPING</button>' +
       '</div>';
 
@@ -137,6 +137,9 @@
 
     document.getElementById('cart-close').addEventListener('click', function() { closeCartDrawer(); });
     document.getElementById('cart-continue').addEventListener('click', function() { closeCartDrawer(); });
+    document.getElementById('cart-checkout').addEventListener('click', function() {
+      window.location.href = 'checkout.html';
+    });
   }
 
   function openCartDrawer() {

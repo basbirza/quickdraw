@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Georgia', 'Times New Roman', serif; }
+    .logo-title { font-family: 'Rye', cursive; font-size: clamp(32px, 5vw, 52px); letter-spacing: 0.12em; }
+    .logo-subtitle { font-family: Georgia, serif; letter-spacing: 0.3em; font-size: 10px; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Login Form -->
+  <main class="max-w-md mx-auto px-4 py-16">
+    <div class="bg-white border border-gray-200 p-8">
+      <h1 class="text-2xl font-bold mb-2 text-center" style="letter-spacing: 0.1em;">LOGIN</h1>
+      <p class="text-xs text-gray-500 text-center mb-8">Access your account to view orders and manage returns</p>
+
+      <form id="login-form">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs tracking-wider text-gray-600 mb-1">EMAIL ADDRESS</label>
+            <input type="email" name="email" required
+              class="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-black">
+          </div>
+
+          <div>
+            <label class="block text-xs tracking-wider text-gray-600 mb-1">PASSWORD</label>
+            <input type="password" name="password" required
+              class="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-black">
+          </div>
+
+          <div id="login-error" class="text-xs text-red-500 hidden"></div>
+
+          <button type="submit" id="login-button"
+            class="w-full bg-black text-white py-3 text-xs tracking-widest hover:bg-gray-800 transition-colors disabled:bg-gray-400">
+            SIGN IN
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 text-center text-xs text-gray-500">
+        Don't have an account?
+        <a href="register.html" class="underline hover:text-black">Create one</a>
+      </div>
+
+      <div class="mt-3 text-center">
+        <a href="index.html" class="text-xs text-gray-500 hover:text-black">← Back to Shop</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="cart.js"></script>
+  <script>
+    const API_URL = 'http://localhost:8000/api';
+    const form = document.getElementById('login-form');
+    const submitButton = document.getElementById('login-button');
+    const errorDiv = document.getElementById('login-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitButton.disabled = true;
+      submitButton.textContent = 'SIGNING IN...';
+      errorDiv.classList.add('hidden');
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch(`${API_URL}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.get('email'),
+            password: formData.get('password'),
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Store auth token
+          localStorage.setItem('auth_token', result.token);
+          localStorage.setItem('user_data', JSON.stringify(result.user));
+
+          // Redirect to account dashboard
+          window.location.href = 'account.html';
+        } else {
+          throw new Error(result.message || 'Login failed');
+        }
+
+      } catch (error) {
+        errorDiv.textContent = error.message || 'Invalid email or password';
+        errorDiv.classList.remove('hidden');
+        submitButton.disabled = false;
+        submitButton.textContent = 'SIGN IN';
+      }
+    });
+
+    // Check if already logged in
+    if (localStorage.getItem('auth_token')) {
+      window.location.href = 'account.html';
+    }
+  </script>
+
+</body>
+</html>

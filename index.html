@@ -66,6 +66,13 @@
 
   <!-- Header -->
   <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <!-- Account Links (Top Right) -->
+    <div class="flex justify-end gap-4 text-xs tracking-widest mb-3">
+      <a href="login.html" id="login-link" class="text-gray-600 hover:text-black transition-colors">LOGIN</a>
+      <a href="register.html" id="register-link" class="text-gray-600 hover:text-black transition-colors">REGISTER</a>
+      <a href="account.html" id="account-link" class="text-gray-600 hover:text-black transition-colors hidden">MY ACCOUNT</a>
+    </div>
+
     <!-- Logo -->
     <div class="text-center">
       <h1 class="logo-title">QUICKDRAW</h1>
@@ -202,18 +209,32 @@
       <p class="text-xs tracking-widest text-gray-400 mb-2">JOIN THE DRAW</p>
       <h2 class="text-lg mb-1" style="letter-spacing: 0.1em;">Stay in the Loop</h2>
       <p class="text-xs text-gray-400 mb-6">New drops, stories & 10% off your first order</p>
-      <form id="newsletter-form" class="flex max-w-md mx-auto" action="#" method="POST">
-        <input
-          id="newsletter-email"
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          required
-          class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
-        />
-        <button type="submit" class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
-          SUBSCRIBE
-        </button>
+      <form id="newsletter-form" class="max-w-md mx-auto" action="#" method="POST">
+        <div class="flex">
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
+          />
+          <button type="submit" class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
+            SUBSCRIBE
+          </button>
+        </div>
+        <div class="flex items-start gap-2 mt-3 text-left">
+          <input
+            id="newsletter-consent"
+            type="checkbox"
+            name="consent"
+            required
+            class="mt-0.5"
+          />
+          <label for="newsletter-consent" class="text-xs text-gray-400 leading-relaxed">
+            I agree to receive marketing emails from Quickdraw Pressing Co. You can unsubscribe at any time. See our <a href="privacy-policy.html" class="underline hover:text-white">Privacy Policy</a>.
+          </label>
+        </div>
       </form>
       <p id="newsletter-message" class="text-xs mt-3 hidden"></p>
     </section>
@@ -276,9 +297,9 @@
     <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
       <p>© 2026 Quickdraw Pressing Co. All rights reserved.</p>
       <div class="flex gap-4 mt-2 md:mt-0">
-        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
-        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
-        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+        <a href="privacy-policy.html" class="hover:text-black transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-black transition-colors">Terms & Conditions</a>
+        <a href="cookie-policy.html" class="hover:text-black transition-colors">Cookie Policy</a>
       </div>
     </div>
   </footer>
@@ -290,9 +311,9 @@
         <div class="flex-1 text-center md:text-left">
           <p class="text-xs tracking-widest text-gray-900 mb-1">WE VALUE YOUR PRIVACY</p>
           <p class="text-xs text-gray-600 leading-relaxed">
-            We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
+            We use essential cookies for cart functionality and session management. We do NOT use tracking or advertising cookies.
             By clicking "Accept All", you consent to our use of cookies.
-            <a href="#" class="underline hover:text-black">Learn more</a>
+            <a href="cookie-policy.html" class="underline hover:text-black">Learn more</a>
           </p>
         </div>
         <div class="flex gap-3 whitespace-nowrap">
@@ -460,9 +481,8 @@
       newsletterMessage.classList.add('hidden');
 
       try {
-        // TODO: Replace with your actual newsletter service endpoint
-        // Options: Mailchimp, ConvertKit, SendGrid, or custom API
-        const response = await fetch('/api/newsletter/subscribe', {
+        // Connected to Laravel backend API
+        const response = await fetch('http://localhost:8000/api/newsletter/subscribe', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -470,21 +490,37 @@
           body: JSON.stringify({ email }),
         });
 
-        if (response.ok) {
-          newsletterMessage.textContent = 'Thanks for subscribing! Check your email for your 10% off code.';
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          newsletterMessage.textContent = data.message;
           newsletterMessage.className = 'text-xs mt-3 text-green-400';
+          newsletterMessage.classList.remove('hidden');
           newsletterForm.reset();
         } else {
-          throw new Error('Subscription failed');
+          throw new Error(data.message || 'Subscription failed');
         }
       } catch (error) {
-        newsletterMessage.textContent = 'Something went wrong. Please try again.';
+        newsletterMessage.textContent = error.message || 'Something went wrong. Please try again.';
         newsletterMessage.className = 'text-xs mt-3 text-red-400';
+        newsletterMessage.classList.remove('hidden');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       }
     });
+
+    // Check if user is logged in and update header links
+    const authToken = localStorage.getItem('auth_token');
+    const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+
+    if (authToken && userData.email) {
+      // User is logged in - show account link, hide login/register
+      document.getElementById('login-link').classList.add('hidden');
+      document.getElementById('register-link').classList.add('hidden');
+      document.getElementById('account-link').classList.remove('hidden');
+      document.getElementById('account-link').textContent = userData.name ? userData.name.toUpperCase() : 'MY ACCOUNT';
+    }
   </script>
 </body>
 </html>
