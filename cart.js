@@ -291,10 +291,28 @@
     init();
   }
 
+  // UI: Inject live chat (Tawk.to)
+  function injectLiveChat() {
+    // Get Tawk.to ID from: https://tawk.to (free account)
+    // Replace YOUR_TAWK_ID below with your actual ID
+    var TAWK_ENABLED = false; // Set to true after getting your Tawk.to ID
+    var TAWK_ID = 'YOUR_TAWK_ID/default';
+
+    if (!TAWK_ENABLED) return;
+
+    var s1 = document.createElement('script');
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/' + TAWK_ID;
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    document.head.appendChild(s1);
+  }
+
   function init() {
     injectAccountLinks();
     injectCartIcon();
     injectCartDrawer();
+    injectLiveChat();
     updateCartUI();
   }
 
