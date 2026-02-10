@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -125,6 +126,22 @@ class ProductResource extends Resource
                                     ->relationship('categories', 'name')
                                     ->preload(),
                             ]),
+
+                        Forms\Components\Section::make('Product Images')
+                            ->schema([
+                                Forms\Components\FileUpload::make('product_images')
+                                    ->label('Upload Images')
+                                    ->multiple()
+                                    ->image()
+                                    ->directory('products')
+                                    ->maxSize(5120)
+                                    ->imageEditor()
+                                    ->helperText('Upload product images (max 5MB each). First image will be the main image.')
+                                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                        // Store image paths for saving
+                                        $set('uploaded_images', $state);
+                                    }),
+                            ]),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])
@@ -135,6 +152,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('main_image_url')
+                    ->label('Image')
+                    ->square()
+                    ->defaultImageUrl('/images/placeholder.png'),
+
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable()
@@ -200,7 +222,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ImagesRelationManager::class,
         ];
     }
 
