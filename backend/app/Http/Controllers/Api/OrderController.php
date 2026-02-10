@@ -58,8 +58,9 @@ class OrderController extends Controller
             $shippingCost = $subtotal >= 150 ? 0 : 9.95;
             $total = $subtotal + $shippingCost;
 
-            // Create order
+            // Create order (link to user if authenticated)
             $order = Order::create([
+                'user_id' => $request->user() ? $request->user()->id : null, // Link to account if logged in
                 'customer_email' => $request->customer_email,
                 'customer_first_name' => $request->customer_first_name,
                 'customer_last_name' => $request->customer_last_name,

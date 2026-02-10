@@ -316,12 +316,19 @@
           payment_token: paymentMethod.id
         };
 
-        // Submit to backend API
+        // Submit to backend API (include auth token if logged in)
+        const authToken = localStorage.getItem('auth_token');
+        const headers = {
+          'Content-Type': 'application/json',
+        };
+
+        if (authToken) {
+          headers['Authorization'] = `Bearer ${authToken}`;
+        }
+
         const response = await fetch(`${API_URL}/orders`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: headers,
           body: JSON.stringify(orderData)
         });
 
