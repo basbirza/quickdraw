@@ -87,6 +87,34 @@
     return getCart().reduce(function(sum, item) { return sum + (item.priceNum * item.qty); }, 0);
   }
 
+  // UI: Inject account links into header
+  function injectAccountLinks() {
+    var header = document.querySelector('header');
+    if (!header || document.getElementById('account-links-injected')) return;
+
+    var accountDiv = document.createElement('div');
+    accountDiv.id = 'account-links-injected';
+    accountDiv.style.cssText = 'position:fixed;top:16px;right:60px;z-index:1000;display:flex;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
+
+    var authToken = localStorage.getItem('auth_token');
+    var userData = localStorage.getItem('user_data');
+
+    if (authToken && userData) {
+      try {
+        var user = JSON.parse(userData);
+        accountDiv.innerHTML = '<a href="/account.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' + (user.name ? user.name.toUpperCase() : 'MY ACCOUNT') + '</a>';
+      } catch (e) {
+        accountDiv.innerHTML = '<a href="/login.html" style="color:#666;text-decoration:none;">LOGIN</a>';
+      }
+    } else {
+      accountDiv.innerHTML = '' +
+        '<a href="/login.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">LOGIN</a>' +
+        '<a href="/register.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">REGISTER</a>';
+    }
+
+    document.body.appendChild(accountDiv);
+  }
+
   // UI: Inject cart icon into header
   function injectCartIcon() {
     var header = document.querySelector('header');
@@ -264,6 +292,7 @@
   }
 
   function init() {
+    injectAccountLinks();
     injectCartIcon();
     injectCartDrawer();
     updateCartUI();
