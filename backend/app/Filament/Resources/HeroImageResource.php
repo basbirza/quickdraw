@@ -38,11 +38,22 @@ class HeroImageResource extends Resource
                     ->placeholder('Quickdraw Pressing Co. - Premium Selvedge Denim')
                     ->helperText('Image description for accessibility'),
 
-                Forms\Components\TextInput::make('campaign')
+                Forms\Components\Select::make('campaign')
                     ->label('Campaign')
+                    ->options([
+                        'default' => 'Default (Year-Round)',
+                        'spring' => 'Spring Collection',
+                        'summer' => 'Summer Collection',
+                        'fall' => 'Fall Collection',
+                        'winter' => 'Winter Collection',
+                        'sale' => 'Sale / Black Friday',
+                        'new-arrivals' => 'New Arrivals',
+                        'holiday' => 'Holiday Season',
+                    ])
+                    ->searchable()
                     ->default('default')
                     ->required()
-                    ->helperText('Group images by campaign (e.g., "spring", "summer", "sale"). Change active campaign in Site Settings.'),
+                    ->helperText('Select campaign. Change active campaign in Settings → Site Settings.'),
 
                 Forms\Components\TextInput::make('sort_order')
                     ->label('Order')
@@ -67,9 +78,21 @@ class HeroImageResource extends Resource
                     ->disk('public')
                     ->height(80),
 
+                Tables\Columns\BadgeColumn::make('campaign')
+                    ->colors([
+                        'primary' => 'default',
+                        'success' => fn ($state) => in_array($state, ['spring', 'summer']),
+                        'warning' => fn ($state) => in_array($state, ['fall', 'sale']),
+                        'info' => fn ($state) => in_array($state, ['winter', 'holiday']),
+                        'danger' => 'new-arrivals',
+                    ])
+                    ->searchable()
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('alt_text')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(40)
+                    ->toggleable(),
 
                 Tables\Columns\TextColumn::make('sort_order')
                     ->sortable()
@@ -85,6 +108,18 @@ class HeroImageResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('campaign')
+                    ->options([
+                        'default' => 'Default',
+                        'spring' => 'Spring',
+                        'summer' => 'Summer',
+                        'fall' => 'Fall',
+                        'winter' => 'Winter',
+                        'sale' => 'Sale',
+                        'new-arrivals' => 'New Arrivals',
+                        'holiday' => 'Holiday',
+                    ])
+                    ->label('Filter by Campaign'),
                 Tables\Filters\TernaryFilter::make('is_active'),
             ])
             ->actions([
