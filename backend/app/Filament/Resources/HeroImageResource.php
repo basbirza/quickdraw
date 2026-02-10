@@ -38,6 +38,12 @@ class HeroImageResource extends Resource
                     ->placeholder('Quickdraw Pressing Co. - Premium Selvedge Denim')
                     ->helperText('Image description for accessibility'),
 
+                Forms\Components\TextInput::make('campaign')
+                    ->label('Campaign')
+                    ->default('default')
+                    ->required()
+                    ->helperText('Group images by campaign (e.g., "spring", "summer", "sale"). Change active campaign in Site Settings.'),
+
                 Forms\Components\TextInput::make('sort_order')
                     ->label('Order')
                     ->numeric()

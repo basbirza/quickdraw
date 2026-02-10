@@ -8,6 +8,7 @@ class HeroImage extends Model
 {
     protected $fillable = [
         'image_path',
+        'campaign',
         'alt_text',
         'sort_order',
         'is_active',
