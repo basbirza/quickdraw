@@ -107,7 +107,8 @@
     if (authToken && userData) {
       try {
         var user = JSON.parse(userData);
-        accountDiv.innerHTML = '<a href="/account.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' + (user.name ? user.name.toUpperCase() : 'MY ACCOUNT') + '</a>' + cartHTML;
+        accountDiv.innerHTML = '<a href="/account.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' + (user.name ? user.name.toUpperCase() : 'MY ACCOUNT') + '</a>' +
+          '<button id="logout-btn" style="color:#666;text-decoration:none;transition:color 0.2s;background:none;border:none;cursor:pointer;font-size:inherit;letter-spacing:inherit;font-family:inherit;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">LOGOUT</button>' + cartHTML;
       } catch (e) {
         accountDiv.innerHTML = '<a href="/login.html" style="color:#666;text-decoration:none;">LOGIN</a>' + cartHTML;
       }
@@ -124,6 +125,16 @@
     var cartBtn = document.getElementById('cart-toggle');
     if (cartBtn) {
       cartBtn.addEventListener('click', function() { openCartDrawer(); });
+    }
+
+    // Add click handler for logout
+    var logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function() {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_data');
+        window.location.href = '/index.html';
+      });
     }
   }
 

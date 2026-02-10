@@ -23,10 +23,7 @@
           <h1 class="text-2xl font-bold" style="font-family: 'Rye', cursive; letter-spacing: 0.12em;">QUICKDRAW</h1>
         </div>
       </a>
-      <div class="flex items-center gap-4 text-xs">
-        <span id="user-name" class="text-gray-600"></span>
-        <button id="logout-button" class="tracking-widest hover:text-black transition-colors">LOGOUT</button>
-      </div>
+      <!-- Account links now handled by cart.js -->
     </div>
   </header>
 
@@ -123,28 +120,11 @@
       window.location.href = 'login.html';
     }
 
-    // Display user name
-    document.getElementById('user-name').textContent = userData.name || 'User';
+    // Set profile form values
     document.getElementById('profile-name').value = userData.name || '';
     document.getElementById('profile-email').value = userData.email || '';
 
-    // Logout
-    document.getElementById('logout-button').addEventListener('click', async () => {
-      try {
-        await fetch(`${API_URL}/auth/logout`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${authToken}`,
-          }
-        });
-      } catch (e) {
-        console.error('Logout error:', e);
-      }
-
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('user_data');
-      window.location.href = 'index.html';
-    });
+    // Logout handled by cart.js account links
 
     // Tab switching
     const tabs = document.querySelectorAll('.tab');
