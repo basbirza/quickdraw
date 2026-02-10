@@ -49,9 +49,18 @@ class CategoryResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->rows(3),
 
+                Forms\Components\FileUpload::make('banner_image')
+                    ->label('Category Tile Image')
+                    ->image()
+                    ->directory('categories')
+                    ->imageEditor()
+                    ->maxSize(5120)
+                    ->helperText('Background image for category tile on homepage (optional)'),
+
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
-                    ->default(0),
+                    ->default(0)
+                    ->helperText('Order on homepage (lower = first)'),
 
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),
