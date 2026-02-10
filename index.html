@@ -100,7 +100,32 @@
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
       <p class="text-xs tracking-widest text-gray-400 mb-1">EXPLORE</p>
       <h2 class="text-xl mb-8" style="letter-spacing: 0.1em;">Shop by Category</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="category-grid"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <a href="selvedge-jeans.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #2c3e6b; background-image: url('selvedge_denim_quickdraw.png'); background-size: cover; background-position: center;">
+          <span class="text-sm md:text-base font-medium tracking-widest">SELVEDGE JEANS</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">12 Products</span>
+        </a>
+        <a href="denim-jackets.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #3d2c2c;">
+          <span class="text-sm md:text-base font-medium tracking-widest">DENIM JACKETS</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">6 Products</span>
+        </a>
+        <a href="shirts-flannels.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #4a4a3a;">
+          <span class="text-sm md:text-base font-medium tracking-widest">SHIRTS &amp; FLANNELS</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">9 Products</span>
+        </a>
+        <a href="outerwear.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #2c3a2c; background-image: url('outerwear.png'); background-size: cover; background-position: center;">
+          <span class="text-sm md:text-base font-medium tracking-widest">OUTERWEAR</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">5 Products</span>
+        </a>
+        <a href="tees-henleys.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #3a3a4a;">
+          <span class="text-sm md:text-base font-medium tracking-widest">TEES &amp; HENLEYS</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">8 Products</span>
+        </a>
+        <a href="accessories.html" class="flex flex-col items-center justify-center text-white text-decoration-none" style="aspect-ratio: 4/3; background-color: #4a3a2c;">
+          <span class="text-sm md:text-base font-medium tracking-widest">ACCESSORIES</span>
+          <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">7 Products</span>
+        </a>
+      </div>
     </section>
 
     <!-- Brand Story Strip -->
@@ -232,15 +257,6 @@
       { name: "Culprits Speedcrew", desc: "Black Loopwheel Hoodie", price: "€65", tag: null, color: "#22223b", image: "culprits-speedcrew1.png" },
     ];
 
-    const categories = [
-      { name: "Selvedge Jeans", count: 12, bg: "#2c3e6b", image: "selvedge_denim_quickdraw.png" },
-      { name: "Denim Jackets", count: 6, bg: "#3d2c2c" },
-      { name: "Shirts & Flannels", count: 9, bg: "#4a4a3a" },
-      { name: "Outerwear", count: 5, bg: "#2c3a2c", image: "outerwear.png" },
-      { name: "Tees & Henleys", count: 8, bg: "#3a3a4a" },
-      { name: "Accessories", count: 7, bg: "#4a3a2c" },
-    ];
-
     // Helper Functions
     function createDenimTexture(x, y, w, h, shade) {
       let svg = `<g>`;
@@ -295,54 +311,9 @@
       `;
     }
 
-    function createCategoryTile(category) {
-      // If category has an image, use it instead of SVG
-      if (category.image) {
-        return `
-          <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
-            <img src="${category.image}" alt="${category.name}" class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
-              <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
-            </div>
-          </div>
-        `;
-      }
-
-      // Otherwise use SVG pattern
-      let horizontalLines = '';
-      for (let i = 0; i < 100; i++) {
-        horizontalLines += `<line x1="0" y1="${i * 3}" x2="400" y2="${i * 3}" stroke="rgba(255,255,255,0.02)" stroke-width="0.5" />`;
-      }
-      let verticalLines = '';
-      for (let i = 0; i < 60; i++) {
-        verticalLines += `<line x1="${i * 7}" y1="0" x2="${i * 7}" y2="300" stroke="rgba(255,255,255,0.015)" stroke-width="0.3" />`;
-      }
-
-      return `
-        <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="300" fill="${category.bg}" />
-            ${horizontalLines}
-            ${verticalLines}
-          </svg>
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-            <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
-            <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
-          </div>
-        </div>
-      `;
-    }
-
     // Initialize Products
     const productsContainer = document.getElementById('featured-products');
     productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
-
-    // Initialize Categories
-    const categoriesContainer = document.getElementById('category-grid');
-    categoriesContainer.innerHTML = categories.map(createCategoryTile).join('');
 
     // Navigation Hover Effect
     const navItems = document.querySelectorAll('.nav-item');

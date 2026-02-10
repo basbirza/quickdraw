@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessories | Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto">
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-black border-b border-black">ACCESSORIES</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="index.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-gray-900">Accessories</span>
+    </div>
+  </div>
+
+  <!-- Category Header -->
+  <section class="relative overflow-hidden bg-gray-900" style="height: 280px;">
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, #4a3a2c 0%, #332a20 100%);"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+      <p class="text-xs tracking-widest text-white/60 mb-2">COLLECTION</p>
+      <h2 class="text-3xl md:text-4xl tracking-wider" style="letter-spacing: 0.15em;">ACCESSORIES</h2>
+      <p class="text-sm text-white/70 mt-3 max-w-lg">Leather belts, wallets, bandanas, and essentials. Handcrafted details to complete your kit.</p>
+      <p class="text-xs text-white/50 mt-4">7 Products</p>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+    <div class="flex justify-between items-center mb-8">
+      <p class="text-xs tracking-widest text-gray-400">SHOWING 7 PRODUCTS</p>
+      <select class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black">
+        <option>SORT BY: FEATURED</option>
+        <option>PRICE: LOW TO HIGH</option>
+        <option>PRICE: HIGH TO LOW</option>
+        <option>NEWEST FIRST</option>
+      </select>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="shirts-flannels.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shirts & Flannels</a>
+        <a href="outerwear.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Outerwear</a>
+        <a href="tees-henleys.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Tees & Henleys</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">The Journal</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping & Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs & Hemming</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>&copy; 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { name: "The Frontier Belt", desc: "Vegetable-Tanned Leather", price: "€65", tag: "BESTSELLER", color: "#5a3a20" },
+      { name: "The Prospector Wallet", desc: "Bridle Leather Bifold", price: "€79", tag: null, color: "#4a3020" },
+      { name: "The Trailhead Bandana", desc: "Selvedge Cotton Bandana", price: "€19", tag: "NEW", color: "#1a2a4a" },
+      { name: "The Wrangler Key Fob", desc: "Copper & Leather Key Hook", price: "€25", tag: null, color: "#c45a3a" },
+      { name: "The Ranch Hand Cap", desc: "Washed Cotton Twill", price: "€35", tag: null, color: "#2a2a30" },
+      { name: "The Stockman Suspenders", desc: "Elastic & Leather Braces", price: "€45", tag: null, color: "#3a2a1a" },
+      { name: "The Campfire Tote", desc: "Waxed Canvas Carryall", price: "€89", tag: "NEW", color: "#4a4030" },
+    ];
+
+    function createAccessorySVG(product) {
+      const name = product.name.toLowerCase();
+      const color = product.color;
+
+      if (name.includes('belt')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <ellipse cx="150" cy="200" rx="70" ry="70" fill="none" stroke="${color}" stroke-width="12" />
+          <rect x="145" y="130" width="10" height="30" fill="#b87333" rx="2" />
+          <circle cx="150" cy="170" r="4" fill="rgba(0,0,0,0.2)" />
+          <circle cx="150" cy="185" r="4" fill="rgba(0,0,0,0.2)" />
+          <circle cx="150" cy="200" r="4" fill="rgba(0,0,0,0.2)" />
+        </svg>`;
+      } else if (name.includes('wallet')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <rect x="90" y="145" width="120" height="110" fill="${color}" rx="4" />
+          <rect x="90" y="145" width="120" height="15" fill="rgba(255,255,255,0.08)" rx="2" />
+          <line x1="90" y1="190" x2="210" y2="190" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+          <rect x="170" y="165" width="25" height="15" fill="rgba(255,255,255,0.06)" rx="2" />
+        </svg>`;
+      } else if (name.includes('bandana')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <polygon points="80,140 220,140 150,260" fill="${color}" />
+          <polygon points="90,150 210,150 150,250" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+          <line x1="120" y1="170" x2="180" y2="170" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" />
+          <line x1="130" y1="190" x2="170" y2="190" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" />
+        </svg>`;
+      } else if (name.includes('key')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <rect x="130" y="140" width="40" height="100" fill="#5a3a20" rx="3" />
+          <circle cx="150" cy="260" r="15" fill="${color}" />
+          <circle cx="150" cy="260" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+          <circle cx="150" cy="155" r="5" fill="rgba(0,0,0,0.15)" />
+        </svg>`;
+      } else if (name.includes('cap')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <ellipse cx="150" cy="210" rx="70" ry="25" fill="${color}" />
+          <path d="M 80 210 Q 80 140, 150 130 Q 220 140, 220 210" fill="${color}" />
+          <rect x="80" y="205" width="100" height="12" fill="${color}" rx="2" opacity="0.9" />
+        </svg>`;
+      } else if (name.includes('suspender')) {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <line x1="120" y1="120" x2="110" y2="290" stroke="${color}" stroke-width="8" />
+          <line x1="180" y1="120" x2="190" y2="290" stroke="${color}" stroke-width="8" />
+          <rect x="130" y="130" width="40" height="20" fill="#5a3a20" rx="2" />
+          <circle cx="115" cy="290" r="6" fill="#b87333" />
+          <circle cx="185" cy="290" r="6" fill="#b87333" />
+        </svg>`;
+      } else {
+        return `<svg width="100%" height="100%" viewBox="0 0 300 400">
+          <rect width="300" height="400" fill="#f5f5f0" />
+          <rect x="80" y="130" width="140" height="150" fill="${color}" rx="4" />
+          <rect x="110" y="115" width="80" height="20" fill="${color}" rx="2" opacity="0.8" />
+          <line x1="150" y1="130" x2="150" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+        </svg>`;
+      }
+    }
+
+    function createProductCard(product) {
+      return `
+        <a href="#" class="group cursor-pointer block">
+          <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
+            ${createAccessorySVG(product)}
+            ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              QUICK VIEW
+            </button>
+          </div>
+          <p class="text-sm font-medium text-gray-900">${product.name}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
+          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+        </a>
+      `;
+    }
+
+    document.getElementById('products-grid').innerHTML = products.map(createProductCard).join('');
+  </script>
+</body>
+</html>
