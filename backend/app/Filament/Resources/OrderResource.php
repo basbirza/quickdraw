@@ -22,29 +22,52 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('order_number')
-                    ->disabled(),
+                Forms\Components\Section::make('Order Details')
+                    ->schema([
+                        Forms\Components\TextInput::make('order_number')
+                            ->disabled(),
 
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'pending' => 'Pending',
-                        'processing' => 'Processing',
-                        'shipped' => 'Shipped',
-                        'delivered' => 'Delivered',
-                        'cancelled' => 'Cancelled',
-                    ])
-                    ->required(),
+                        Forms\Components\Select::make('status')
+                            ->options([
+                                'pending' => 'Pending',
+                                'processing' => 'Processing',
+                                'shipped' => 'Shipped',
+                                'delivered' => 'Delivered',
+                                'cancelled' => 'Cancelled',
+                            ])
+                            ->required(),
 
-                Forms\Components\Select::make('payment_status')
-                    ->options([
-                        'pending' => 'Pending',
-                        'paid' => 'Paid',
-                        'failed' => 'Failed',
-                        'refunded' => 'Refunded',
+                        Forms\Components\Select::make('payment_status')
+                            ->options([
+                                'pending' => 'Pending',
+                                'paid' => 'Paid',
+                                'failed' => 'Failed',
+                                'refunded' => 'Refunded',
+                            ])
+                            ->required(),
                     ])
-                    ->required(),
+                    ->columns(3),
+
+                Forms\Components\Section::make('📦 SHIPPING ADDRESS')
+                    ->schema([
+                        Forms\Components\Placeholder::make('shipping_info')
+                            ->label('')
+                            ->content(fn ($record) => new \Illuminate\Support\HtmlString(
+                                '<div style="font-size: 16px; line-height: 1.6;">' .
+                                '<strong style="font-size: 18px;">' . e($record->customer_first_name . ' ' . $record->customer_last_name) . '</strong><br>' .
+                                e($record->billing_address_line1) . '<br>' .
+                                ($record->billing_address_line2 ? e($record->billing_address_line2) . '<br>' : '') .
+                                e($record->billing_postal_code) . ' ' . e($record->billing_city) . '<br>' .
+                                e($record->billing_country) . '<br><br>' .
+                                '<strong>Email:</strong> ' . e($record->customer_email) . '<br>' .
+                                ($record->customer_phone ? '<strong>Phone:</strong> ' . e($record->customer_phone) : '') .
+                                '</div>'
+                            )),
+                    ])
+                    ->collapsible(false),
 
                 Forms\Components\Textarea::make('admin_notes')
+                    ->label('Notes')
                     ->rows(3),
             ]);
     }
