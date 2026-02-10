@@ -66,13 +66,6 @@
 
   <!-- Header -->
   <header class="border-b border-gray-200 px-4 md:px-8 py-5">
-    <!-- Account Links (Top Right) -->
-    <div class="flex justify-end gap-4 text-xs tracking-widest mb-3">
-      <a href="login.html" id="login-link" class="text-gray-600 hover:text-black transition-colors">LOGIN</a>
-      <a href="register.html" id="register-link" class="text-gray-600 hover:text-black transition-colors">REGISTER</a>
-      <a href="account.html" id="account-link" class="text-gray-600 hover:text-black transition-colors hidden">MY ACCOUNT</a>
-    </div>
-
     <!-- Logo -->
     <div class="text-center">
       <h1 class="logo-title">QUICKDRAW</h1>
@@ -650,17 +643,6 @@
       }
     });
 
-    // Check if user is logged in and update header links
-    const authToken = localStorage.getItem('auth_token');
-    const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
-
-    if (authToken && userData.email) {
-      // User is logged in - show account link, hide login/register
-      document.getElementById('login-link').classList.add('hidden');
-      document.getElementById('register-link').classList.add('hidden');
-      document.getElementById('account-link').classList.remove('hidden');
-      document.getElementById('account-link').textContent = userData.name ? userData.name.toUpperCase() : 'MY ACCOUNT';
-    }
   </script>
 </body>
 </html>
