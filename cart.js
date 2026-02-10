@@ -94,42 +94,40 @@
 
     var accountDiv = document.createElement('div');
     accountDiv.id = 'account-links-injected';
-    accountDiv.style.cssText = 'position:fixed;top:16px;right:60px;z-index:1000;display:flex;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
+    accountDiv.style.cssText = 'position:fixed;top:16px;right:16px;z-index:1000;display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
 
     var authToken = localStorage.getItem('auth_token');
     var userData = localStorage.getItem('user_data');
 
+    var cartHTML = '<button id="cart-toggle" style="background:none;border:none;cursor:pointer;padding:4px;position:relative;color:#666;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' +
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
+      '<span id="cart-count" style="position:absolute;top:-4px;right:-4px;background:#c45a3a;color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>' +
+      '</button>';
+
     if (authToken && userData) {
       try {
         var user = JSON.parse(userData);
-        accountDiv.innerHTML = '<a href="/account.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' + (user.name ? user.name.toUpperCase() : 'MY ACCOUNT') + '</a>';
+        accountDiv.innerHTML = '<a href="/account.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' + (user.name ? user.name.toUpperCase() : 'MY ACCOUNT') + '</a>' + cartHTML;
       } catch (e) {
-        accountDiv.innerHTML = '<a href="/login.html" style="color:#666;text-decoration:none;">LOGIN</a>';
+        accountDiv.innerHTML = '<a href="/login.html" style="color:#666;text-decoration:none;">LOGIN</a>' + cartHTML;
       }
     } else {
       accountDiv.innerHTML = '' +
         '<a href="/login.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">LOGIN</a>' +
-        '<a href="/register.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">REGISTER</a>';
+        '<a href="/register.html" style="color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">REGISTER</a>' +
+        cartHTML;
     }
 
     document.body.appendChild(accountDiv);
+
+    // Add click handler for cart
+    var cartBtn = document.getElementById('cart-toggle');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', function() { openCartDrawer(); });
+    }
   }
 
-  // UI: Inject cart icon into header
-  function injectCartIcon() {
-    var header = document.querySelector('header');
-    if (!header) return;
-
-    // Add cart button to top-right of header
-    var cartBtn = document.createElement('button');
-    cartBtn.id = 'cart-toggle';
-    cartBtn.setAttribute('aria-label', 'Open cart');
-    cartBtn.style.cssText = 'position:fixed;top:80px;right:16px;z-index:1000;background:none;border:none;cursor:pointer;padding:8px;';
-    cartBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
-      '<span id="cart-count" style="position:absolute;top:2px;right:2px;background:#c45a3a;color:white;font-size:10px;font-family:Georgia,serif;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;line-height:1;">0</span>';
-    cartBtn.addEventListener('click', function() { openCartDrawer(); });
-    document.body.appendChild(cartBtn);
-  }
+  // Cart icon now integrated with account links - no separate injection needed
 
   // UI: Inject cart drawer
   function injectCartDrawer() {
