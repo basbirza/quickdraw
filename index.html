@@ -202,16 +202,20 @@
       <p class="text-xs tracking-widest text-gray-400 mb-2">JOIN THE DRAW</p>
       <h2 class="text-lg mb-1" style="letter-spacing: 0.1em;">Stay in the Loop</h2>
       <p class="text-xs text-gray-400 mb-6">New drops, stories & 10% off your first order</p>
-      <div class="flex max-w-md mx-auto">
+      <form id="newsletter-form" class="flex max-w-md mx-auto" action="#" method="POST">
         <input
+          id="newsletter-email"
           type="email"
+          name="email"
           placeholder="Your email address"
+          required
           class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
         />
-        <button class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
+        <button type="submit" class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
           SUBSCRIBE
         </button>
-      </div>
+      </form>
+      <p id="newsletter-message" class="text-xs mt-3 hidden"></p>
     </section>
 
     <!-- Payment & Trust -->
@@ -438,6 +442,49 @@
 
       slideshowInterval = setInterval(nextSlide, 2000);
     }
+
+    // Newsletter Form Handling
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMessage = document.getElementById('newsletter-message');
+
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('newsletter-email').value;
+      const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'SUBSCRIBING...';
+      newsletterMessage.classList.add('hidden');
+
+      try {
+        // TODO: Replace with your actual newsletter service endpoint
+        // Options: Mailchimp, ConvertKit, SendGrid, or custom API
+        const response = await fetch('/api/newsletter/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        if (response.ok) {
+          newsletterMessage.textContent = 'Thanks for subscribing! Check your email for your 10% off code.';
+          newsletterMessage.className = 'text-xs mt-3 text-green-400';
+          newsletterForm.reset();
+        } else {
+          throw new Error('Subscription failed');
+        }
+      } catch (error) {
+        newsletterMessage.textContent = 'Something went wrong. Please try again.';
+        newsletterMessage.className = 'text-xs mt-3 text-red-400';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
   </script>
 </body>
 </html>
