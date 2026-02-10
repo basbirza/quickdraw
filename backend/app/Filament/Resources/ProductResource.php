@@ -183,15 +183,18 @@ class ProductResource extends Resource
 
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Active')
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
 
                 Tables\Columns\IconColumn::make('is_featured')
                     ->label('Featured')
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('categories.name')
                     ->badge()
-                    ->separator(','),
+                    ->separator(',')
+                    ->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('tag')
