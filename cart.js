@@ -100,8 +100,8 @@
     var userData = localStorage.getItem('user_data');
 
     var cartHTML = '<button id="cart-toggle" style="background:none;border:none;cursor:pointer;padding:4px;position:relative;color:#666;transition:color 0.2s;" onmouseover="this.style.color=\'#000\'" onmouseout="this.style.color=\'#666\'">' +
-      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
-      '<span id="cart-count" style="position:absolute;top:-4px;right:-4px;background:#c45a3a;color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>' +
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="pointer-events:none;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
+      '<span id="cart-count" style="position:absolute;top:-4px;right:-4px;background:#c45a3a;color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:none;align-items:center;justify-content:center;pointer-events:none;">0</span>' +
       '</button>';
 
     if (authToken && userData) {
