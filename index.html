@@ -121,26 +121,31 @@
 
     <!-- Featured Products -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-16">
-      <div class="flex justify-between items-end mb-8">
-        <div>
-          <p class="text-xs tracking-widest text-gray-400 mb-1">LATEST</p>
-          <h2 class="text-xl" style="letter-spacing: 0.1em;">New Arrivals</h2>
-          <p class="text-xs text-gray-500 mt-1" id="featured-count"></p>
-        </div>
-        <div class="flex items-center gap-3">
-          <button id="prev-featured" class="text-gray-400 hover:text-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed hidden" disabled>
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <button id="next-featured" class="text-gray-400 hover:text-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed hidden" disabled>
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
-        </div>
+      <div class="mb-8">
+        <p class="text-xs tracking-widest text-gray-400 mb-1">LATEST</p>
+        <h2 class="text-xl" style="letter-spacing: 0.1em;">New Arrivals</h2>
+        <p class="text-xs text-gray-500 mt-1" id="featured-count"></p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="featured-products"></div>
+
+      <!-- Carousel with side arrows -->
+      <div class="flex items-center gap-4">
+        <!-- Left Arrow -->
+        <button id="prev-featured" class="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-black hover:bg-gray-50 transition-all disabled:opacity-20 disabled:cursor-not-allowed hidden" disabled>
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 24l-8-8 8-8"/>
+          </svg>
+        </button>
+
+        <!-- Products Grid -->
+        <div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="featured-products"></div>
+
+        <!-- Right Arrow -->
+        <button id="next-featured" class="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-black hover:bg-gray-50 transition-all disabled:opacity-20 disabled:cursor-not-allowed hidden" disabled>
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 24l8-8-8-8"/>
+          </svg>
+        </button>
+      </div>
     </section>
 
     <!-- Shop by Category -->
