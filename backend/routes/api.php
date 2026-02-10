@@ -4,10 +4,14 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DataSubjectController;
+use App\Http\Controllers\Api\HeroImageController;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
+
+// Homepage Content
+Route::get('/hero-images', [HeroImageController::class, 'index']);
 
 // Products
 Route::get('/products', [ProductController::class, 'index']);

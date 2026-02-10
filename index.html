@@ -99,18 +99,14 @@
   <div id="home-view">
     <!-- Hero Section -->
     <section class="relative overflow-hidden bg-blue-100" style="height: 50vh; min-height: 300px;" id="hero-section">
-      <!-- Slideshow container -->
+      <!-- Slideshow container (loaded from admin panel) -->
       <div id="slideshow-container" class="absolute inset-0 pointer-events-none">
-        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 1;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <!-- Hero images will be loaded dynamically from API -->
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-      <!-- Slideshow dots -->
-      <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/90 hover:bg-white transition-all" data-slide="0"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="2"></button>
+      <!-- Slideshow dots (generated dynamically) -->
+      <div id="slideshow-dots" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+        <!-- Dots will be generated based on number of hero images -->
       </div>
     </section>
 
@@ -516,37 +512,80 @@
     // Load products on page load
     loadFeaturedProducts();
 
-    // Hero Slideshow
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.slide-dot');
+    // Hero Slideshow - Load from admin panel
     let currentSlide = 0;
     let slideshowInterval;
+    let slides = [];
+    let dots = [];
 
-    if (slides.length > 0) {
-      function showSlide(n) {
-        slides.forEach((slide, i) => {
-          slide.style.opacity = i === n ? '1' : '0';
-        });
-        dots.forEach((dot, i) => {
-          dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
-        });
-        currentSlide = n;
+    async function loadHeroImages() {
+      try {
+        const response = await fetch(`${API_URL}/hero-images`);
+        const data = await response.json();
+
+        if (data.success && data.images.length > 0) {
+          const container = document.getElementById('slideshow-container');
+          const dotsContainer = document.getElementById('slideshow-dots');
+
+          // Create image elements
+          data.images.forEach((image, index) => {
+            const img = document.createElement('img');
+            img.src = image.url;
+            img.alt = image.alt;
+            img.className = 'hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none';
+            img.style.opacity = index === 0 ? '1' : '0';
+            container.appendChild(img);
+          });
+
+          // Create dots
+          data.images.forEach((image, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'slide-dot w-2 h-2 rounded-full transition-all';
+            dot.style.backgroundColor = index === 0 ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+            dot.dataset.slide = index;
+            dotsContainer.appendChild(dot);
+          });
+
+          // Get elements
+          slides = document.querySelectorAll('.hero-slide');
+          dots = document.querySelectorAll('.slide-dot');
+
+          // Setup slideshow
+          if (slides.length > 0) {
+            function showSlide(n) {
+              slides.forEach((slide, i) => {
+                slide.style.opacity = i === n ? '1' : '0';
+              });
+              dots.forEach((dot, i) => {
+                dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+              });
+              currentSlide = n;
+            }
+
+            function nextSlide() {
+              showSlide((currentSlide + 1) % slides.length);
+            }
+
+            dots.forEach((dot, index) => {
+              dot.addEventListener('click', () => {
+                showSlide(index);
+                clearInterval(slideshowInterval);
+                slideshowInterval = setInterval(nextSlide, 2000);
+              });
+            });
+
+            if (slides.length > 1) {
+              slideshowInterval = setInterval(nextSlide, 2000);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load hero images:', error);
       }
-
-      function nextSlide() {
-        showSlide((currentSlide + 1) % slides.length);
-      }
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          showSlide(index);
-          clearInterval(slideshowInterval);
-          slideshowInterval = setInterval(nextSlide, 2000);
-        });
-      });
-
-      slideshowInterval = setInterval(nextSlide, 2000);
     }
+
+    // Load hero slideshow on page load
+    loadHeroImages();
 
     // Newsletter Form Handling
     const newsletterForm = document.getElementById('newsletter-form');
