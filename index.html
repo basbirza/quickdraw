@@ -150,7 +150,7 @@
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
       <p class="text-xs tracking-widest text-gray-400 mb-1">EXPLORE</p>
       <h2 class="text-xl mb-8" style="letter-spacing: 0.1em;">Shop by Category</h2>
-      <div id="categories-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div id="categories-grid" class="flex flex-wrap justify-center gap-3">
         <!-- Category tiles loaded from admin panel -->
       </div>
     </section>
@@ -590,7 +590,7 @@
           return `
             <a href="${category.slug}.html"
                class="relative flex flex-col items-center justify-center text-white text-decoration-none"
-               style="aspect-ratio: 4/3; ${bgColor} ${bgImage} background-size: cover; background-position: center;">
+               style="width: calc(33.333% - 8px); aspect-ratio: 4/3; ${bgColor} ${bgImage} background-size: cover; background-position: center;">
               ${overlay}
               <span class="relative z-10 text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
               <span class="relative z-10 text-xs mt-1" style="color: rgba(255,255,255,0.8);">${category.product_count} Products</span>
