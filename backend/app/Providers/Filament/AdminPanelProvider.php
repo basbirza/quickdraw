@@ -28,9 +28,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Quickdraw Pressing Co.')
+            ->favicon(asset('QUICKDRAW.png'))
             ->colors([
                 'primary' => Color::Slate,
             ])
+            ->font('Inter')
+            ->maxContentWidth('full')
             ->navigationItems([
                 \Filament\Navigation\NavigationItem::make('View Live Site')
                     ->url('http://localhost:8001', shouldOpenInNewTab: true)
