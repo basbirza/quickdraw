@@ -57,3 +57,10 @@ Route::prefix('data-subject')->middleware(['auth:sanctum', 'throttle:3,60'])->gr
     Route::post('/export', [DataSubjectController::class, 'export']); // Article 15
     Route::post('/delete', [DataSubjectController::class, 'delete']); // Article 17
 });
+
+// Wishlist - Requires authentication
+Route::prefix('wishlist')->middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\WishlistController::class, 'index']);
+    Route::post('/add', [\App\Http\Controllers\Api\WishlistController::class, 'add']);
+    Route::delete('/remove/{productId}', [\App\Http\Controllers\Api\WishlistController::class, 'remove']);
+});
