@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
+use App\Mail\OrderConfirmationMail;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\SentEmail;
 use App\Services\PaymentService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -97,6 +100,34 @@ class OrderController extends Controller
                 }
 
                 DB::commit();
+
+                // Send order confirmation email and log to database
+                try {
+                    Mail::to($order->customer_email)->send(new OrderConfirmationMail($order));
+
+                    SentEmail::create([
+                        'type' => 'order_confirmation',
+                        'recipient_email' => $order->customer_email,
+                        'recipient_name' => $order->customer_first_name . ' ' . $order->customer_last_name,
+                        'subject' => 'Order Confirmation #' . $order->order_number,
+                        'order_id' => $order->id,
+                        'user_id' => $order->user_id,
+                        'status' => 'sent',
+                        'sent_at' => now(),
+                    ]);
+                } catch (\Exception $e) {
+                    SentEmail::create([
+                        'type' => 'order_confirmation',
+                        'recipient_email' => $order->customer_email,
+                        'recipient_name' => $order->customer_first_name . ' ' . $order->customer_last_name,
+                        'subject' => 'Order Confirmation #' . $order->order_number,
+                        'order_id' => $order->id,
+                        'user_id' => $order->user_id,
+                        'status' => 'failed',
+                        'error_message' => $e->getMessage(),
+                        'sent_at' => now(),
+                    ]);
+                }
 
                 return response()->json([
                     'success' => true,
