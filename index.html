@@ -584,14 +584,16 @@
 
         categoriesGrid.innerHTML = subcategories.map(category => {
           const bgImage = category.banner_image ? `background-image: url('${category.banner_image}');` : '';
-          const bgColor = category.banner_image ? '' : 'background-color: #2c3e6b;';
+          const bgColor = 'background-color: #2c3e6b;';
+          const overlay = category.banner_image ? '<div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>' : '';
 
           return `
             <a href="${category.slug}.html"
-               class="flex flex-col items-center justify-center text-white text-decoration-none"
+               class="relative flex flex-col items-center justify-center text-white text-decoration-none"
                style="aspect-ratio: 4/3; ${bgColor} ${bgImage} background-size: cover; background-position: center;">
-              <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
-              <span class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">${category.product_count} Products</span>
+              ${overlay}
+              <span class="relative z-10 text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
+              <span class="relative z-10 text-xs mt-1" style="color: rgba(255,255,255,0.8);">${category.product_count} Products</span>
             </a>
           `;
         }).join('');
