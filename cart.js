@@ -94,7 +94,7 @@
 
     var accountDiv = document.createElement('div');
     accountDiv.id = 'account-links-injected';
-    accountDiv.style.cssText = 'position:fixed;top:16px;right:16px;z-index:1000;display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
+    accountDiv.style.cssText = 'position:fixed;top:36px;right:16px;z-index:1000;display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
 
     var authToken = localStorage.getItem('auth_token');
     var userData = localStorage.getItem('user_data');
