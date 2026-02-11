@@ -136,7 +136,37 @@ class OrderResource extends Resource
                     ->label('Ship')
                     ->icon('heroicon-o-truck')
                     ->color('success')
-                    ->action(fn ($record) => $record->update(['status' => 'shipped']))
+                    ->action(function ($record) {
+                        $record->update(['status' => 'shipped']);
+
+                        // Send shipped email
+                        try {
+                            \Mail::to($record->customer_email)->send(new \App\Mail\OrderShippedMail($record));
+
+                            \App\Models\SentEmail::create([
+                                'type' => 'order_shipped',
+                                'recipient_email' => $record->customer_email,
+                                'recipient_name' => $record->customer_first_name . ' ' . $record->customer_last_name,
+                                'subject' => 'Your Order Has Shipped! #' . $record->order_number,
+                                'order_id' => $record->id,
+                                'user_id' => $record->user_id,
+                                'status' => 'sent',
+                                'sent_at' => now(),
+                            ]);
+                        } catch (\Exception $e) {
+                            \App\Models\SentEmail::create([
+                                'type' => 'order_shipped',
+                                'recipient_email' => $record->customer_email,
+                                'recipient_name' => $record->customer_first_name . ' ' . $record->customer_last_name,
+                                'subject' => 'Your Order Has Shipped! #' . $record->order_number,
+                                'order_id' => $record->id,
+                                'user_id' => $record->user_id,
+                                'status' => 'failed',
+                                'error_message' => $e->getMessage(),
+                                'sent_at' => now(),
+                            ]);
+                        }
+                    })
                     ->requiresConfirmation()
                     ->visible(fn ($record) => $record->status === 'processing'),
 
