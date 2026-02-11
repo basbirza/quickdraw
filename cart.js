@@ -108,7 +108,12 @@
 
     var accountDiv = document.createElement('div');
     accountDiv.id = 'account-links-injected';
-    accountDiv.style.cssText = 'position:fixed;top:36px;right:16px;z-index:1000;display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
+
+    // Position below announcement bar on mobile, normal on desktop
+    var isMobile = window.innerWidth < 768;
+    var topPosition = isMobile ? '70px' : '36px';
+
+    accountDiv.style.cssText = 'position:fixed;top:' + topPosition + ';right:16px;z-index:1000;display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:Georgia,serif;';
 
     var authToken = localStorage.getItem('auth_token');
     var userData = localStorage.getItem('user_data');
@@ -189,7 +194,7 @@
     document.getElementById('cart-close').addEventListener('click', function() { closeCartDrawer(); });
     document.getElementById('cart-continue').addEventListener('click', function() { closeCartDrawer(); });
     document.getElementById('cart-checkout').addEventListener('click', function() {
-      window.location.href = 'checkout.html';
+      window.location.href = '/checkout.html';
     });
   }
 

@@ -391,6 +391,16 @@
 
     // Load cart on page load
     document.addEventListener('DOMContentLoaded', async () => {
+      // Check if user is logged in
+      const authToken = localStorage.getItem('auth_token');
+      if (!authToken) {
+        // Save the checkout attempt, redirect to login
+        sessionStorage.setItem('redirect_after_login', 'checkout.html');
+        alert('Please log in to complete your purchase');
+        window.location.href = 'login.html';
+        return;
+      }
+
       // Load products from API first
       await loadProducts();
 

@@ -19,6 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\SecurityHeaders::class,
         ]);
+        // Register optional auth middleware
+        $middleware->alias([
+            'optional.auth' => \App\Http\Middleware\OptionalAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

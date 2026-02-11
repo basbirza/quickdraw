@@ -134,8 +134,15 @@
           localStorage.setItem('auth_token', result.token);
           localStorage.setItem('user_data', JSON.stringify(result.user));
 
-          // Redirect to account dashboard
-          window.location.href = 'account.html';
+          // Check if there's a redirect URL (e.g., from checkout)
+          const redirectUrl = sessionStorage.getItem('redirect_after_login');
+          if (redirectUrl) {
+            sessionStorage.removeItem('redirect_after_login');
+            window.location.href = redirectUrl;
+          } else {
+            // Default redirect to account dashboard
+            window.location.href = 'account.html';
+          }
         } else {
           const errors = result.errors || {};
           const errorMessages = Object.values(errors).flat().join(', ');
@@ -152,7 +159,13 @@
 
     // Check if already logged in
     if (localStorage.getItem('auth_token')) {
-      window.location.href = 'account.html';
+      const redirectUrl = sessionStorage.getItem('redirect_after_login');
+      if (redirectUrl) {
+        sessionStorage.removeItem('redirect_after_login');
+        window.location.href = redirectUrl;
+      } else {
+        window.location.href = 'account.html';
+      }
     }
   </script>
 

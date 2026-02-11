@@ -34,8 +34,9 @@ Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscrib
     ->middleware('throttle:5,1');
 
 // Orders (Checkout) - Rate limited to 3 orders per minute per IP
+// Uses optional auth to link orders to user accounts when logged in
 Route::post('/orders', [OrderController::class, 'store'])
-    ->middleware('throttle:3,1');
+    ->middleware(['optional.auth', 'throttle:3,1']);
 
 // Authentication - Customer login/register
 Route::prefix('auth')->group(function () {
@@ -43,6 +44,12 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
     Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+    // Password Reset
+    Route::post('/forgot-password', [\App\Http\Controllers\Api\PasswordResetController::class, 'forgotPassword'])
+        ->middleware('throttle:5,60');
+    Route::post('/reset-password', [\App\Http\Controllers\Api\PasswordResetController::class, 'resetPassword'])
+        ->middleware('throttle:5,60');
 });
 
 // Customer Account - Requires authentication

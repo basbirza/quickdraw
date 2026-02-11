@@ -10,14 +10,32 @@ class CustomerController extends Controller
 {
     /**
      * GET /api/customer/orders
-     * Get customer's order history
+     * Get customer's order history (includes guest orders by email)
+     * Note: customer_email is encrypted, so we filter in PHP after decryption
      */
     public function orders(Request $request)
     {
-        $orders = $request->user()->orders()
+        $user = $request->user();
+
+        // Fetch orders by user_id first (efficient)
+        $userOrders = Order::where('user_id', $user->id)
             ->with('items')
-            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Fetch guest orders (user_id is null) and filter by email in PHP
+        // because customer_email is encrypted and can't be queried directly
+        $guestOrders = Order::whereNull('user_id')
+            ->with('items')
             ->get()
+            ->filter(function ($order) use ($user) {
+                // Compare decrypted email (Laravel automatically decrypts)
+                return strtolower($order->customer_email) === strtolower($user->email);
+            });
+
+        // Merge and sort
+        $allOrders = $userOrders->merge($guestOrders)
+            ->sortByDesc('created_at')
+            ->values()
             ->map(function ($order) {
                 return [
                     'id' => $order->id,
@@ -27,6 +45,7 @@ class CustomerController extends Controller
                     'payment_status' => $order->payment_status,
                     'total' => '€' . number_format($order->total, 2),
                     'items_count' => $order->items->sum('quantity'),
+                    'is_guest_order' => $order->user_id === null, // Flag for guest orders
                     'items' => $order->items->map(fn($item) => [
                         'name' => $item->product_name,
                         'description' => $item->product_description,
@@ -40,20 +59,28 @@ class CustomerController extends Controller
 
         return response()->json([
             'success' => true,
-            'orders' => $orders,
+            'orders' => $allOrders,
         ]);
     }
 
     /**
      * GET /api/customer/orders/{orderNumber}
-     * Get single order details
+     * Get single order details (includes guest orders by email)
+     * Note: customer_email is encrypted, so we verify after fetching
      */
     public function showOrder(Request $request, $orderNumber)
     {
-        $order = $request->user()->orders()
-            ->where('order_number', $orderNumber)
+        $user = $request->user();
+
+        // Fetch order by order_number
+        $order = Order::where('order_number', $orderNumber)
             ->with('items')
             ->firstOrFail();
+
+        // Verify order belongs to user (either by user_id or email)
+        if ($order->user_id !== $user->id && strtolower($order->customer_email) !== strtolower($user->email)) {
+            abort(404, 'Order not found');
+        }
 
         return response()->json([
             'success' => true,
@@ -88,7 +115,8 @@ class CustomerController extends Controller
 
     /**
      * POST /api/customer/returns/request
-     * Request a return for an order
+     * Request a return for an order (includes guest orders by email)
+     * Note: customer_email is encrypted, so we verify after fetching
      */
     public function requestReturn(Request $request)
     {
@@ -100,9 +128,16 @@ class CustomerController extends Controller
             'reason' => 'required|string|max:500',
         ]);
 
-        $order = $request->user()->orders()
-            ->where('order_number', $request->order_number)
+        $user = $request->user();
+
+        // Fetch order by order_number
+        $order = Order::where('order_number', $request->order_number)
             ->firstOrFail();
+
+        // Verify order belongs to user (either by user_id or email)
+        if ($order->user_id !== $user->id && strtolower($order->customer_email) !== strtolower($user->email)) {
+            abort(404, 'Order not found');
+        }
 
         // Check if order is eligible for return (within 14 days - EU law)
         $daysSinceOrder = $order->created_at->diffInDays(now());
