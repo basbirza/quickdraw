@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Georgia', 'Times New Roman', serif; }
+    .logo-title { font-family: 'Rye', cursive; font-size: clamp(32px, 5vw, 52px); letter-spacing: 0.12em; }
+    .logo-subtitle { font-family: Georgia, serif; letter-spacing: 0.3em; font-size: 10px; }
+    .faq-item { cursor: pointer; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-answer.active { max-height: 500px; }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-3xl mx-auto px-4 md:px-8 py-16">
+    <h1 class="text-4xl font-bold mb-4 text-center" style="letter-spacing: 0.1em;">FAQ</h1>
+    <p class="text-xs text-gray-400 text-center mb-12 tracking-widest">FREQUENTLY ASKED QUESTIONS</p>
+
+    <div class="space-y-4">
+      <!-- FAQ Items -->
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">How do I choose the right size for raw denim?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>Raw denim stretches with wear. Order your true waist size—the jeans will be snug at first but will stretch 0.5-1" in the waist. For unsanforized denim, expect 1-2" shrinkage in waist and 2-3" in inseam after first soak. Check our <a href="size-guide.html" class="underline">size guide</a> for detailed measurements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">What's your return policy?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>30-day returns on unworn, unwashed items with original tags. Free returns within Netherlands. Returns from EU cost €9.95. See full details on our <a href="shipping-returns.html" class="underline">Shipping & Returns</a> page.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">How long does shipping take?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>Netherlands & Belgium: 1-2 business days. Rest of EU: 3-5 business days. International: 7-14 business days. Free shipping on orders over €150 within EU.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">Should I wash raw denim before wearing?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>We recommend wearing raw denim for 6+ months before the first wash for maximum fade development. For unsanforized denim, do an initial cold soak to remove shrinkage. Check our <a href="denim-guide.html" class="underline">Denim Guide</a> for detailed care instructions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">Do you offer hemming services?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>Yes! We offer free chain-stitch hemming on all jeans purchased from us. Just note your preferred inseam in the order comments. We also partner with expert repair shops for alterations and repairs. See our <a href="repairs-hemming.html" class="underline">Repairs & Hemming</a> page.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">What payment methods do you accept?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>We accept all major credit cards (Visa, Mastercard, American Express) via Stripe. All transactions are secure and encrypted.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">How do I track my order?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>You'll receive an order confirmation email with your order number. Once shipped, you'll get a shipping notification with tracking information. You can also check your order status in <a href="account.html" class="underline">My Account</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-200">
+        <button class="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors">
+          <span class="text-sm font-medium text-left">Can I change or cancel my order?</span>
+          <span class="faq-icon text-gray-400">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+            <p>Contact us immediately at support@quickdraw.com with your order number. If the order hasn't shipped yet, we can modify or cancel it. Once shipped, you'll need to use our return process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="mt-16 text-center bg-gray-50 p-8 border border-gray-200">
+      <p class="text-sm font-medium mb-4">Still have questions?</p>
+      <a href="contact.html" class="inline-block bg-black text-white px-8 py-3 text-xs tracking-widest hover:bg-gray-800 transition-colors">
+        CONTACT US
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12 mt-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="new-in.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">New In</a>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="americana.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Americana Wear</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+        <a href="sale.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sale</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <a href="our-story.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Our Story</a>
+        <a href="denim-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Guide</a>
+        <a href="journal.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">The Journal</a>
+        <a href="sustainability.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sustainability</a>
+        <a href="careers.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Careers</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <a href="faq.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">FAQ</a>
+        <a href="size-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Size Guide</a>
+        <a href="shipping-returns.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shipping & Returns</a>
+        <a href="repairs-hemming.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Repairs & Hemming</a>
+        <a href="contact.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Contact Us</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>© 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <a href="privacy-policy.html" class="hover:text-black transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-black transition-colors">Terms & Conditions</a>
+        <a href="cookie-policy.html" class="hover:text-black transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item button').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        const isActive = answer.classList.contains('active');
+
+        // Close all answers
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+
+        // Toggle current
+        if (!isActive) {
+          answer.classList.add('active');
+          icon.textContent = '−';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

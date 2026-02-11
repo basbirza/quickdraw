@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickdraw Pressing Co. - Premium Selvedge Denim</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Quickdraw Pressing Co. creates premium Japanese selvedge denim and Americana wear. Built for a lifetime with vintage craftsmanship and American frontier spirit.">
+  <meta name="keywords" content="selvedge denim, raw denim, Japanese denim, Americana, workwear, premium jeans, denim jackets">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quickdraw Pressing Co. - Premium Selvedge Denim">
+  <meta property="og:description" content="Premium Japanese selvedge denim and Americana wear. Built for a lifetime with vintage craftsmanship.">
+  <meta property="og:image" content="https://yourdomain.com/QUICKDRAW.png">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="QUICKDRAW.png">
+  <link rel="apple-touch-icon" href="QUICKDRAW.png">
+
   <script src="https://cdn.tailwindcss.com@3.4.1" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +42,19 @@
       letter-spacing: 0.3em;
       font-size: 10px;
     }
+    /* Cookie Popup Styles */
+    #cookie-popup {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      transform: translateY(100%);
+      transition: transform 0.4s ease-out;
+    }
+    #cookie-popup.show {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -45,62 +75,77 @@
         <div class="h-px bg-gray-300 w-12 md:w-20"></div>
       </div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="flex justify-center gap-5 md:gap-8 mt-4 overflow-x-auto" id="main-nav">
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="New In">NEW IN</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim">DENIM</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Americana">AMERICANA</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Accessories">ACCESSORIES</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Denim Guide">DENIM GUIDE</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Journal">JOURNAL</button>
-      <button class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" data-label="Sale" data-sale="true">SALE</button>
-    </nav>
   </header>
 
   <!-- Home View -->
   <div id="home-view">
     <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-blue-100" style="height: 60vh; min-height: 400px;" id="hero-section">
-      <!-- Slideshow container -->
+    <section class="relative overflow-hidden bg-white" style="height: 50vh; min-height: 300px;" id="hero-section">
+      <!-- Slideshow container (loaded from admin panel) -->
       <div id="slideshow-container" class="absolute inset-0 pointer-events-none">
-        <img src="quickdraw_branded_lower_1.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 1;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_2.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
-        <img src="quickdraw_branded_lower_3.png" class="hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none" style="opacity: 0;" alt="Quickdraw Pressing Co.">
+        <!-- Hero images will be loaded dynamically from API -->
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-      <!-- Slideshow dots -->
-      <div class="absolute bottom-24 left-0 right-0 flex justify-center gap-2 z-10">
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/90 hover:bg-white transition-all" data-slide="0"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="2"></button>
-      </div>
-      <div class="absolute bottom-12 left-0 right-0 flex flex-col items-center text-center px-4 z-10">
-        <button class="bg-white text-black text-xs tracking-widest px-8 py-3 hover:bg-gray-100 transition-colors">
-          SHOP THE COLLECTION
-        </button>
+      <!-- Slideshow dots (generated dynamically) -->
+      <div id="slideshow-dots" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+        <!-- Dots will be generated based on number of hero images -->
       </div>
     </section>
 
+    <!-- Shop Button (below hero) -->
+    <div class="flex justify-center py-8">
+      <a href="#shop-by-category" class="bg-black text-white text-xs tracking-widest px-8 py-3 hover:bg-gray-800 transition-colors shadow-lg inline-block" style="text-decoration: none;">
+        SHOP THE COLLECTION
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2 pb-4" id="main-nav" style="-webkit-overflow-scrolling: touch;">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+
     <!-- Featured Products -->
-    <section class="max-w-6xl mx-auto px-4 md:px-8 py-16">
-      <div class="flex justify-between items-end mb-8">
-        <div>
-          <p class="text-xs tracking-widest text-gray-400 mb-1">LATEST</p>
-          <h2 class="text-xl" style="letter-spacing: 0.1em;">New Arrivals</h2>
-        </div>
-        <button class="text-xs tracking-widest text-gray-500 hover:text-black border-b border-gray-300 hover:border-black pb-0.5 transition-all">
-          VIEW ALL
+    <section class="max-w-6xl mx-auto px-4 md:px-8 pt-24 pb-16">
+      <div class="mb-8">
+        <p class="text-xs tracking-widest text-gray-400 mb-1">LATEST</p>
+        <h2 class="text-xl" style="letter-spacing: 0.1em;">New Arrivals</h2>
+        <p class="text-xs text-gray-500 mt-1" id="featured-count"></p>
+      </div>
+
+      <!-- Carousel with side arrows -->
+      <div class="flex items-center gap-4">
+        <!-- Left Arrow -->
+        <button id="prev-featured" class="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-black hover:bg-gray-50 transition-all disabled:opacity-20 disabled:cursor-not-allowed hidden" disabled>
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 24l-8-8 8-8"/>
+          </svg>
+        </button>
+
+        <!-- Products Grid -->
+        <div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="featured-products"></div>
+
+        <!-- Right Arrow -->
+        <button id="next-featured" class="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-black hover:bg-gray-50 transition-all disabled:opacity-20 disabled:cursor-not-allowed hidden" disabled>
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 24l8-8-8-8"/>
+          </svg>
         </button>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="featured-products"></div>
     </section>
 
     <!-- Shop by Category -->
-    <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+    <section id="shop-by-category" class="max-w-6xl mx-auto px-4 md:px-8 py-12">
       <p class="text-xs tracking-widest text-gray-400 mb-1">EXPLORE</p>
       <h2 class="text-xl mb-8" style="letter-spacing: 0.1em;">Shop by Category</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="category-grid"></div>
+      <div id="categories-grid" class="flex flex-wrap justify-center gap-3">
+        <!-- Category tiles loaded from admin panel -->
+      </div>
     </section>
 
     <!-- Brand Story Strip -->
@@ -122,8 +167,8 @@
     </section>
 
     <!-- Why Selvedge -->
-    <section class="max-w-4xl mx-auto px-4 py-16">
-      <div class="grid grid-cols-3 gap-8 text-center">
+    <section class="max-w-4xl mx-auto px-4 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
         <div>
           <span class="text-2xl text-gray-300">◈</span>
           <h3 class="text-xs tracking-widest mt-3 mb-2">SHUTTLE LOOM WOVEN</h3>
@@ -147,16 +192,34 @@
       <p class="text-xs tracking-widest text-gray-400 mb-2">JOIN THE DRAW</p>
       <h2 class="text-lg mb-1" style="letter-spacing: 0.1em;">Stay in the Loop</h2>
       <p class="text-xs text-gray-400 mb-6">New drops, stories & 10% off your first order</p>
-      <div class="flex max-w-md mx-auto">
-        <input
-          type="email"
-          placeholder="Your email address"
-          class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
-        />
-        <button class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
-          SUBSCRIBE
-        </button>
-      </div>
+      <form id="newsletter-form" class="max-w-md mx-auto" action="#" method="POST">
+        <div class="flex">
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            class="flex-1 bg-transparent border border-gray-600 px-4 py-2.5 text-xs tracking-wider text-white placeholder-gray-500 focus:outline-none focus:border-white"
+          />
+          <button type="submit" class="bg-white text-black text-xs tracking-widest px-6 py-2.5 hover:bg-gray-200 transition-colors">
+            SUBSCRIBE
+          </button>
+        </div>
+        <div class="flex items-start gap-2 mt-3 text-left">
+          <input
+            id="newsletter-consent"
+            type="checkbox"
+            name="consent"
+            required
+            class="mt-0.5"
+          />
+          <label for="newsletter-consent" class="text-xs text-gray-400 leading-relaxed">
+            I agree to receive marketing emails from Quickdraw Pressing Co. You can unsubscribe at any time. See our <a href="privacy-policy.html" class="underline hover:text-white">Privacy Policy</a>.
+          </label>
+        </div>
+      </form>
+      <p id="newsletter-message" class="text-xs mt-3 hidden"></p>
     </section>
 
     <!-- Payment & Trust -->
@@ -183,28 +246,28 @@
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
       <div>
         <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">New In</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Selvedge Jeans</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Jackets</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Americana Wear</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Accessories</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sale</p>
+        <a href="new-in.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">New In</a>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="americana.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Americana Wear</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+        <a href="sale.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sale</a>
       </div>
       <div>
         <p class="tracking-widest text-gray-900 mb-3">INFO</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Our Story</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Denim Guide</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">The Journal</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Sustainability</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Careers</p>
+        <a href="our-story.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Our Story</a>
+        <a href="denim-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Guide</a>
+        <a href="journal.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">The Journal</a>
+        <a href="sustainability.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sustainability</a>
+        <a href="careers.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Careers</a>
       </div>
       <div>
         <p class="tracking-widest text-gray-900 mb-3">HELP</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">FAQ</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Size Guide</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping & Returns</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs & Hemming</p>
-        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Contact Us</p>
+        <a href="faq.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">FAQ</a>
+        <a href="size-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Size Guide</a>
+        <a href="shipping-returns.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shipping & Returns</a>
+        <a href="repairs-hemming.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Repairs & Hemming</a>
+        <a href="contact.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Contact Us</a>
       </div>
       <div>
         <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
@@ -214,34 +277,96 @@
         <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
       </div>
     </div>
-    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+    <!-- Payment Badges -->
+    <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-gray-100 text-center">
+      <p class="text-xs tracking-wider text-gray-400 mb-3">WE ACCEPT</p>
+      <div class="flex justify-center items-center gap-4 flex-wrap">
+        <div class="px-3 py-2 border border-gray-200 rounded text-xs font-medium text-gray-600">💳 VISA</div>
+        <div class="px-3 py-2 border border-gray-200 rounded text-xs font-medium text-gray-600">💳 MASTERCARD</div>
+        <div class="px-3 py-2 border border-gray-200 rounded text-xs font-medium text-gray-600">💳 AMEX</div>
+        <div class="px-3 py-2 border border-gray-200 rounded text-xs font-medium text-gray-600">🔒 STRIPE</div>
+      </div>
+      <p class="text-xs text-gray-400 mt-4">🚚 Free Shipping Over €150 | 🔄 30-Day Returns | 🔐 Secure Checkout</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto mt-6 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
       <p>© 2026 Quickdraw Pressing Co. All rights reserved.</p>
       <div class="flex gap-4 mt-2 md:mt-0">
-        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
-        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
-        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+        <a href="privacy-policy.html" class="hover:text-black transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-black transition-colors">Terms & Conditions</a>
+        <a href="cookie-policy.html" class="hover:text-black transition-colors">Cookie Policy</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Data
-    const featuredProducts = [
-      { name: "The Frontier Slim", desc: "14oz Japanese Selvedge", price: "€189", tag: "NEW", color: "#1a1a2e", image: "frontier-slim.png" },
-      { name: "Oni Straight Jeans", desc: "17oz Bumpy Denim", price: "€209", tag: "BESTSELLER", color: "#1c2333", image: "rancher-straight.png" },
-      { name: "Culprits Speedcrew", desc: "Black Loopwheel Hoodie", price: "€65", tag: null, color: "#22223b", image: "culprits-speedcrew1.png" },
-    ];
+  <!-- Cookie Consent Popup -->
+  <div id="cookie-popup" class="bg-white border-t-2 border-gray-900 shadow-2xl">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex-1 text-center md:text-left">
+          <p class="text-xs tracking-widest text-gray-900 mb-1">WE VALUE YOUR PRIVACY</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            We use essential cookies for cart functionality and session management. We do NOT use tracking or advertising cookies.
+            By clicking "Accept All", you consent to our use of cookies.
+            <a href="cookie-policy.html" class="underline hover:text-black">Learn more</a>
+          </p>
+        </div>
+        <div class="flex gap-3 whitespace-nowrap">
+          <button id="cookie-decline" class="text-xs tracking-widest px-6 py-2.5 border border-gray-300 hover:border-gray-900 transition-colors">
+            DECLINE
+          </button>
+          <button id="cookie-accept" class="text-xs tracking-widest px-6 py-2.5 bg-black text-white hover:bg-gray-800 transition-colors">
+            ACCEPT ALL
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    const categories = [
-      { name: "Selvedge Jeans", count: 12, bg: "#2c3e6b" },
-      { name: "Denim Jackets", count: 6, bg: "#3d2c2c" },
-      { name: "Shirts & Flannels", count: 9, bg: "#4a4a3a" },
-      { name: "Outerwear", count: 5, bg: "#2c3a2c", image: "outerwear.png" },
-      { name: "Tees & Henleys", count: 8, bg: "#3a3a4a" },
-      { name: "Accessories", count: 7, bg: "#4a3a2c" },
-    ];
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // Cookie Consent Logic
+    const cookiePopup = document.getElementById('cookie-popup');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieDeclineBtn = document.getElementById('cookie-decline');
+
+    // Check if user has already made a choice
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('cookieConsent');
+      if (!consent) {
+        // Show popup after a short delay for better UX
+        setTimeout(() => {
+          cookiePopup.classList.add('show');
+        }, 1000);
+      }
+    }
+
+    // Handle Accept
+    cookieAcceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookiePopup.classList.remove('show');
+      // Here you can enable analytics, tracking, etc.
+      console.log('Cookies accepted');
+    });
+
+    // Handle Decline
+    cookieDeclineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      cookiePopup.classList.remove('show');
+      console.log('Cookies declined');
+    });
+
+    // Initialize on page load
+    checkCookieConsent();
+
+    // Load featured products from API (dynamic - updates when admin changes products)
+    const API_URL = 'http://localhost:8000/api';
+    let featuredProducts = [];
 
     // Helper Functions
+    function esc(s) { return String(s).replace(/'/g, "\\'"); }
+
     function createDenimTexture(x, y, w, h, shade) {
       let svg = `<g>`;
       svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${shade}" rx="2" />`;
@@ -253,30 +378,29 @@
     }
 
     function createProductCard(product) {
-      // Image content - either real image or SVG
-      const imageContent = product.image
-        ? `<img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
+      // Get main image from API
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? (mainImage.url || mainImage.image_path) : '';
+
+      // Image content - either real image or SVG fallback
+      const imageContent = imageUrl
+        ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />`
         : `<svg width="100%" height="100%" viewBox="0 0 300 400">
               <rect width="300" height="400" fill="#f5f5f0" />
-              ${createDenimTexture(95, 80, 110, 240, product.color)}
-              <rect x="95" y="80" width="110" height="8" fill="${product.color}" rx="1" opacity="0.7" />
+              ${createDenimTexture(95, 80, 110, 240, product.color_hex || '#1b2a4a')}
+              <rect x="95" y="80" width="110" height="8" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.7" />
               <line x1="130" y1="88" x2="130" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
               <line x1="170" y1="88" x2="170" y2="180" stroke="rgba(255,200,100,0.15)" stroke-width="1" />
               <rect x="108" y="120" width="25" height="20" fill="rgba(255,255,255,0.05)" rx="2" stroke="rgba(255,200,100,0.12)" stroke-width="0.5" />
               <line x1="205" y1="240" x2="205" y2="260" stroke="#c45a3a" stroke-width="1.5" />
-              <rect x="95" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
-              <rect x="155" y="315" width="50" height="5" fill="${product.color}" rx="1" opacity="0.5" />
+              <rect x="95" y="315" width="50" height="5" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.5" />
+              <rect x="155" y="315" width="50" height="5" fill="${product.color_hex || '#1b2a4a'}" rx="1" opacity="0.5" />
             </svg>`;
 
-      // Create product link based on product name
-      let productLink = "#";
-      if (product.name === "The Frontier Slim") {
-        productLink = "frontier-slim.html";
-      } else if (product.name === "Oni Straight Jeans") {
-        productLink = "rancher-straight.html";
-      } else if (product.name === "Culprits Speedcrew") {
-        productLink = "culprits-speedcrew.html";
-      }
+      // Link to dynamic product template (using query params for Python server compatibility)
+      const productLink = `/products/product.html?slug=${product.slug}`;
 
       return `
         <a href="${productLink}" class="group cursor-pointer block">
@@ -284,130 +408,261 @@
             ${imageContent}
             ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
-            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              QUICK VIEW
+            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
+              ADD TO BAG
             </button>
           </div>
           <p class="text-sm font-medium text-gray-900">${product.name}</p>
-          <p class="text-xs text-gray-500 mt-0.5">${product.desc}</p>
-          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
+          <p class="text-sm text-gray-900 mt-1">€${product.price}</p>
         </a>
       `;
     }
 
-    function createCategoryTile(category) {
-      // If category has an image, use it instead of SVG
-      if (category.image) {
-        return `
-          <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
-            <img src="${category.image}" alt="${category.name}" class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
-              <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
-            </div>
-          </div>
-        `;
-      }
+    // Load and display featured products from API with carousel
+    const productsContainer = document.getElementById('featured-products');
+    const prevButton = document.getElementById('prev-featured');
+    const nextButton = document.getElementById('next-featured');
+    const countElement = document.getElementById('featured-count');
+    let currentPage = 0;
+    const itemsPerPage = 3;
 
-      // Otherwise use SVG pattern
-      let horizontalLines = '';
-      for (let i = 0; i < 100; i++) {
-        horizontalLines += `<line x1="0" y1="${i * 3}" x2="400" y2="${i * 3}" stroke="rgba(255,255,255,0.02)" stroke-width="0.5" />`;
-      }
-      let verticalLines = '';
-      for (let i = 0; i < 60; i++) {
-        verticalLines += `<line x1="${i * 7}" y1="0" x2="${i * 7}" y2="300" stroke="rgba(255,255,255,0.015)" stroke-width="0.3" />`;
-      }
+    async function loadFeaturedProducts() {
+      try {
+        const response = await fetch(`${API_URL}/products?featured=1&per_page=100`);
+        const data = await response.json();
+        featuredProducts = data.data || [];
 
-      return `
-        <div class="group cursor-pointer relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="300" fill="${category.bg}" />
-            ${horizontalLines}
-            ${verticalLines}
-          </svg>
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-            <span class="text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
-            <span class="text-xs text-white/60 mt-1">${category.count} Products</span>
-          </div>
-        </div>
-      `;
+        if (featuredProducts.length > 0) {
+          displayFeaturedProducts();
+          updateNavigationButtons();
+          countElement.textContent = `Showing ${Math.min(itemsPerPage, featuredProducts.length)} of ${featuredProducts.length} featured products`;
+        } else {
+          productsContainer.innerHTML = '<p class="col-span-3 text-center text-gray-500 text-sm">No featured products available</p>';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        productsContainer.innerHTML = '<p class="col-span-3 text-center text-red-500 text-sm">Failed to load products. Please refresh.</p>';
+      }
     }
 
-    // Initialize Products
-    const productsContainer = document.getElementById('featured-products');
-    productsContainer.innerHTML = featuredProducts.map(createProductCard).join('');
+    function displayFeaturedProducts() {
+      const startIndex = currentPage * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const productsToShow = featuredProducts.slice(startIndex, endIndex);
 
-    // Initialize Categories
-    const categoriesContainer = document.getElementById('category-grid');
-    categoriesContainer.innerHTML = categories.map(createCategoryTile).join('');
+      if (productsToShow.length > 0) {
+        productsContainer.innerHTML = productsToShow.map(createProductCard).join('');
+      }
+    }
 
-    // Navigation Hover Effect
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach((item) => {
-      const isSale = item.dataset.sale === 'true';
-      item.addEventListener('mouseenter', () => {
-        item.style.color = '#111';
-        item.style.borderBottom = '1px solid #111';
-      });
-      item.addEventListener('mouseleave', () => {
-        item.style.color = isSale ? '#c45a3a' : '#666';
-        item.style.borderBottom = '1px solid transparent';
-      });
-      // Set initial color
-      item.style.color = isSale ? '#c45a3a' : '#666';
-      item.style.borderBottom = '1px solid transparent';
+    function updateNavigationButtons() {
+      const totalPages = Math.ceil(featuredProducts.length / itemsPerPage);
+
+      if (totalPages > 1) {
+        prevButton.classList.remove('hidden');
+        nextButton.classList.remove('hidden');
+      }
+
+      prevButton.disabled = currentPage === 0;
+      nextButton.disabled = currentPage >= totalPages - 1;
+
+      // Update count text
+      const startNum = (currentPage * itemsPerPage) + 1;
+      const endNum = Math.min((currentPage + 1) * itemsPerPage, featuredProducts.length);
+      countElement.textContent = `Showing ${startNum}-${endNum} of ${featuredProducts.length} featured products`;
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        displayFeaturedProducts();
+        updateNavigationButtons();
+      }
     });
 
+    nextButton.addEventListener('click', () => {
+      const totalPages = Math.ceil(featuredProducts.length / itemsPerPage);
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        displayFeaturedProducts();
+        updateNavigationButtons();
+      }
+    });
 
-    // Hero Slideshow
-    console.log('Initializing hero slideshow...');
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.slide-dot');
+    // Load products on page load
+    loadFeaturedProducts();
+
+    // Hero Slideshow - Load from admin panel
     let currentSlide = 0;
     let slideshowInterval;
+    let slides = [];
+    let dots = [];
 
-    console.log('Found slides:', slides.length);
-    console.log('Found dots:', dots.length);
+    async function loadHeroImages() {
+      try {
+        // Fetch hero images and settings
+        const [imagesResponse, settingsResponse] = await Promise.all([
+          fetch(`${API_URL}/hero-images`),
+          fetch(`${API_URL}/settings`)
+        ]);
 
-    // Only initialize if slides exist
-    if (slides.length > 0) {
-      function showSlide(n) {
-        console.log('Showing slide:', n);
-        slides.forEach((slide, i) => {
-          slide.style.opacity = i === n ? '1' : '0';
-        });
-        dots.forEach((dot, i) => {
-          dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
-        });
-        currentSlide = n;
+        const data = await imagesResponse.json();
+        const settingsData = await settingsResponse.json();
+
+        // Get slideshow speed from settings (default: 3 seconds)
+        const slideshowSpeed = (settingsData.settings?.hero_slideshow_speed || 3) * 1000; // Convert to milliseconds
+
+        if (data.success && data.images.length > 0) {
+          const container = document.getElementById('slideshow-container');
+          const dotsContainer = document.getElementById('slideshow-dots');
+
+          // Create image elements
+          data.images.forEach((image, index) => {
+            const img = document.createElement('img');
+            img.src = image.url;
+            img.alt = image.alt;
+            img.className = 'hero-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 pointer-events-none';
+            img.style.opacity = index === 0 ? '1' : '0';
+            container.appendChild(img);
+          });
+
+          // Create dots
+          data.images.forEach((image, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'slide-dot w-2 h-2 rounded-full transition-all';
+            dot.style.backgroundColor = index === 0 ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+            dot.dataset.slide = index;
+            dotsContainer.appendChild(dot);
+          });
+
+          // Get elements
+          slides = document.querySelectorAll('.hero-slide');
+          dots = document.querySelectorAll('.slide-dot');
+
+          // Setup slideshow
+          if (slides.length > 0) {
+            function showSlide(n) {
+              slides.forEach((slide, i) => {
+                slide.style.opacity = i === n ? '1' : '0';
+              });
+              dots.forEach((dot, i) => {
+                dot.style.backgroundColor = i === n ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+              });
+              currentSlide = n;
+            }
+
+            function nextSlide() {
+              showSlide((currentSlide + 1) % slides.length);
+            }
+
+            dots.forEach((dot, index) => {
+              dot.addEventListener('click', () => {
+                showSlide(index);
+                clearInterval(slideshowInterval);
+                slideshowInterval = setInterval(nextSlide, slideshowSpeed);
+              });
+            });
+
+            if (slides.length > 1) {
+              slideshowInterval = setInterval(nextSlide, slideshowSpeed);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load hero images:', error);
       }
-
-      function nextSlide() {
-        const next = (currentSlide + 1) % slides.length;
-        console.log('Next slide:', next);
-        showSlide(next);
-      }
-
-      // Dot click handlers
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          console.log('Dot clicked:', index);
-          showSlide(index);
-          clearInterval(slideshowInterval);
-          slideshowInterval = setInterval(nextSlide, 2000);
-        });
-      });
-
-      // Start slideshow
-      console.log('Starting slideshow interval...');
-      slideshowInterval = setInterval(nextSlide, 2000);
-      console.log('Slideshow initialized successfully');
-    } else {
-      console.error('No slides found! Slideshow cannot start.');
     }
+
+    // Load hero slideshow on page load
+    loadHeroImages();
+
+    // Load category tiles dynamically from admin panel
+    async function loadCategories() {
+      try {
+        const response = await fetch(`${API_URL}/categories`);
+        const data = await response.json();
+
+        const categoriesGrid = document.getElementById('categories-grid');
+        const subcategories = data.data.flatMap(cat => cat.children || []);
+
+        categoriesGrid.innerHTML = subcategories.map(category => {
+          const bgImage = category.banner_image ? `background-image: url('${category.banner_image}');` : '';
+          const bgColor = 'background-color: #2c3e6b;';
+          const overlay = category.banner_image ? '<div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>' : '';
+
+          return `
+            <a href="${category.slug}.html"
+               class="relative flex flex-col items-center justify-center text-white text-decoration-none"
+               style="width: calc(33.333% - 8px); aspect-ratio: 4/3; ${bgColor} ${bgImage} background-size: cover; background-position: center;">
+              ${overlay}
+              <span class="relative z-10 text-sm md:text-base font-medium tracking-widest">${category.name.toUpperCase()}</span>
+              <span class="relative z-10 text-xs mt-1" style="color: rgba(255,255,255,0.8);">${category.product_count} Products</span>
+            </a>
+          `;
+        }).join('');
+      } catch (error) {
+        console.error('Failed to load categories:', error);
+      }
+    }
+
+    loadCategories();
+
+    // Newsletter Form Handling
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMessage = document.getElementById('newsletter-message');
+
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('newsletter-email').value;
+      const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'SUBSCRIBING...';
+      newsletterMessage.classList.add('hidden');
+
+      try {
+        // Connected to Laravel backend API
+        const response = await fetch('http://localhost:8000/api/newsletter/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          newsletterMessage.textContent = data.message;
+          newsletterMessage.className = 'text-xs mt-3 text-green-400';
+          newsletterMessage.classList.remove('hidden');
+          newsletterForm.reset();
+        } else {
+          throw new Error(data.message || 'Subscription failed');
+        }
+      } catch (error) {
+        newsletterMessage.textContent = error.message || 'Something went wrong. Please try again.';
+        newsletterMessage.className = 'text-xs mt-3 text-red-400';
+        newsletterMessage.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+
   </script>
 </body>
 </html>

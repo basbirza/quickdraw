@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tees & Henleys | Quickdraw Pressing Co.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE €150 — SUBSCRIBE & GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2" style="-webkit-overflow-scrolling: touch;">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-black border-b border-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-gray-900">Tees & Henleys</span>
+    </div>
+  </div>
+
+  <!-- Category Header -->
+  <section class="relative overflow-hidden bg-gray-900" style="height: 200px;">
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, #3a3a4a 0%, #28283a 100%);"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+      <p class="text-xs tracking-widest text-white/60 mb-1 md:mb-2">COLLECTION</p>
+      <h2 class="text-2xl md:text-4xl tracking-wider" style="letter-spacing: 0.15em;">TEES & HENLEYS</h2>
+      <p class="text-xs md:text-sm text-white/70 mt-2 md:mt-3 max-w-lg hidden md:block">Tubular-knit tees and loopwheel henleys in heavyweight cotton. The everyday essentials, done right.</p>
+      <p class="text-xs text-white/50 mt-2 md:mt-4">8 Products</p>
+    </div>
+  </section>
+
+  <!-- Products Grid with Filters -->
+  <section class="max-w-6xl mx-auto px-4 md:px-8 py-12">
+    <div class="flex gap-8">
+      <!-- Filter Sidebar -->
+      <aside class="w-64 flex-shrink-0 hidden md:block">
+        <h3 class="text-xs tracking-widest mb-4">FILTERS</h3>
+
+        <!-- Price Range -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">PRICE</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="0-100" class="filter-price cursor-pointer">
+            <span>€0 - €100</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="100-200" class="filter-price cursor-pointer">
+            <span>€100 - €200</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="price" value="200-999" class="filter-price cursor-pointer">
+            <span>€200+</span>
+          </label>
+        </div>
+
+        <!-- Size -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">SIZE</p>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="S" class="filter-size hidden">
+              <span>S</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="M" class="filter-size hidden">
+              <span>M</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="L" class="filter-size hidden">
+              <span>L</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XL" class="filter-size hidden">
+              <span>XL</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XXL" class="filter-size hidden">
+              <span>XXL</span>
+            </label>
+            <label class="flex items-center justify-center border border-gray-300 px-2 py-1 text-xs cursor-pointer hover:border-black transition-colors">
+              <input type="checkbox" name="size" value="XXXL" class="filter-size hidden">
+              <span>XXXL</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tag -->
+        <div class="mb-6">
+          <p class="text-xs font-medium mb-3 tracking-wider">TAG</p>
+          <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="NEW" class="filter-tag cursor-pointer">
+            <span>New Arrivals</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-black transition-colors">
+            <input type="checkbox" name="tag" value="BESTSELLER" class="filter-tag cursor-pointer">
+            <span>Bestsellers</span>
+          </label>
+        </div>
+
+        <!-- Clear Filters -->
+        <button id="clear-filters" class="text-xs text-gray-500 hover:text-black border-b border-gray-400 hover:border-black pb-0.5 transition-all">
+          CLEAR ALL FILTERS
+        </button>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
+          <p id="product-count" class="text-xs tracking-widest text-gray-400">SHOWING 8 PRODUCTS</p>
+          <select id="sort-select" class="text-xs tracking-wider border border-gray-300 px-3 py-2 bg-white text-gray-600 focus:outline-none focus:border-black w-full sm:w-auto">
+            <option value="featured">SORT BY: FEATURED</option>
+            <option value="price-asc">PRICE: LOW TO HIGH</option>
+            <option value="price-desc">PRICE: HIGH TO LOW</option>
+            <option value="newest">NEWEST FIRST</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="products-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="shirts-flannels.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shirts & Flannels</a>
+        <a href="outerwear.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Outerwear</a>
+        <a href="tees-henleys.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Tees & Henleys</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <a href="our-story.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Our Story</a>
+        <a href="denim-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Guide</a>
+        <a href="journal.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">The Journal</a>
+        <a href="sustainability.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sustainability</a>
+        <a href="careers.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Careers</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <a href="faq.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">FAQ</a>
+        <a href="size-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Size Guide</a>
+        <a href="shipping-returns.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shipping & Returns</a>
+        <a href="repairs-hemming.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Repairs & Hemming</a>
+        <a href="contact.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Contact Us</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>&copy; 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms & Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // Load products dynamically from API
+    const API_URL = 'http://localhost:8000/api';
+    const categorySlug = window.location.pathname.split('/').pop().replace('.html', '');
+    let products = [];
+
+    function esc(s) { return String(s).replace(/'/g, "\\'"); }
+
+    function createProductCard(product) {
+      const mainImage = product.images && product.images.length > 0
+        ? product.images.find(img => img.type === 'main') || product.images.find(img => img.type === 'gallery') || product.images[0]
+        : null;
+      const imageUrl = mainImage ? (mainImage.url || mainImage.image_path) : '';
+      const href = `/products/product.html?slug=${product.slug}`;
+
+      return `
+        <a href="${href}" class="group cursor-pointer block">
+          <div class="relative overflow-hidden bg-gray-100 mb-3" style="aspect-ratio: 3/4;">
+            ${imageUrl ? `<img src="${imageUrl}" alt="${product.name}" class="absolute inset-0 w-full h-full object-contain" />` : '<div class="absolute inset-0 bg-gray-200"></div>'}
+            ${product.tag ? `<span class="absolute top-3 left-3 bg-white text-black text-xs px-2 py-0.5 tracking-wider" style="font-size: 10px;">${product.tag}</span>` : ''}
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+            <button class="absolute bottom-0 left-0 right-0 bg-black text-white text-xs py-2.5 tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+              onclick="event.preventDefault(); QuickdrawCart.add({
+                productId: ${product.id},
+                slug: '${esc(product.slug)}',
+                name: '${esc(product.name)}',
+                desc: '${esc(product.desc || '')}',
+                price: '${esc(product.price)}',
+                priceNum: ${product.priceNum},
+                image: '${esc(imageUrl)}'
+              });">
+              ADD TO BAG
+            </button>
+          </div>
+          <p class="text-sm font-medium text-gray-900">${product.name}</p>
+          <p class="text-xs text-gray-500 mt-0.5">${product.desc || ''}</p>
+          <p class="text-sm text-gray-900 mt-1">${product.price}</p>
+        </a>
+      `;
+    }
+
+    // Active filters
+    let activeFilters = {
+      priceRanges: [],
+      sizes: [],
+      tags: []
+    };
+
+    // Load products from API with filters
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">Loading products...</p>';
+
+      try {
+        // Build URL with filters
+        let url = `${API_URL}/products?category=${categorySlug}&per_page=50`;
+
+        // Add price filter
+        if (activeFilters.priceRanges.length > 0) {
+          const prices = activeFilters.priceRanges.map(r => r.split('-').map(Number));
+          const minPrice = Math.min(...prices.map(p => p[0]));
+          const maxPrice = Math.max(...prices.map(p => p[1]));
+          url += `&min_price=${minPrice}&max_price=${maxPrice}`;
+        }
+
+        // Add size filter
+        if (activeFilters.sizes.length > 0) {
+          url += `&size=${activeFilters.sizes[0]}`;
+        }
+
+        // Add tag filter
+        if (activeFilters.tags.length > 0) {
+          url += `&tag=${activeFilters.tags[0]}`;
+        }
+
+        // Add sorting
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect && sortSelect.value !== 'featured') {
+          if (sortSelect.value === 'price-asc') {
+            url += '&sort=price&order=asc';
+          } else if (sortSelect.value === 'price-desc') {
+            url += '&sort=price&order=desc';
+          } else if (sortSelect.value === 'newest') {
+            url += '&sort=created_at&order=desc';
+          }
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+        products = data.data || [];
+
+        if (products.length > 0) {
+          grid.innerHTML = products.map(createProductCard).join('');
+          document.getElementById('product-count').textContent = `SHOWING ${products.length} PRODUCTS`;
+        } else {
+          grid.innerHTML = '<p class="col-span-full text-center text-gray-500 text-sm py-8">No products match your filters</p>';
+          document.getElementById('product-count').textContent = 'NO PRODUCTS FOUND';
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-500 text-sm py-8">Failed to load products. Please refresh.</p>';
+      }
+    }
+
+    // Attach filter listeners
+    function attachFilterListeners() {
+      // Price filters
+      document.querySelectorAll('.filter-price').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.priceRanges.push(this.value);
+          } else {
+            activeFilters.priceRanges = activeFilters.priceRanges.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Size filters - toggle button style
+      document.querySelectorAll('.filter-size').forEach(checkbox => {
+        checkbox.parentElement.addEventListener('click', function() {
+          checkbox.checked = !checkbox.checked;
+          this.classList.toggle('bg-black');
+          this.classList.toggle('text-white');
+          this.classList.toggle('border-black');
+
+          if (checkbox.checked) {
+            activeFilters.sizes.push(checkbox.value);
+          } else {
+            activeFilters.sizes = activeFilters.sizes.filter(v => v !== checkbox.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Tag filters
+      document.querySelectorAll('.filter-tag').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            activeFilters.tags.push(this.value);
+          } else {
+            activeFilters.tags = activeFilters.tags.filter(v => v !== this.value);
+          }
+          loadProducts();
+        });
+      });
+
+      // Clear filters
+      document.getElementById('clear-filters').addEventListener('click', function() {
+        activeFilters = { priceRanges: [], sizes: [], tags: [] };
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.filter-size').forEach(cb => {
+          cb.parentElement.classList.remove('bg-black', 'text-white', 'border-black');
+        });
+        loadProducts();
+      });
+
+      // Sort dropdown
+      const sortSelect = document.getElementById('sort-select');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', loadProducts);
+      }
+    }
+
+    // Load products and attach filters when page loads
+    loadProducts();
+    attachFilterListeners();
+  </script>
+</body>
+</html>

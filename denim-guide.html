@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denim Guide | Quickdraw Pressing Co.</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Everything you need to know about selvedge denim - from the loom to your wardrobe. Learn about raw denim, fades, and care.">
+  <meta property="og:title" content="Denim Guide | Quickdraw Pressing Co.">
+  <meta property="og:description" content="Your complete guide to selvedge denim - care, fades, and craftsmanship.">
+  <meta property="og:image" content="https://yourdomain.com/selvedge_denim_quickdraw.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="QUICKDRAW.png">
+  <link rel="apple-touch-icon" href="QUICKDRAW.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .logo-title {
+      font-family: 'Rye', cursive;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.12em;
+      color: #111;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .logo-subtitle {
+      font-family: Georgia, serif;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+    }
+    /* Cookie Popup Styles */
+    #cookie-popup {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      transform: translateY(100%);
+      transition: transform 0.4s ease-out;
+    }
+    #cookie-popup.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-center py-2 text-xs tracking-widest">
+    FREE SHIPPING ON ORDERS ABOVE &euro;150 &mdash; SUBSCRIBE &amp; GET 10% OFF
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 px-4 md:px-8 py-5">
+    <div class="text-center">
+      <a href="index.html" class="inline-block">
+        <h1 class="logo-title">QUICKDRAW</h1>
+        <div class="flex items-center justify-center gap-3 mt-1">
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+          <span class="text-xs tracking-widest text-gray-500 logo-subtitle">PRESSING CO.</span>
+          <div class="h-px bg-gray-300 w-12 md:w-20"></div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex justify-center gap-4 md:gap-8 mt-4 overflow-x-auto px-2 -mx-2" style="-webkit-overflow-scrolling: touch;">
+      <a href="new-in.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">NEW IN</a>
+      <a href="denim.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">DENIM</a>
+      <a href="americana.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">AMERICANA</a>
+      <a href="accessories.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">ACCESSORIES</a>
+      <a href="denim-guide.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-black border-b border-black">DENIM GUIDE</a>
+      <a href="journal.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200 text-gray-600 hover:text-black">JOURNAL</a>
+      <a href="sale.html" class="nav-item text-xs tracking-widest whitespace-nowrap pb-1 transition-all duration-200" style="color: #c45a3a;">SALE</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-3xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex gap-2 text-xs text-gray-500">
+      <a href="index.html" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-gray-900">Denim Guide</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gray-900" style="height: 200px;">
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+      <p class="text-xs tracking-widest text-white/60 mb-1 md:mb-2">LEARN</p>
+      <h2 class="text-2xl md:text-4xl tracking-wider" style="letter-spacing: 0.15em;">DENIM GUIDE</h2>
+      <p class="text-xs md:text-sm text-white/70 mt-2 md:mt-3 max-w-lg hidden md:block">Everything you need to know about selvedge denim &mdash; from the loom to your wardrobe.</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <article class="max-w-3xl mx-auto px-4 md:px-8 py-12 md:py-16">
+
+    <!-- What is Selvedge -->
+    <section class="mb-16">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">01</p>
+      <h3 class="text-lg md:text-xl mb-4" style="letter-spacing: 0.08em;">What is Selvedge Denim?</h3>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        Selvedge (or &ldquo;self-edge&rdquo;) denim is woven on old-style shuttle looms that produce a narrow strip of fabric
+        with a clean, finished edge on both sides. This self-finished edge prevents fraying and is the hallmark
+        of premium denim.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        Modern wide looms produce fabric that must be cut and serged, leaving rough edges. Shuttle looms are
+        slower and produce narrower bolts of fabric, but the resulting denim is denser, more durable, and
+        develops character over time in a way mass-produced denim simply cannot.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed">
+        The coloured thread running along the selvedge edge (often red, hence &ldquo;redline&rdquo;) identifies the mill.
+        When you cuff your jeans, this clean edge is visible &mdash; the subtle signature of quality.
+      </p>
+    </section>
+
+    <!-- Raw vs Washed -->
+    <section class="mb-16">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">02</p>
+      <h3 class="text-lg md:text-xl mb-4" style="letter-spacing: 0.08em;">Raw vs. Washed Denim</h3>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        <strong>Raw (unwashed) denim</strong> has not been washed or treated after dyeing. It starts stiff and dark,
+        then softens and develops unique fade patterns based on how you wear it. Every pair becomes truly one-of-a-kind.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        <strong>Unsanforized denim</strong> goes a step further &mdash; it hasn&rsquo;t been pre-shrunk. Expect 1&ndash;2 inches of shrinkage in the
+        waist and 2&ndash;3 inches in length after your first soak. Size accordingly, or embrace the custom fit that comes
+        from shrink-to-fit.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed">
+        <strong>One-wash denim</strong> has been soaked once to remove most shrinkage while keeping the raw character.
+        A good middle ground if you want a predictable fit from day one.
+      </p>
+    </section>
+
+    <!-- Weight Guide -->
+    <section class="mb-16">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">03</p>
+      <h3 class="text-lg md:text-xl mb-4" style="letter-spacing: 0.08em;">Denim Weight Guide</h3>
+      <div class="border border-gray-200 divide-y divide-gray-200">
+        <div class="grid grid-cols-3 p-4 text-xs">
+          <span class="tracking-widest text-gray-900 font-medium">WEIGHT</span>
+          <span class="tracking-widest text-gray-900 font-medium">FEEL</span>
+          <span class="tracking-widest text-gray-900 font-medium">BEST FOR</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-xs text-gray-600">
+          <span>10&ndash;12oz</span>
+          <span>Lightweight, soft</span>
+          <span>Summer, warmer climates</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-xs text-gray-600">
+          <span>13&ndash;15oz</span>
+          <span>Medium, versatile</span>
+          <span>Year-round, daily wear</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-xs text-gray-600">
+          <span>16&ndash;18oz</span>
+          <span>Heavy, structured</span>
+          <span>Autumn/winter, bold fades</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-xs text-gray-600">
+          <span>19oz+</span>
+          <span>Very heavy, stiff</span>
+          <span>Enthusiasts, extreme fades</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Fade -->
+    <section class="mb-16">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">04</p>
+      <h3 class="text-lg md:text-xl mb-4" style="letter-spacing: 0.08em;">How to Fade Your Denim</h3>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        The beauty of raw selvedge is in the fade. Here&rsquo;s how to get the best results:
+      </p>
+      <div class="space-y-4 text-sm text-gray-700">
+        <p><strong>Wear them in.</strong> Aim for 6 months of daily wear before your first wash. The longer you go, the more pronounced your fades will be. Whiskers (hip creases), honeycombs (behind the knees), and stacks (ankle bunching) are the classic fade points.</p>
+        <p><strong>First soak.</strong> For unsanforized denim, do a lukewarm soak for 30&ndash;45 minutes to remove shrinkage. For sanforized raw denim, you can skip this step.</p>
+        <p><strong>Wash sparingly.</strong> When you do wash, turn inside out, use cold water, and hang dry. Never tumble dry. Some purists use only water; others add a small amount of mild detergent.</p>
+        <p><strong>Spot clean.</strong> Between washes, spot-clean stains with a damp cloth. Some swear by the freezer method for freshness, though its effectiveness is debated.</p>
+      </div>
+    </section>
+
+    <!-- Fit Guide -->
+    <section class="mb-16">
+      <p class="text-xs tracking-widest text-gray-400 mb-2">05</p>
+      <h3 class="text-lg md:text-xl mb-4" style="letter-spacing: 0.08em;">Finding Your Fit</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="border border-gray-200 p-5">
+          <p class="text-xs tracking-widest text-gray-900 mb-2">SLIM</p>
+          <p class="text-xs text-gray-600 leading-relaxed">Fitted through hip and thigh with a moderate taper. Modern without being skinny. Our Frontier and Highwayman fits.</p>
+        </div>
+        <div class="border border-gray-200 p-5">
+          <p class="text-xs tracking-widest text-gray-900 mb-2">STRAIGHT</p>
+          <p class="text-xs text-gray-600 leading-relaxed">Classic straight leg from hip to hem. The timeless denim silhouette. Our Rancher and Canyon fits.</p>
+        </div>
+        <div class="border border-gray-200 p-5">
+          <p class="text-xs tracking-widest text-gray-900 mb-2">RELAXED</p>
+          <p class="text-xs text-gray-600 leading-relaxed">Generous room through hip and thigh with a slight taper. Comfortable all-day wear. Our Prospector and Wrangler fits.</p>
+        </div>
+        <div class="border border-gray-200 p-5">
+          <p class="text-xs tracking-widest text-gray-900 mb-2">WIDE</p>
+          <p class="text-xs text-gray-600 leading-relaxed">Full cut with a wide leg opening. Vintage-inspired with room to move. Our Drifter fit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-8 border-t border-gray-200">
+      <p class="text-xs tracking-widest text-gray-400 mb-4">READY TO START?</p>
+      <a href="selvedge-jeans.html" class="inline-block bg-black text-white text-xs tracking-widest px-8 py-3 hover:bg-gray-800 transition-colors">
+        SHOP SELVEDGE JEANS
+      </a>
+    </section>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 px-4 md:px-8 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">SHOP</p>
+        <a href="new-in.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">New In</a>
+        <a href="selvedge-jeans.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Selvedge Jeans</a>
+        <a href="denim-jackets.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Jackets</a>
+        <a href="shirts-flannels.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shirts &amp; Flannels</a>
+        <a href="outerwear.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Outerwear</a>
+        <a href="tees-henleys.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Tees &amp; Henleys</a>
+        <a href="accessories.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Accessories</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">INFO</p>
+        <a href="our-story.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Our Story</a>
+        <a href="denim-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Denim Guide</a>
+        <a href="journal.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">The Journal</a>
+        <a href="sustainability.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Sustainability</a>
+        <a href="careers.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Careers</a>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">HELP</p>
+        <a href="faq.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">FAQ</a>
+        <a href="size-guide.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Size Guide</a>
+        <a href="shipping-returns.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Shipping & Returns</a>
+        <a href="repairs-hemming.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Repairs & Hemming</a>
+        <a href="contact.html" class="block text-gray-500 mb-1.5 hover:text-black transition-colors">Contact Us</a>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Shipping &amp; Returns</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Repairs &amp; Hemming</p>
+      </div>
+      <div>
+        <p class="tracking-widest text-gray-900 mb-3">FOLLOW US</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Instagram</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">TikTok</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">Pinterest</p>
+        <p class="text-gray-500 mb-1.5 cursor-pointer hover:text-black transition-colors">YouTube</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+      <p>&copy; 2026 Quickdraw Pressing Co. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <span class="cursor-pointer hover:text-black transition-colors">Privacy Policy</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Terms &amp; Conditions</span>
+        <span class="cursor-pointer hover:text-black transition-colors">Cookie Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Consent Popup -->
+  <div id="cookie-popup" class="bg-white border-t-2 border-gray-900 shadow-2xl">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex-1 text-center md:text-left">
+          <p class="text-xs tracking-widest text-gray-900 mb-1">WE VALUE YOUR PRIVACY</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
+            By clicking "Accept All", you consent to our use of cookies.
+            <a href="#" class="underline hover:text-black">Learn more</a>
+          </p>
+        </div>
+        <div class="flex gap-3 whitespace-nowrap">
+          <button id="cookie-decline" class="text-xs tracking-widest px-6 py-2.5 border border-gray-300 hover:border-gray-900 transition-colors">
+            DECLINE
+          </button>
+          <button id="cookie-accept" class="text-xs tracking-widest px-6 py-2.5 bg-black text-white hover:bg-gray-800 transition-colors">
+            ACCEPT ALL
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // Cookie Consent Logic
+    const cookiePopup = document.getElementById('cookie-popup');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieDeclineBtn = document.getElementById('cookie-decline');
+
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('cookieConsent');
+      if (!consent) {
+        setTimeout(() => {
+          cookiePopup.classList.add('show');
+        }, 1000);
+      }
+    }
+
+    cookieAcceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookiePopup.classList.remove('show');
+    });
+
+    cookieDeclineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      cookiePopup.classList.remove('show');
+    });
+
+    checkCookieConsent();
+  </script>
+</body>
+</html>
